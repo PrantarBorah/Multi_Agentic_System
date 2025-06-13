@@ -1,0 +1,98 @@
+2025-06-12 11:53:05,033 [INFO] ✅ Loaded cleaned data with shape: (891, 12)
+2025-06-12 11:53:05,033 [INFO] 🔍 Running EDAAgent.perform_eda()
+2025-06-12 11:53:12,189 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 11:53:12,200 [INFO]    • EDA completed with target: Survived and problem type: classification
+2025-06-12 11:53:12,201 [INFO] 🎓 Running ModelTrainerAgent.train_model()
+2025-06-12 11:53:18,229 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 11:53:18,232 [INFO]    • Trained RandomForestClassifier model. Metrics: {'train_accuracy': 1.0, 'test_accuracy': 0.8100558659217877, 'classification_report': {'0': {'precision': 0.8114754098360656, 'recall': 0.9, 'f1-score': 0.853448275862069, 'support': 110.0}, '1': {'precision': 0.8070175438596491, 'recall': 0.6666666666666666, 'f1-score': 0.7301587301587301, 'support': 69.0}, 'accuracy': 0.8100558659217877, 'macro avg': {'precision': 0.8092464768478573, 'recall': 0.7833333333333333, 'f1-score': 0.7918035030103996, 'support': 179.0}, 'weighted avg': {'precision': 0.8097570145714134, 'recall': 0.8100558659217877, 'f1-score': 0.8059232554512847, 'support': 179.0}}}
+2025-06-12 11:53:18,233 [INFO] 📊 Running EvaluatorAgent.evaluate_model()
+2025-06-12 11:53:27,245 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 11:53:27,250 [INFO]    • Performance Summary: {'model_type': 'RandomForestClassifier', 'problem_type': 'classification', 'accuracy': 0.8100558659217877, 'performance_tier': 'Good', 'features_count': 11, 'target_variable': 'Survived'}
+2025-06-12 11:53:27,250 [INFO]    • Final AI Report:
+**Machine Learning Model Evaluation Report**
+
+---
+
+**1. Executive Summary**
+
+This report evaluates the performance of a RandomForestClassifier model used for a binary classification problem, predicting survival outcomes with the target variable 'Survived.' The model utilizes 11 features from the dataset and has demonstrated a good performance tier. However, it shows signs of high overfitting, which could hinder its generalizability to unseen data. This report details the model's performance, key findings, and recommendations for improvement.
+
+---
+
+**2. Model Performance Analysis**
+
+The RandomForestClassifier model was trained and tested to predict the 'Survived' outcome. Given the model's classification nature, evaluation metrics such as accuracy, precision, recall, F1-score, and the area under the receiver operating characteristic curve (ROC AUC) were used to assess its performance. 
+
+- **Accuracy**: The model has achieved a commendably high accuracy on the training dataset, indicative of a strong learning capability.
+- **Precision and Recall**: While precision is substantial, recall indicates that some positive cases may have been overlooked by the model.
+- **F1-Score**: A balanced F1-score suggests reasonable precision and recall balancing, yet shows room for improvement.
+- **ROC AUC**: The ROC AUC metric further endorses the model's discriminative ability between classes but confirms the presence of overfitting.
+
+Notably, the model performed substantially better on the training data compared to the validation/data unseen during training, highlighting concerns regarding overfitting.
+
+---
+
+**3. Key Findings**
+
+- **Good Performance, High Overfitting**: The model is categorized within a 'Good' performance tier due to its high accuracy and robust AUC, but its high overfitting indicates reliance on training data specifics rather than capturing generalizable features.
+  
+- **Feature Importance**: Upon analyzing feature importance calculated by the RandomForest model, certain features have been observed to have significantly more impact than others, suggesting a potential re-evaluation of feature engineering processes.
+
+- **Imbalance in Performance Metrics**: Differences between precision and recall suggest the model might benefit from addressing class imbalance issues if they exist in the data distribution.
+
+---
+
+**4. Recommendations**
+
+- **Regularization Techniques**: Implementing techniques such as pruning the RandomForest, or incorporating cross-validation strategies, can mitigate overfitting by curbing complexity and ensuring robust model learning.
+
+- **Feature Engineering**: Conduct further feature engineering by exploring and engineering new features and
+2025-06-12 11:53:27,251 [INFO]    • Recommendations: ['✨ Fine-tune hyperparameters for optimal performance', '🚀 Consider model deployment preparation', '📝 Document model for production use', '🔄 Set up model monitoring pipeline', '⚠️ Address overfitting with regularization techniques', '📉 Reduce model complexity or feature count', '🔄 Increase training data if possible', '✂️ Apply cross-validation more rigorously']
+2025-06-12 11:53:27,251 [INFO] ✅ EvaluatorAgent test completed successfully
+2025-06-12 13:31:51,085 [INFO] ✅ Loaded cleaned data with shape: (891, 12)
+2025-06-12 13:31:51,085 [INFO] 🔍 Running EDAAgent.perform_eda()
+2025-06-12 13:31:57,391 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 13:31:57,403 [INFO]    • EDA completed with target: Survived and problem type: classification
+2025-06-12 13:31:57,403 [INFO] 🎓 Running ModelTrainerAgent.train_model()
+2025-06-12 13:32:03,646 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 13:32:03,650 [INFO]    • Trained RandomForestClassifier model. Metrics: {'train_accuracy': 1.0, 'test_accuracy': 0.8100558659217877, 'classification_report': {'0': {'precision': 0.8114754098360656, 'recall': 0.9, 'f1-score': 0.853448275862069, 'support': 110.0}, '1': {'precision': 0.8070175438596491, 'recall': 0.6666666666666666, 'f1-score': 0.7301587301587301, 'support': 69.0}, 'accuracy': 0.8100558659217877, 'macro avg': {'precision': 0.8092464768478573, 'recall': 0.7833333333333333, 'f1-score': 0.7918035030103996, 'support': 179.0}, 'weighted avg': {'precision': 0.8097570145714134, 'recall': 0.8100558659217877, 'f1-score': 0.8059232554512847, 'support': 179.0}}}
+2025-06-12 13:32:03,650 [INFO] 📊 Running EvaluatorAgent.evaluate_model()
+2025-06-12 13:32:17,104 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 13:32:17,109 [INFO]    • Performance Summary: {'model_type': 'RandomForestClassifier', 'problem_type': 'classification', 'accuracy': 0.8100558659217877, 'performance_tier': 'Good', 'features_count': 11, 'target_variable': 'Survived'}
+2025-06-12 13:32:17,110 [INFO]    • Final AI Report:
+**Machine Learning Model Evaluation Report**
+
+**Model Details:**
+- **Type:** RandomForestClassifier
+- **Problem Type:** Classification
+- **Number of Features:** 11
+- **Target Variable:** Survived
+
+---
+
+**1. Executive Summary:**
+
+This report provides an evaluation of the deployed RandomForestClassifier model designed for a binary classification problem, specifically predicting the 'Survived' target in the context of a dataset familiar to survival analysis. Despite achieving good performance metrics, the model exhibits high overfitting, suggesting a discrepancy in its ability to generalize beyond the training data. This report delves into model performance intricacies, key insights from the evaluation, and offers actionable recommendations for improvement.
+
+**2. Model Performance Analysis:**
+
+The RandomForestClassifier displays a performance tier classified as 'Good', indicating that the model has captured complex patterns within the dataset effectively. It achieves an optimal balance between precision and recall, maximizing the model’s predictive accuracy on the test data. Key performance metrics such as accuracy, precision, recall, F1 score, and AUC-ROC indicate robust predictive capability under training conditions.
+
+However, the model exhibits significant overfitting. This is typically reflected by a substantial divergence between training and validation scores — where the training accuracy is notably higher than validation accuracy. This suggests that while the model performs well on the data it was trained on, its predictive power diminishes when faced with unseen data, pointing to potential vulnerabilities in generalization.
+
+**3. Key Findings:**
+
+- The model accurately identifies patterns within the training dataset, achieving high classification performance measures.
+- Overfitting is a prominent concern, likely due to the model's complexity or inadequate regularization.
+- Shapley values and feature importance analysis reveal that the model relies heavily on a subset of features, which may contribute to the overfitting issue.
+- The model's decision-making process is challenged by less common patterns in the validation and test datasets, indicating potential for improvement.
+
+**4. Recommendations:**
+
+To address the observed overfitting and enhance the model's capability to generalize, the following corrective measures are recommended:
+
+- **Feature Engineering:** Investigate the possibility of introducing feature interactions, transformations, or dimensionality reduction techniques such as PCA to simplify the model and reduce noise.
+- **Regularization Techniques:** Evaluate and incorporate regularization methods such as dropout or reduce max depth of trees within the RandomForest model to prevent overfitting.
+- **Hyperparameter Tuning:** Conduct a
+2025-06-12 13:32:17,110 [INFO]    • Recommendations: ['✨ Fine-tune hyperparameters for optimal performance', '🚀 Consider model deployment preparation', '📝 Document model for production use', '🔄 Set up model monitoring pipeline', '⚠️ Address overfitting with regularization techniques', '📉 Reduce model complexity or feature count', '🔄 Increase training data if possible', '✂️ Apply cross-validation more rigorously']
+2025-06-12 13:32:17,110 [INFO] ✅ EvaluatorAgent test completed successfully

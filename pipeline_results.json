@@ -1,0 +1,3103 @@
+{
+  "original_data": {
+    "type": "DataFrame",
+    "shape": [
+      150,
+      6
+    ],
+    "columns": [
+      "Id",
+      "SepalLengthCm",
+      "SepalWidthCm",
+      "PetalLengthCm",
+      "PetalWidthCm",
+      "Species"
+    ],
+    "sample": {
+      "Id": {
+        "0": 1,
+        "1": 2,
+        "2": 3,
+        "3": 4,
+        "4": 5
+      },
+      "SepalLengthCm": {
+        "0": 5.1,
+        "1": 4.9,
+        "2": 4.7,
+        "3": 4.6,
+        "4": 5.0
+      },
+      "SepalWidthCm": {
+        "0": 3.5,
+        "1": 3.0,
+        "2": 3.2,
+        "3": 3.1,
+        "4": 3.6
+      },
+      "PetalLengthCm": {
+        "0": 1.4,
+        "1": 1.4,
+        "2": 1.3,
+        "3": 1.5,
+        "4": 1.4
+      },
+      "PetalWidthCm": {
+        "0": 0.2,
+        "1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2
+      },
+      "Species": {
+        "0": "Iris-setosa",
+        "1": "Iris-setosa",
+        "2": "Iris-setosa",
+        "3": "Iris-setosa",
+        "4": "Iris-setosa"
+      }
+    }
+  },
+  "cleaned_data": {
+    "type": "DataFrame",
+    "shape": [
+      150,
+      6
+    ],
+    "columns": [
+      "Id",
+      "SepalLengthCm",
+      "SepalWidthCm",
+      "PetalLengthCm",
+      "PetalWidthCm",
+      "Species"
+    ],
+    "sample": {
+      "Id": {
+        "0": 1,
+        "1": 2,
+        "2": 3,
+        "3": 4,
+        "4": 5
+      },
+      "SepalLengthCm": {
+        "0": 5.1,
+        "1": 4.9,
+        "2": 4.7,
+        "3": 4.6,
+        "4": 5.0
+      },
+      "SepalWidthCm": {
+        "0": 3.5,
+        "1": 3.0,
+        "2": 3.2,
+        "3": 3.1,
+        "4": 3.6
+      },
+      "PetalLengthCm": {
+        "0": 1.4,
+        "1": 1.4,
+        "2": 1.3,
+        "3": 1.5,
+        "4": 1.4
+      },
+      "PetalWidthCm": {
+        "0": 0.2,
+        "1": 0.2,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.2
+      },
+      "Species": {
+        "0": "Iris-setosa",
+        "1": "Iris-setosa",
+        "2": "Iris-setosa",
+        "3": "Iris-setosa",
+        "4": "Iris-setosa"
+      }
+    }
+  },
+  "eda_results": {
+    "summary_stats": {
+      "numeric": {
+        "Id": {
+          "count": 150.0,
+          "mean": 75.5,
+          "std": 43.445367992456916,
+          "min": 1.0,
+          "25%": 38.25,
+          "50%": 75.5,
+          "75%": 112.75,
+          "max": 150.0
+        },
+        "SepalLengthCm": {
+          "count": 150.0,
+          "mean": 5.843333333333334,
+          "std": 0.828066127977863,
+          "min": 4.3,
+          "25%": 5.1,
+          "50%": 5.8,
+          "75%": 6.4,
+          "max": 7.9
+        },
+        "SepalWidthCm": {
+          "count": 150.0,
+          "mean": 3.050666666666667,
+          "std": 0.42303579531327024,
+          "min": 2.05,
+          "25%": 2.8,
+          "50%": 3.0,
+          "75%": 3.3,
+          "max": 4.05
+        },
+        "PetalLengthCm": {
+          "count": 150.0,
+          "mean": 3.758666666666666,
+          "std": 1.7644204199522626,
+          "min": 1.0,
+          "25%": 1.6,
+          "50%": 4.35,
+          "75%": 5.1,
+          "max": 6.9
+        },
+        "PetalWidthCm": {
+          "count": 150.0,
+          "mean": 1.1986666666666668,
+          "std": 0.7631607417008411,
+          "min": 0.1,
+          "25%": 0.3,
+          "50%": 1.3,
+          "75%": 1.8,
+          "max": 2.5
+        }
+      },
+      "categorical": {
+        "Species": {
+          "Iris-setosa": 50,
+          "Iris-versicolor": 50,
+          "Iris-virginica": 50
+        }
+      },
+      "missing_values": {
+        "Id": 0,
+        "SepalLengthCm": 0,
+        "SepalWidthCm": 0,
+        "PetalLengthCm": 0,
+        "PetalWidthCm": 0,
+        "Species": 0
+      }
+    },
+    "correlations": {
+      "Id": {
+        "Id": 1.0,
+        "SepalLengthCm": 0.7166762728539005,
+        "SepalWidthCm": -0.39726665287495705,
+        "PetalLengthCm": 0.8827473181390559,
+        "PetalWidthCm": 0.8997585770933499
+      },
+      "SepalLengthCm": {
+        "Id": 0.7166762728539005,
+        "SepalLengthCm": 1.0,
+        "SepalWidthCm": -0.11034275153493824,
+        "PetalLengthCm": 0.8717541573048716,
+        "PetalWidthCm": 0.8179536333691639
+      },
+      "SepalWidthCm": {
+        "Id": -0.39726665287495705,
+        "SepalLengthCm": -0.11034275153493824,
+        "SepalWidthCm": 1.0,
+        "PetalLengthCm": -0.419823238731106,
+        "PetalWidthCm": -0.35558242421907
+      },
+      "PetalLengthCm": {
+        "Id": 0.8827473181390559,
+        "SepalLengthCm": 0.8717541573048716,
+        "SepalWidthCm": -0.419823238731106,
+        "PetalLengthCm": 1.0,
+        "PetalWidthCm": 0.9627570970509662
+      },
+      "PetalWidthCm": {
+        "Id": 0.8997585770933499,
+        "SepalLengthCm": 0.8179536333691639,
+        "SepalWidthCm": -0.35558242421907,
+        "PetalLengthCm": 0.9627570970509662,
+        "PetalWidthCm": 1.0
+      }
+    },
+    "distributions": {
+      "Id": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "Id=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "nbinsx": 20,
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "i2",
+              "bdata": "AQACAAMABAAFAAYABwAIAAkACgALAAwADQAOAA8AEAARABIAEwAUABUAFgAXABgAGQAaABsAHAAdAB4AHwAgACEAIgAjACQAJQAmACcAKAApACoAKwAsAC0ALgAvADAAMQAyADMANAA1ADYANwA4ADkAOgA7ADwAPQA+AD8AQABBAEIAQwBEAEUARgBHAEgASQBKAEsATABNAE4ATwBQAFEAUgBTAFQAVQBWAFcAWABZAFoAWwBcAF0AXgBfAGAAYQBiAGMAZABlAGYAZwBoAGkAagBrAGwAbQBuAG8AcABxAHIAcwB0AHUAdgB3AHgAeQB6AHsAfAB9AH4AfwCAAIEAggCDAIQAhQCGAIcAiACJAIoAiwCMAI0AjgCPAJAAkQCSAJMAlACVAJYA"
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "Id"
+            }
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of Id"
+          },
+          "barmode": "relative"
+        }
+      },
+      "SepalLengthCm": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "SepalLengthCm=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "nbinsx": 20,
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "f8",
+              "bdata": "ZmZmZmZmFECamZmZmZkTQM3MzMzMzBJAZmZmZmZmEkAAAAAAAAAUQJqZmZmZmRVAZmZmZmZmEkAAAAAAAAAUQJqZmZmZmRFAmpmZmZmZE0CamZmZmZkVQDMzMzMzMxNAMzMzMzMzE0AzMzMzMzMRQDMzMzMzMxdAzczMzMzMFkCamZmZmZkVQGZmZmZmZhRAzczMzMzMFkBmZmZmZmYUQJqZmZmZmRVAZmZmZmZmFEBmZmZmZmYSQGZmZmZmZhRAMzMzMzMzE0AAAAAAAAAUQAAAAAAAABRAzczMzMzMFEDNzMzMzMwUQM3MzMzMzBJAMzMzMzMzE0CamZmZmZkVQM3MzMzMzBRAAAAAAAAAFkCamZmZmZkTQAAAAAAAABRAAAAAAAAAFkCamZmZmZkTQJqZmZmZmRFAZmZmZmZmFEAAAAAAAAAUQAAAAAAAABJAmpmZmZmZEUAAAAAAAAAUQGZmZmZmZhRAMzMzMzMzE0BmZmZmZmYUQGZmZmZmZhJAMzMzMzMzFUAAAAAAAAAUQAAAAAAAABxAmpmZmZmZGUCamZmZmZkbQAAAAAAAABZAAAAAAAAAGkDNzMzMzMwWQDMzMzMzMxlAmpmZmZmZE0BmZmZmZmYaQM3MzMzMzBRAAAAAAAAAFECamZmZmZkXQAAAAAAAABhAZmZmZmZmGEBmZmZmZmYWQM3MzMzMzBpAZmZmZmZmFkAzMzMzMzMXQM3MzMzMzBhAZmZmZmZmFkCamZmZmZkXQGZmZmZmZhhAMzMzMzMzGUBmZmZmZmYYQJqZmZmZmRlAZmZmZmZmGkAzMzMzMzMbQM3MzMzMzBpAAAAAAAAAGEDNzMzMzMwWQAAAAAAAABZAAAAAAAAAFkAzMzMzMzMXQAAAAAAAABhAmpmZmZmZFUAAAAAAAAAYQM3MzMzMzBpAMzMzMzMzGUBmZmZmZmYWQAAAAAAAABZAAAAAAAAAFkBmZmZmZmYYQDMzMzMzMxdAAAAAAAAAFEBmZmZmZmYWQM3MzMzMzBZAzczMzMzMFkDNzMzMzMwYQGZmZmZmZhRAzczMzMzMFkAzMzMzMzMZQDMzMzMzMxdAZmZmZmZmHEAzMzMzMzMZQAAAAAAAABpAZmZmZmZmHkCamZmZmZkTQDMzMzMzMx1AzczMzMzMGkDNzMzMzMwcQAAAAAAAABpAmpmZmZmZGUAzMzMzMzMbQM3MzMzMzBZAMzMzMzMzF0CamZmZmZkZQAAAAAAAABpAzczMzMzMHkDNzMzMzMweQAAAAAAAABhAmpmZmZmZG0BmZmZmZmYWQM3MzMzMzB5AMzMzMzMzGUDNzMzMzMwaQM3MzMzMzBxAzczMzMzMGEBmZmZmZmYYQJqZmZmZmRlAzczMzMzMHECamZmZmZkdQJqZmZmZmR9AmpmZmZmZGUAzMzMzMzMZQGZmZmZmZhhAzczMzMzMHkAzMzMzMzMZQJqZmZmZmRlAAAAAAAAAGECamZmZmZkbQM3MzMzMzBpAmpmZmZmZG0AzMzMzMzMXQDMzMzMzMxtAzczMzMzMGkDNzMzMzMwaQDMzMzMzMxlAAAAAAAAAGkDNzMzMzMwYQJqZmZmZmRdA"
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "SepalLengthCm"
+            }
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of SepalLengthCm"
+          },
+          "barmode": "relative"
+        }
+      },
+      "SepalWidthCm": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "SepalWidthCm=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "nbinsx": 20,
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "f8",
+              "bdata": "AAAAAAAADEAAAAAAAAAIQJqZmZmZmQlAzczMzMzMCEDNzMzMzMwMQDMzMzMzMw9AMzMzMzMzC0AzMzMzMzMLQDMzMzMzMwdAzczMzMzMCECamZmZmZkNQDMzMzMzMwtAAAAAAAAACEAAAAAAAAAIQAAAAAAAABBAMzMzMzMzEEAzMzMzMzMPQAAAAAAAAAxAZmZmZmZmDkBmZmZmZmYOQDMzMzMzMwtAmpmZmZmZDUDNzMzMzMwMQGZmZmZmZgpAMzMzMzMzC0AAAAAAAAAIQDMzMzMzMwtAAAAAAAAADEAzMzMzMzMLQJqZmZmZmQlAzczMzMzMCEAzMzMzMzMLQDMzMzMzMxBAMzMzMzMzEEDNzMzMzMwIQJqZmZmZmQlAAAAAAAAADEDNzMzMzMwIQAAAAAAAAAhAMzMzMzMzC0AAAAAAAAAMQGZmZmZmZgJAmpmZmZmZCUAAAAAAAAAMQGZmZmZmZg5AAAAAAAAACEBmZmZmZmYOQJqZmZmZmQlAmpmZmZmZDUBmZmZmZmYKQJqZmZmZmQlAmpmZmZmZCUDNzMzMzMwIQGZmZmZmZgJAZmZmZmZmBkBmZmZmZmYGQGZmZmZmZgpAMzMzMzMzA0AzMzMzMzMHQJqZmZmZmQVAZmZmZmZmAEAAAAAAAAAIQJqZmZmZmQFAMzMzMzMzB0AzMzMzMzMHQM3MzMzMzAhAAAAAAAAACECamZmZmZkFQJqZmZmZmQFAAAAAAAAABECamZmZmZkJQGZmZmZmZgZAAAAAAAAABEBmZmZmZmYGQDMzMzMzMwdAAAAAAAAACEBmZmZmZmYGQAAAAAAAAAhAMzMzMzMzB0DNzMzMzMwEQDMzMzMzMwNAMzMzMzMzA0CamZmZmZkFQJqZmZmZmQVAAAAAAAAACEAzMzMzMzMLQM3MzMzMzAhAZmZmZmZmAkAAAAAAAAAIQAAAAAAAAARAzczMzMzMBEAAAAAAAAAIQM3MzMzMzARAZmZmZmZmAkCamZmZmZkFQAAAAAAAAAhAMzMzMzMzB0AzMzMzMzMHQAAAAAAAAARAZmZmZmZmBkBmZmZmZmYKQJqZmZmZmQVAAAAAAAAACEAzMzMzMzMHQAAAAAAAAAhAAAAAAAAACEAAAAAAAAAEQDMzMzMzMwdAAAAAAAAABEDNzMzMzMwMQJqZmZmZmQlAmpmZmZmZBUAAAAAAAAAIQAAAAAAAAARAZmZmZmZmBkCamZmZmZkJQAAAAAAAAAhAZmZmZmZmDkDNzMzMzMwEQJqZmZmZmQFAmpmZmZmZCUBmZmZmZmYGQGZmZmZmZgZAmpmZmZmZBUBmZmZmZmYKQJqZmZmZmQlAZmZmZmZmBkAAAAAAAAAIQGZmZmZmZgZAAAAAAAAACEBmZmZmZmYGQGZmZmZmZg5AZmZmZmZmBkBmZmZmZmYGQM3MzMzMzARAAAAAAAAACEAzMzMzMzMLQM3MzMzMzAhAAAAAAAAACEDNzMzMzMwIQM3MzMzMzAhAzczMzMzMCECamZmZmZkFQJqZmZmZmQlAZmZmZmZmCkAAAAAAAAAIQAAAAAAAAARAAAAAAAAACEAzMzMzMzMLQAAAAAAAAAhA"
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "SepalWidthCm"
+            }
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of SepalWidthCm"
+          },
+          "barmode": "relative"
+        }
+      },
+      "PetalLengthCm": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "PetalLengthCm=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "nbinsx": 20,
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "f8",
+              "bdata": "ZmZmZmZm9j9mZmZmZmb2P83MzMzMzPQ/AAAAAAAA+D9mZmZmZmb2PzMzMzMzM/s/ZmZmZmZm9j8AAAAAAAD4P2ZmZmZmZvY/AAAAAAAA+D8AAAAAAAD4P5qZmZmZmfk/ZmZmZmZm9j+amZmZmZnxPzMzMzMzM/M/AAAAAAAA+D/NzMzMzMz0P2ZmZmZmZvY/MzMzMzMz+z8AAAAAAAD4PzMzMzMzM/s/AAAAAAAA+D8AAAAAAADwPzMzMzMzM/s/ZmZmZmZm/j+amZmZmZn5P5qZmZmZmfk/AAAAAAAA+D9mZmZmZmb2P5qZmZmZmfk/mpmZmZmZ+T8AAAAAAAD4PwAAAAAAAPg/ZmZmZmZm9j8AAAAAAAD4PzMzMzMzM/M/zczMzMzM9D8AAAAAAAD4P83MzMzMzPQ/AAAAAAAA+D/NzMzMzMz0P83MzMzMzPQ/zczMzMzM9D+amZmZmZn5P2ZmZmZmZv4/ZmZmZmZm9j+amZmZmZn5P2ZmZmZmZvY/AAAAAAAA+D9mZmZmZmb2P83MzMzMzBJAAAAAAAAAEkCamZmZmZkTQAAAAAAAABBAZmZmZmZmEkAAAAAAAAASQM3MzMzMzBJAZmZmZmZmCkBmZmZmZmYSQDMzMzMzMw9AAAAAAAAADEDNzMzMzMwQQAAAAAAAABBAzczMzMzMEkDNzMzMzMwMQJqZmZmZmRFAAAAAAAAAEkBmZmZmZmYQQAAAAAAAABJAMzMzMzMzD0AzMzMzMzMTQAAAAAAAABBAmpmZmZmZE0DNzMzMzMwSQDMzMzMzMxFAmpmZmZmZEUAzMzMzMzMTQAAAAAAAABRAAAAAAAAAEkAAAAAAAAAMQGZmZmZmZg5AmpmZmZmZDUAzMzMzMzMPQGZmZmZmZhRAAAAAAAAAEkAAAAAAAAASQM3MzMzMzBJAmpmZmZmZEUBmZmZmZmYQQAAAAAAAABBAmpmZmZmZEUBmZmZmZmYSQAAAAAAAABBAZmZmZmZmCkDNzMzMzMwQQM3MzMzMzBBAzczMzMzMEEAzMzMzMzMRQAAAAAAAAAhAZmZmZmZmEEAAAAAAAAAYQGZmZmZmZhRAmpmZmZmZF0BmZmZmZmYWQDMzMzMzMxdAZmZmZmZmGkAAAAAAAAASQDMzMzMzMxlAMzMzMzMzF0BmZmZmZmYYQGZmZmZmZhRAMzMzMzMzFUAAAAAAAAAWQAAAAAAAABRAZmZmZmZmFEAzMzMzMzMVQAAAAAAAABZAzczMzMzMGkCamZmZmZkbQAAAAAAAABRAzczMzMzMFkCamZmZmZkTQM3MzMzMzBpAmpmZmZmZE0DNzMzMzMwWQAAAAAAAABhAMzMzMzMzE0CamZmZmZkTQGZmZmZmZhZAMzMzMzMzF0BmZmZmZmYYQJqZmZmZmRlAZmZmZmZmFkBmZmZmZmYUQGZmZmZmZhZAZmZmZmZmGEBmZmZmZmYWQAAAAAAAABZAMzMzMzMzE0CamZmZmZkVQGZmZmZmZhZAZmZmZmZmFEBmZmZmZmYUQJqZmZmZmRdAzczMzMzMFkDNzMzMzMwUQAAAAAAAABRAzczMzMzMFECamZmZmZkVQGZmZmZmZhRA"
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "PetalLengthCm"
+            }
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of PetalLengthCm"
+          },
+          "barmode": "relative"
+        }
+      },
+      "PetalWidthCm": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "PetalWidthCm=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "nbinsx": 20,
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "f8",
+              "bdata": "mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmdk/MzMzMzMz0z+amZmZmZnJP5qZmZmZmck/mpmZmZmZuT+amZmZmZnJP5qZmZmZmck/mpmZmZmZuT+amZmZmZm5P5qZmZmZmck/mpmZmZmZ2T+amZmZmZnZPzMzMzMzM9M/MzMzMzMz0z8zMzMzMzPTP5qZmZmZmck/mpmZmZmZ2T+amZmZmZnJPwAAAAAAAOA/mpmZmZmZyT+amZmZmZnJP5qZmZmZmdk/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnZP5qZmZmZmbk/mpmZmZmZyT+amZmZmZm5P5qZmZmZmck/mpmZmZmZyT+amZmZmZm5P5qZmZmZmck/mpmZmZmZyT8zMzMzMzPTPzMzMzMzM9M/mpmZmZmZyT8zMzMzMzPjP5qZmZmZmdk/MzMzMzMz0z+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP2ZmZmZmZvY/AAAAAAAA+D8AAAAAAAD4P83MzMzMzPQ/AAAAAAAA+D/NzMzMzMz0P5qZmZmZmfk/AAAAAAAA8D/NzMzMzMz0P2ZmZmZmZvY/AAAAAAAA8D8AAAAAAAD4PwAAAAAAAPA/ZmZmZmZm9j/NzMzMzMz0P2ZmZmZmZvY/AAAAAAAA+D8AAAAAAADwPwAAAAAAAPg/mpmZmZmZ8T/NzMzMzMz8P83MzMzMzPQ/AAAAAAAA+D8zMzMzMzPzP83MzMzMzPQ/ZmZmZmZm9j9mZmZmZmb2PzMzMzMzM/s/AAAAAAAA+D8AAAAAAADwP5qZmZmZmfE/AAAAAAAA8D8zMzMzMzPzP5qZmZmZmfk/AAAAAAAA+D+amZmZmZn5PwAAAAAAAPg/zczMzMzM9D/NzMzMzMz0P83MzMzMzPQ/MzMzMzMz8z9mZmZmZmb2PzMzMzMzM/M/AAAAAAAA8D/NzMzMzMz0PzMzMzMzM/M/zczMzMzM9D/NzMzMzMz0P5qZmZmZmfE/zczMzMzM9D8AAAAAAAAEQGZmZmZmZv4/zczMzMzMAEDNzMzMzMz8P5qZmZmZmQFAzczMzMzMAEAzMzMzMzP7P83MzMzMzPw/zczMzMzM/D8AAAAAAAAEQAAAAAAAAABAZmZmZmZm/j/NzMzMzMwAQAAAAAAAAABAMzMzMzMzA0BmZmZmZmYCQM3MzMzMzPw/mpmZmZmZAUBmZmZmZmYCQAAAAAAAAPg/ZmZmZmZmAkAAAAAAAAAAQAAAAAAAAABAzczMzMzM/D/NzMzMzMwAQM3MzMzMzPw/zczMzMzM/D/NzMzMzMz8P83MzMzMzABAmpmZmZmZ+T9mZmZmZmb+PwAAAAAAAABAmpmZmZmZAUAAAAAAAAD4P2ZmZmZmZvY/ZmZmZmZmAkAzMzMzMzMDQM3MzMzMzPw/zczMzMzM/D/NzMzMzMwAQDMzMzMzMwNAZmZmZmZmAkBmZmZmZmb+P2ZmZmZmZgJAAAAAAAAABEBmZmZmZmYCQGZmZmZmZv4/AAAAAAAAAEBmZmZmZmYCQM3MzMzMzPw/"
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "PetalWidthCm"
+            }
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of PetalWidthCm"
+          },
+          "barmode": "relative"
+        }
+      }
+    },
+    "eda_insights": {
+      "insights": "Analyzing the provided dataset, here are some key insights that could be relevant for machine learning:\n\n1. **Balanced Dataset**:\n   - With a total of 150 samples and the problem being a classification task with the target variable 'Species', it's likely the dataset consists of three species in roughly equal proportions. This is typical in the widely recognized Iris dataset. A balanced dataset is advantageous as it helps prevent bias towards any one class in classification algorithms, potentially resulting in more robust models.\n\n2. **Feature Informative Nature**:\n   - The four numerical features ('SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm') are critical for distinguishing between the classes ('Species'). In similar datasets, features like 'PetalLengthCm' and 'PetalWidthCm' tend to be particularly informative, offering significant variations across different species. Identifying which features are the most informative can help in feature selection and dimensionality reduction techniques.\n\n3. **Correlation and Interdependence**:\n   - Analyzing the correlation between these features can provide insights. Typically, 'PetalLengthCm' and 'PetalWidthCm' have a strong positive correlation, which suggests redundancy in terms of information if one intends to perform dimensionality reduction. Understanding these correlations can guide feature engineering efforts to improve model performance.\n\n4. **Potential Non-Linear Decision Boundaries**:\n   - There is often an overlap in the feature distribution of some species (e.g",
+      "data_quality_score": 1.0,
+      "recommendations": [
+        "Consider using classification algorithms (Random Forest, XGBoost)"
+      ]
+    },
+    "target_variable": "Species",
+    "problem_type": "classification"
+  },
+  "model_results": {
+    "selected_model": "RandomForestClassifier",
+    "cv_score": 1.0,
+    "feature_importance": [
+      {
+        "feature": "Id",
+        "importance": 0.39800426454220117
+      },
+      {
+        "feature": "PetalLengthCm",
+        "importance": 0.27306279438426506
+      },
+      {
+        "feature": "PetalWidthCm",
+        "importance": 0.27201114975171825
+      },
+      {
+        "feature": "SepalLengthCm",
+        "importance": 0.05309213647240581
+      },
+      {
+        "feature": "SepalWidthCm",
+        "importance": 0.0038296548494099096
+      }
+    ],
+    "model_comparison": [
+      {
+        "model": "RandomForest",
+        "cv_score": 1.0
+      },
+      {
+        "model": "LogisticRegression",
+        "cv_score": 0.9916666666666668
+      }
+    ],
+    "training_summary": {
+      "metrics": {
+        "accuracy": 1.0,
+        "classification_report": {
+          "0": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 10.0
+          },
+          "1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 10.0
+          },
+          "2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 10.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          }
+        }
+      },
+      "insights": "The performance of the RandomForestClassifier model in this scenario is exceptionally high, with an accuracy of 1.0, indicating that the model has correctly classified all instances in the test set. The classification report further corroborates this, as each class (0, 1, and 2) has perfect precision, recall, and F1-score of 1.0, which means that the model neither made any false positives nor false negatives for any class. This perfect performance is consistent across all metrics, including macro and weighted averages.\n\nKey insights from this might include:\n\n1. **Model Performance**: The model demonstrates perfect performance metrics, which are typically rare in practice unless the test data is very similar to the training data or the model is overfitting.\n\n2. **Data Set Characteristics**: It's important to consider the size and nature of the dataset. Given the support of 10 samples per class (30 in total), the dataset appears to be very small, which could contribute to the"
+    },
+    "y_test": [
+      0,
+      2,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      2,
+      1,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      2,
+      0,
+      2,
+      1,
+      2,
+      2,
+      1,
+      1,
+      0,
+      2,
+      0
+    ],
+    "predictions": [
+      0,
+      2,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      2,
+      1,
+      2,
+      2,
+      2,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      2,
+      0,
+      2,
+      1,
+      2,
+      2,
+      1,
+      1,
+      0,
+      2,
+      0
+    ],
+    "problem_type": "classification",
+    "target_column": "Species"
+  },
+  "evaluation_results": {
+    "performance_metrics": {
+      "accuracy": 1.0,
+      "classification_report": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 10.0
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 10.0
+        },
+        "2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 10.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        }
+      },
+      "cv_score": 1.0,
+      "model_type": "RandomForestClassifier"
+    },
+    "plots": {
+      "feature_importance": "{\"data\":[{\"hovertemplate\":\"Importance Score=%{x}\\u003cbr\\u003eFeatures=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"pattern\":{\"shape\":\"\"}},\"name\":\"\",\"orientation\":\"h\",\"showlegend\":false,\"textposition\":\"auto\",\"x\":{\"dtype\":\"f8\",\"bdata\":\"diX44OZ42T9qoOhe3HnRP+ouFXShaNE\\u002fysKle+Quqz8qcKlKXl9vPw==\"},\"xaxis\":\"x\",\"y\":[\"Id\",\"PetalLengthCm\",\"PetalWidthCm\",\"SepalLengthCm\",\"SepalWidthCm\"],\"yaxis\":\"y\",\"type\":\"bar\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Importance Score\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Features\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Feature Importance\"},\"barmode\":\"relative\"}}",
+      "model_comparison": "{\"data\":[{\"hovertemplate\":\"Model Type=%{x}\\u003cbr\\u003eCross-Validation Score=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"pattern\":{\"shape\":\"\"}},\"name\":\"\",\"orientation\":\"v\",\"showlegend\":false,\"textposition\":\"auto\",\"x\":[\"RandomForest\",\"LogisticRegression\"],\"xaxis\":\"x\",\"y\":{\"dtype\":\"f8\",\"bdata\":\"AAAAAAAA8D+9u7u7u7vvPw==\"},\"yaxis\":\"y\",\"type\":\"bar\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Model Type\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Cross-Validation Score\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Model Comparison (CV Scores)\"},\"barmode\":\"relative\"}}",
+      "confusion_matrix": "{\"data\":[{\"coloraxis\":\"coloraxis\",\"name\":\"0\",\"texttemplate\":\"%{z}\",\"x\":[\"0\",\"1\",\"2\"],\"y\":[\"0\",\"1\",\"2\"],\"z\":{\"dtype\":\"i1\",\"bdata\":\"CgAAAAoAAAAK\",\"shape\":\"3, 3\"},\"type\":\"heatmap\",\"xaxis\":\"x\",\"yaxis\":\"y\",\"hovertemplate\":\"Predicted: %{x}\\u003cbr\\u003eActual: %{y}\\u003cbr\\u003eCount: %{z}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"scaleanchor\":\"y\",\"constrain\":\"domain\",\"title\":{\"text\":\"Predicted\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"autorange\":\"reversed\",\"constrain\":\"domain\",\"title\":{\"text\":\"Actual\"}},\"coloraxis\":{\"colorbar\":{\"title\":{\"text\":\"Count\"}},\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"title\":{\"text\":\"Confusion Matrix\"}}}"
+    },
+    "model_insights": "### Analysis of the Model's Performance\n\n1. **Overall Effectiveness:**\n   - The RandomForestClassifier model demonstrates perfect performance with an accuracy of 1.0. This implies that the model correctly classified all instances in the dataset, achieving 100% predictive accuracy.\n   - The cross-validation (CV) score of 1.0000 further supports this perfect classification performance, indicating consistent results across different data partitions during the validation process.\n\n2. **Key Strengths:**\n   - **High Precision, Recall, and F1-Score:** The model achieves a perfect precision, recall, and F1-score of 1.0 across all classes (0, 1, and 2). This suggests that the model can perfectly identify both positive and negative cases for each class without errors, which is ideal for applications where false positives and false negatives are equally critical.\n   - **Balanced Performance:** The macro average and weighted average metrics also equal 1.0, indicating that the model maintains consistent performance across all classes, regardless of class imbalance.\n   - **Consistency:** The high CV score suggests that the model's performance is stable and not merely due to overfitting on a specific train-test split.\n\n3. **Potential Areas for Improvement:**\n   - **Overfitting Consideration:** Although perfect metrics are desirable, they can sometimes indicate overfitting, especially if the dataset is small or not adequately diverse. Ensuring the dataset is sufficiently large and varied can confirm the model",
+    "recommendations": [
+      "\ud83d\udcca Monitor model performance over time",
+      "\ud83d\udd0d Analyze prediction errors",
+      "\ud83d\udcc8 Consider model interpretability",
+      "\ud83d\udd04 Plan for model retraining"
+    ]
+  },
+  "cleaning_summary_results": {
+    "original_shape": [
+      150,
+      6
+    ],
+    "cleaned_shape": [
+      150,
+      6
+    ],
+    "missing_values_info": {},
+    "outliers_info": [
+      "SepalWidthCm"
+    ],
+    "data_type_fixes": {},
+    "cleaning_summary": "The data cleaning process aimed to prepare the dataset for further analysis, but based on the information provided, the impact of the cleaning operations appears to be minimal or negligible. Here is a brief summary of the process and its outcomes:\n\n1. **Original and Cleaned Shape**: The dataset's shape remained unchanged before and after the cleaning process, consistently at (150, 6). This indicates that no rows or columns were removed or added during cleaning. The dataset still contains 150 records and 6 features, suggesting that structural modifications, such as filtering out duplicate entries or dropping unnecessary columns, were not required or performed.\n\n2. **Missing Values**: The dataset had no missing values initially, and this remained true after cleaning. This suggests that the dataset was well-maintained regarding data completeness and that the cleaning process did not involve operations like imputing missing values or removing rows with missing data.\n\nIn conclusion, the data cleaning process likely focused on non-quantifiable aspects such as standardizing formats,"
+  }
+}

@@ -1,0 +1,17 @@
+crewai
+crewai-tools
+langchain
+langchain-openai
+langchain-core
+langchain-community
+openai
+tiktoken
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+plotly
+joblib
+python-dotenv
+streamlit

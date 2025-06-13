@@ -1,0 +1,28 @@
+2025-06-12 11:02:28,029 [INFO] ✅ Loaded cleaned data with shape: (891, 12)
+2025-06-12 11:02:28,063 [INFO] ✅ Initialized EDAAgent
+2025-06-12 11:02:28,063 [INFO] ▶️ _generate_summary_stats
+2025-06-12 11:02:28,071 [INFO]    Summary stats keys: ['shape', 'numeric_summary', 'categorical_summary', 'missing_values']
+2025-06-12 11:02:28,071 [INFO] ▶️ _analyze_data_types
+2025-06-12 11:02:28,071 [INFO]    Columns: 12
+2025-06-12 11:02:28,071 [INFO] ▶️ _compute_correlations
+2025-06-12 11:02:28,072 [INFO]    High correlations: [{'var1': 'Pclass', 'var2': 'Fare', 'correlation': np.float64(-0.7153004897290888)}]
+2025-06-12 11:02:28,072 [INFO] ▶️ _create_visualizations
+2025-06-12 11:02:28,869 [INFO]    Generated visualizations: ['correlation_heatmap.png', 'distributions.png']
+2025-06-12 11:02:28,870 [INFO] ▶️ _detect_target_and_problem_type
+2025-06-12 11:02:28,870 [INFO]    Target: Survived, Problem type: classification
+2025-06-12 11:02:28,870 [INFO] ▶️ _generate_ai_insights
+2025-06-12 11:02:33,499 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-12 11:02:33,507 [INFO]    AI insights summary: This dataset appears to be the Titanic dataset, commonly used for classification problems to predict survival. Here are some key insights for machine learning:
+
+1. **Feature Importance and Selection**:
+   - The dataset includes a mix of numerical and categorical data, with features like 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', and 'Embarked' likely to be significant in predicting the 'Survived' target.
+   - 'Sex' (male vs. female) is a particularly important feature since historically, females had higher survival rates.
+   - 'Pclass', which indicates the class of the passenger's ticket (1st, 2nd, or 3rd), often correlates with survival due to differences in access to lifeboats.
+
+2. **Data Cleaning and Preprocessing**:
+   - The 'Age' and 'Cabin' columns often contain missing values in this dataset. Imputation strategies, such as using median or mean values for 'Age' and creating a new category for 'Cabin' (e.g., 'Unknown'), are necessary.
+   - The 'Name' and 'Ticket' columns contain textual data that may need to be excluded from models or transformed into more relevant features. For example, extracting titles from 'Name' could add value.
+
+3. **Correlation and Relationships**:
+   - One specified high correlation implies a need to understand the relationship between features. It might involve multicollinearity between
+2025-06-12 11:02:33,507 [INFO] ✅ EDA workflow test completed
