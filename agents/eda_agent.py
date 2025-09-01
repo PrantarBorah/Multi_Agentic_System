@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
+import scipy.stats
 import openai
 import os
 import plotly.express as px
@@ -12,35 +13,67 @@ class EDAAgent:
     def __init__(self):
         self.openai_client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     
-    def perform_eda(self, data: pd.DataFrame) -> dict:
+    def perform_eda(self, data: pd.DataFrame, eda_options: dict = None) -> dict:
         """Perform comprehensive exploratory data analysis"""
         eda_results = {
             "summary_stats": None,
             "correlations": None,
             "distributions": {},
+            "custom_visualizations": {},
+            "custom_insights": {},
             "eda_insights": None,
             "target_variable": None,
             "problem_type": None
         }
+
+        if eda_options is None:
+            eda_options = {
+                "enable_summary_stats": True,
+                "enable_correlations": True,
+                "enable_distributions": True,
+                "enable_eda_insights": True,
+                "custom_visualizations": {
+                    "selected_charts": {},
+                    "custom_scatter_plots": [],
+                    "custom_questions": []
+                }
+        }
         
         try:
+            
             print("📊 Generating summary statistics...")
-            eda_results["summary_stats"] = self._generate_summary_stats(data)
+            if eda_options.get("enable_summary_stats", True):
+                eda_results["summary_stats"] = self._generate_summary_stats(data)
             
             print("🔍 Analyzing data types...")
-            data_types = self._analyze_data_types(data)
+            data_types = self._analyze_data_types(data) # This is always needed for other steps
             
             print("🔗 Computing correlations...")
-            eda_results["correlations"] = self._compute_correlations(data)
+            if eda_options.get("enable_correlations", True):
+                eda_results["correlations"] = self._compute_correlations(data)
             
             print("📈 Creating visualizations...")
-            eda_results["distributions"] = self._create_distributions(data)
+            if eda_options.get("enable_distributions", True):
+                eda_results["distributions"] = self._create_distributions(data)
             
+            # Target variable detection is often needed for model training later
             print("🎯 Detecting target variable...")
             eda_results["target_variable"], eda_results["problem_type"] = self._detect_target_and_problem_type(data)
             
             print("🧠 Generating AI insights...")
-            eda_results["eda_insights"] = self._generate_ai_insights(data, eda_results)
+            if eda_options.get("enable_eda_insights", True):
+                eda_results["eda_insights"] = self._generate_ai_insights(data, eda_results)
+            
+            # Generate custom visualizations
+            print("🎨 Creating custom visualizations...")
+            custom_viz_config = eda_options.get("custom_visualizations", {})
+            if custom_viz_config.get("selected_charts") or custom_viz_config.get("custom_scatter_plots"):
+                eda_results["custom_visualizations"] = self._create_custom_visualizations(data, custom_viz_config)
+            
+            # Answer custom questions
+            print("💬 Answering custom questions...")
+            if custom_viz_config.get("custom_questions"):
+                eda_results["custom_insights"] = self._answer_custom_questions(data, eda_results, custom_viz_config["custom_questions"])
             
             return eda_results
             
@@ -53,12 +86,18 @@ class EDAAgent:
         numeric_data = data.select_dtypes(include=[np.number])
         categorical_data = data.select_dtypes(include=['object', 'category'])
         
-        stats = {
-            "numeric": numeric_data.describe().to_dict(),
-            "categorical": {col: data[col].value_counts().head().to_dict() 
-                          for col in categorical_data.columns},
-            "missing_values": data.isnull().sum().to_dict()
-        }
+        stats = {}
+        
+        print(f"Debug: numeric_data.empty: {numeric_data.empty}, len(numeric_data.columns): {len(numeric_data.columns)}")
+
+        if not numeric_data.empty and len(numeric_data.columns) > 0:
+            stats["numeric"] = numeric_data.describe().to_dict()
+        else:
+            stats["numeric"] = {"message": "No numeric columns to display summary statistics for."}
+
+        stats["categorical"] = {col: data[col].value_counts().head().to_dict() 
+                                 for col in categorical_data.columns}
+        stats["missing_values"] = data.isnull().sum().to_dict()
         
         return stats
     
@@ -162,3 +201,136 @@ class EDAAgent:
             recommendations.append("Consider using regression algorithms (Linear Regression, Random Forest)")
         
         return recommendations
+    
+    def _create_custom_visualizations(self, data: pd.DataFrame, viz_config: dict) -> dict:
+        """Create custom visualizations based on user selections"""
+        custom_plots = {}
+        
+        try:
+            # Column-specific charts
+            selected_charts = viz_config.get("selected_charts", {})
+            for column, chart_type in selected_charts.items():
+                if column not in data.columns:
+                    continue
+                
+                try:
+                    if chart_type == "Auto":
+                        # Use automatic chart selection based on data type
+                        if pd.api.types.is_numeric_dtype(data[column]):
+                            fig = px.histogram(data, x=column, title=f'Distribution of {column}')
+                        else:
+                            value_counts = data[column].value_counts().head(10)
+                            fig = px.bar(x=value_counts.index.tolist(), y=value_counts.values.tolist(),
+                                       title=f'Top 10 Values in {column}')
+                    
+                    elif chart_type == "Histogram":
+                        fig = px.histogram(data, x=column, title=f'Histogram of {column}')
+                    
+                    elif chart_type == "Box Plot":
+                        fig = px.box(data, y=column, title=f'Box Plot of {column}')
+                    
+                    elif chart_type == "Line Plot":
+                        fig = px.line(data.reset_index(), x='index', y=column, 
+                                    title=f'Line Plot of {column}')
+                    
+                    elif chart_type == "Density Plot":
+                        from scipy.stats import gaussian_kde
+                        density = gaussian_kde(data[column].dropna())
+                        xs = np.linspace(data[column].min(), data[column].max(), 200)
+                        fig = go.Figure()
+                        fig.add_trace(go.Scatter(x=xs, y=density(xs), mode='lines', 
+                                               name=f'Density of {column}'))
+                        fig.update_layout(title=f'Density Plot of {column}')
+                    
+                    elif chart_type == "Bar Chart":
+                        value_counts = data[column].value_counts().head(15)
+                        fig = px.bar(x=value_counts.index.tolist(), y=value_counts.values.tolist(),
+                                   title=f'Bar Chart of {column}')
+                    
+                    elif chart_type == "Pie Chart":
+                        value_counts = data[column].value_counts().head(10)
+                        fig = px.pie(values=value_counts.values.tolist(), names=value_counts.index.tolist(),
+                                   title=f'Pie Chart of {column}')
+                    
+                    elif chart_type == "Count Plot":
+                        value_counts = data[column].value_counts()
+                        fig = px.bar(x=value_counts.index.tolist(), y=value_counts.values.tolist(),
+                                   title=f'Count Plot of {column}')
+                    
+                    # Convert figure to dict and ensure data types are JSON serializable
+                    plot_dict = fig.to_dict()
+                    
+                    # Debug: Check if there are any problematic data types
+                    for trace in plot_dict.get('data', []):
+                        if 'x' in trace and isinstance(trace['x'], str):
+                            print(f"⚠️ Warning: Found string x data for {column}_{chart_type}: {trace['x']}")
+                        if 'y' in trace and isinstance(trace['y'], str):
+                            print(f"⚠️ Warning: Found string y data for {column}_{chart_type}: {trace['y']}")
+                    
+                    custom_plots[f"{column}_{chart_type}"] = plot_dict
+                
+                except Exception as e:
+                    print(f"⚠️ Error creating {chart_type} for {column}: {e}")
+            
+            # Custom scatter plots
+            scatter_plots = viz_config.get("custom_scatter_plots", [])
+            for i, scatter_config in enumerate(scatter_plots):
+                try:
+                    x_col = scatter_config["x"]
+                    y_col = scatter_config["y"]
+                    
+                    if x_col in data.columns and y_col in data.columns:
+                        fig = px.scatter(data, x=x_col, y=y_col, 
+                                       title=scatter_config["title"])
+                        custom_plots[f"scatter_{i}_{x_col}_vs_{y_col}"] = fig.to_dict()
+                
+                except Exception as e:
+                    print(f"⚠️ Error creating scatter plot {i}: {e}")
+            
+            return custom_plots
+            
+        except Exception as e:
+            print(f"❌ Custom visualization creation failed: {str(e)}")
+            return {}
+    
+    def _answer_custom_questions(self, data: pd.DataFrame, eda_results: dict, questions: list) -> dict:
+        """Answer custom questions about the data using AI"""
+        insights = {}
+        
+        try:
+            for i, question in enumerate(questions):
+                if not question.strip():
+                    continue
+                
+                # Prepare context for the LLM
+                context = f"""
+                Dataset Information:
+                - Shape: {data.shape}
+                - Columns: {list(data.columns)}
+                - Numeric columns: {data.select_dtypes(include=[np.number]).columns.tolist()}
+                - Categorical columns: {data.select_dtypes(include=['object', 'category']).columns.tolist()}
+                - Missing values: {data.isnull().sum().to_dict()}
+                
+                Statistical Summary:
+                {data.describe().to_string() if not data.select_dtypes(include=[np.number]).empty else "No numeric data"}
+                
+                Question: {question}
+                
+                Please provide a detailed, data-driven answer to this question based on the dataset information provided.
+                """
+                
+                response = self.openai_client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[{"role": "user", "content": context}],
+                    max_tokens=400
+                )
+                
+                insights[f"question_{i+1}"] = {
+                    "question": question,
+                    "answer": response.choices[0].message.content
+                }
+                
+        except Exception as e:
+            insights["error"] = f"Error answering custom questions: {str(e)}"
+        
+        return insights

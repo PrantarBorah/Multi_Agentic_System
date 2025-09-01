@@ -2,234 +2,409 @@
   "original_data": {
     "type": "DataFrame",
     "shape": [
-      150,
-      6
+      1000,
+      7
     ],
     "columns": [
-      "Id",
-      "SepalLengthCm",
-      "SepalWidthCm",
-      "PetalLengthCm",
-      "PetalWidthCm",
-      "Species"
+      "bedrooms",
+      "bathrooms",
+      "sqft",
+      "age_years",
+      "garage_spaces",
+      "neighborhood",
+      "price"
     ],
     "sample": {
-      "Id": {
-        "0": 1,
-        "1": 2,
+      "bedrooms": {
+        "0": 4,
+        "1": 5,
         "2": 3,
-        "3": 4,
+        "3": 5,
         "4": 5
       },
-      "SepalLengthCm": {
-        "0": 5.1,
-        "1": 4.9,
-        "2": 4.7,
-        "3": 4.6,
-        "4": 5.0
+      "bathrooms": {
+        "0": 1,
+        "1": 1,
+        "2": 3,
+        "3": 2,
+        "4": 1
       },
-      "SepalWidthCm": {
-        "0": 3.5,
-        "1": 3.0,
-        "2": 3.2,
-        "3": 3.1,
-        "4": 3.6
+      "sqft": {
+        "0": 2481,
+        "1": 2154,
+        "2": 1776,
+        "3": 2034,
+        "4": 2099
       },
-      "PetalLengthCm": {
-        "0": 1.4,
-        "1": 1.4,
-        "2": 1.3,
-        "3": 1.5,
-        "4": 1.4
+      "age_years": {
+        "0": 25,
+        "1": 37,
+        "2": 0,
+        "3": 19,
+        "4": 27
       },
-      "PetalWidthCm": {
-        "0": 0.2,
-        "1": 0.2,
-        "2": 0.2,
-        "3": 0.2,
-        "4": 0.2
+      "garage_spaces": {
+        "0": 2,
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 2
       },
-      "Species": {
-        "0": "Iris-setosa",
-        "1": "Iris-setosa",
-        "2": "Iris-setosa",
-        "3": "Iris-setosa",
-        "4": "Iris-setosa"
+      "neighborhood": {
+        "0": "Downtown",
+        "1": "Rural",
+        "2": "Suburbs",
+        "3": "Suburbs",
+        "4": "Downtown"
+      },
+      "price": {
+        "0": 543434,
+        "1": 264291,
+        "2": 311472,
+        "3": 385312,
+        "4": 455730
       }
     }
+  },
+  "problem_analysis": {
+    "problem_type": "Regression",
+    "target_variable": "price",
+    "target_characteristics": {
+      "data_type": "int64",
+      "unique_values": 998,
+      "missing_count": "0",
+      "missing_percentage": 0.0
+    },
+    "data_characteristics": {
+      "original_shape": [
+        1000,
+        7
+      ],
+      "data_types": {
+        "bedrooms": "int64",
+        "bathrooms": "int64",
+        "sqft": "int64",
+        "age_years": "int64",
+        "garage_spaces": "int64",
+        "neighborhood": "object",
+        "price": "int64"
+      },
+      "missing_values": {
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "sqft": 0,
+        "age_years": 0,
+        "garage_spaces": 0,
+        "neighborhood": 0,
+        "price": 0
+      },
+      "unique_counts": {
+        "bedrooms": 5,
+        "bathrooms": 3,
+        "sqft": 759,
+        "age_years": 50,
+        "garage_spaces": 4,
+        "neighborhood": 4,
+        "price": 998
+      },
+      "sample_values": {
+        "bedrooms": [
+          4,
+          5,
+          3
+        ],
+        "bathrooms": [
+          1,
+          1,
+          3
+        ],
+        "sqft": [
+          2481,
+          2154,
+          1776
+        ],
+        "age_years": [
+          25,
+          37,
+          0
+        ],
+        "garage_spaces": [
+          2,
+          1,
+          2
+        ],
+        "neighborhood": [
+          "Downtown",
+          "Rural",
+          "Suburbs"
+        ],
+        "price": [
+          543434,
+          264291,
+          311472
+        ]
+      },
+      "obvious_issues": []
+    },
+    "cleaning_recommendations": {
+      "target_handling": {},
+      "feature_handling": {},
+      "validation_strategy": {
+        "cv_method": "kfold"
+      },
+      "algorithm_recommendations": [
+        "RandomForest",
+        "XGBoost",
+        "LinearRegression"
+      ]
+    },
+    "decision_log": [
+      {
+        "decision_type": "INSPECTION",
+        "reasoning": "Found 0 obvious issues",
+        "action_taken": "Issues logged for later handling",
+        "timestamp": "2025-08-17 17:24:38.454156"
+      },
+      {
+        "decision_type": "TARGET_IDENTIFICATION",
+        "reasoning": "Identified target: price with score 12",
+        "action_taken": "Problem type: Regression",
+        "timestamp": "2025-08-17 17:24:38.456078"
+      }
+    ],
+    "step_log": [
+      {
+        "step": "START",
+        "details": "Beginning problem type analysis",
+        "timestamp": "2025-08-17 17:24:38.449224"
+      },
+      {
+        "step": "LOAD_INSPECT",
+        "details": "Performing basic data inspection",
+        "timestamp": "2025-08-17 17:24:38.449796"
+      },
+      {
+        "step": "MIN_CLEAN",
+        "details": "Performing minimal cleaning for reliable detection",
+        "timestamp": "2025-08-17 17:24:38.454171"
+      },
+      {
+        "step": "IDENTIFY_TYPE",
+        "details": "Identifying problem type and target variable",
+        "timestamp": "2025-08-17 17:24:38.455164"
+      },
+      {
+        "step": "DEEP_CLEAN_PREP",
+        "details": "Preparing task-specific cleaning recommendations",
+        "timestamp": "2025-08-17 17:24:38.456086"
+      }
+    ]
   },
   "cleaned_data": {
     "type": "DataFrame",
     "shape": [
-      150,
-      6
+      1000,
+      7
     ],
     "columns": [
-      "Id",
-      "SepalLengthCm",
-      "SepalWidthCm",
-      "PetalLengthCm",
-      "PetalWidthCm",
-      "Species"
+      "bedrooms",
+      "bathrooms",
+      "sqft",
+      "age_years",
+      "garage_spaces",
+      "neighborhood",
+      "price"
     ],
     "sample": {
-      "Id": {
-        "0": 1,
-        "1": 2,
+      "bedrooms": {
+        "0": 4,
+        "1": 5,
         "2": 3,
-        "3": 4,
+        "3": 5,
         "4": 5
       },
-      "SepalLengthCm": {
-        "0": 5.1,
-        "1": 4.9,
-        "2": 4.7,
-        "3": 4.6,
-        "4": 5.0
+      "bathrooms": {
+        "0": 1,
+        "1": 1,
+        "2": 3,
+        "3": 2,
+        "4": 1
       },
-      "SepalWidthCm": {
-        "0": 3.5,
-        "1": 3.0,
-        "2": 3.2,
-        "3": 3.1,
-        "4": 3.6
+      "sqft": {
+        "0": 2481.0,
+        "1": 2154.0,
+        "2": 1776.0,
+        "3": 2034.0,
+        "4": 2099.0
       },
-      "PetalLengthCm": {
-        "0": 1.4,
-        "1": 1.4,
-        "2": 1.3,
-        "3": 1.5,
-        "4": 1.4
+      "age_years": {
+        "0": 25,
+        "1": 37,
+        "2": 0,
+        "3": 19,
+        "4": 27
       },
-      "PetalWidthCm": {
-        "0": 0.2,
-        "1": 0.2,
-        "2": 0.2,
-        "3": 0.2,
-        "4": 0.2
+      "garage_spaces": {
+        "0": 2,
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 2
       },
-      "Species": {
-        "0": "Iris-setosa",
-        "1": "Iris-setosa",
-        "2": "Iris-setosa",
-        "3": "Iris-setosa",
-        "4": "Iris-setosa"
+      "neighborhood": {
+        "0": "Downtown",
+        "1": "Rural",
+        "2": "Suburbs",
+        "3": "Suburbs",
+        "4": "Downtown"
+      },
+      "price": {
+        "0": 543434.0,
+        "1": 264291.0,
+        "2": 311472.0,
+        "3": 385312.0,
+        "4": 455730.0
       }
     }
   },
   "eda_results": {
     "summary_stats": {
       "numeric": {
-        "Id": {
-          "count": 150.0,
-          "mean": 75.5,
-          "std": 43.445367992456916,
+        "bedrooms": {
+          "count": 1000.0,
+          "mean": 3.004,
+          "std": 1.4331915566448323,
           "min": 1.0,
-          "25%": 38.25,
-          "50%": 75.5,
-          "75%": 112.75,
-          "max": 150.0
-        },
-        "SepalLengthCm": {
-          "count": 150.0,
-          "mean": 5.843333333333334,
-          "std": 0.828066127977863,
-          "min": 4.3,
-          "25%": 5.1,
-          "50%": 5.8,
-          "75%": 6.4,
-          "max": 7.9
-        },
-        "SepalWidthCm": {
-          "count": 150.0,
-          "mean": 3.050666666666667,
-          "std": 0.42303579531327024,
-          "min": 2.05,
-          "25%": 2.8,
+          "25%": 2.0,
           "50%": 3.0,
-          "75%": 3.3,
-          "max": 4.05
+          "75%": 4.0,
+          "max": 5.0
         },
-        "PetalLengthCm": {
-          "count": 150.0,
-          "mean": 3.758666666666666,
-          "std": 1.7644204199522626,
+        "bathrooms": {
+          "count": 1000.0,
+          "mean": 1.986,
+          "std": 0.8151493534736248,
           "min": 1.0,
-          "25%": 1.6,
-          "50%": 4.35,
-          "75%": 5.1,
-          "max": 6.9
+          "25%": 1.0,
+          "50%": 2.0,
+          "75%": 3.0,
+          "max": 3.0
         },
-        "PetalWidthCm": {
-          "count": 150.0,
-          "mean": 1.1986666666666668,
-          "std": 0.7631607417008411,
-          "min": 0.1,
-          "25%": 0.3,
-          "50%": 1.3,
-          "75%": 1.8,
-          "max": 2.5
+        "sqft": {
+          "count": 1000.0,
+          "mean": 1992.025875,
+          "std": 491.25241749028515,
+          "min": 800.0,
+          "25%": 1646.75,
+          "50%": 2003.0,
+          "75%": 2325.5,
+          "max": 3343.625
+        },
+        "age_years": {
+          "count": 1000.0,
+          "mean": 24.757,
+          "std": 14.640160015699463,
+          "min": 0.0,
+          "25%": 12.0,
+          "50%": 25.0,
+          "75%": 38.0,
+          "max": 49.0
+        },
+        "garage_spaces": {
+          "count": 1000.0,
+          "mean": 1.594,
+          "std": 0.7986249443899194,
+          "min": 0.0,
+          "25%": 1.0,
+          "50%": 2.0,
+          "75%": 2.0,
+          "max": 3.0
+        },
+        "price": {
+          "count": 1000.0,
+          "mean": 404193.848,
+          "std": 136363.98091874336,
+          "min": 102958.0,
+          "25%": 308402.5,
+          "50%": 384962.0,
+          "75%": 479487.25,
+          "max": 736114.375
         }
       },
       "categorical": {
-        "Species": {
-          "Iris-setosa": 50,
-          "Iris-versicolor": 50,
-          "Iris-virginica": 50
+        "neighborhood": {
+          "Suburbs": 399,
+          "Downtown": 303,
+          "Waterfront": 212,
+          "Rural": 86
         }
       },
       "missing_values": {
-        "Id": 0,
-        "SepalLengthCm": 0,
-        "SepalWidthCm": 0,
-        "PetalLengthCm": 0,
-        "PetalWidthCm": 0,
-        "Species": 0
+        "bedrooms": 0,
+        "bathrooms": 0,
+        "sqft": 0,
+        "age_years": 0,
+        "garage_spaces": 0,
+        "neighborhood": 0,
+        "price": 0
       }
     },
     "correlations": {
-      "Id": {
-        "Id": 1.0,
-        "SepalLengthCm": 0.7166762728539005,
-        "SepalWidthCm": -0.39726665287495705,
-        "PetalLengthCm": 0.8827473181390559,
-        "PetalWidthCm": 0.8997585770933499
+      "bedrooms": {
+        "bedrooms": 1.0,
+        "bathrooms": -0.029940958485426366,
+        "sqft": 0.06812585817810482,
+        "age_years": -0.014886000001346454,
+        "garage_spaces": -0.020443610524195778,
+        "price": 0.15191785447595518
       },
-      "SepalLengthCm": {
-        "Id": 0.7166762728539005,
-        "SepalLengthCm": 1.0,
-        "SepalWidthCm": -0.11034275153493824,
-        "PetalLengthCm": 0.8717541573048716,
-        "PetalWidthCm": 0.8179536333691639
+      "bathrooms": {
+        "bedrooms": -0.029940958485426366,
+        "bathrooms": 1.0,
+        "sqft": 0.023398977421065233,
+        "age_years": 0.0029859126486792838,
+        "garage_spaces": 0.04200215337737933,
+        "price": 0.05232581108963704
       },
-      "SepalWidthCm": {
-        "Id": -0.39726665287495705,
-        "SepalLengthCm": -0.11034275153493824,
-        "SepalWidthCm": 1.0,
-        "PetalLengthCm": -0.419823238731106,
-        "PetalWidthCm": -0.35558242421907
+      "sqft": {
+        "bedrooms": 0.06812585817810482,
+        "bathrooms": 0.023398977421065233,
+        "sqft": 1.0,
+        "age_years": 0.014976628903586467,
+        "garage_spaces": -0.017219079966265535,
+        "price": 0.5480242076374524
       },
-      "PetalLengthCm": {
-        "Id": 0.8827473181390559,
-        "SepalLengthCm": 0.8717541573048716,
-        "SepalWidthCm": -0.419823238731106,
-        "PetalLengthCm": 1.0,
-        "PetalWidthCm": 0.9627570970509662
+      "age_years": {
+        "bedrooms": -0.014886000001346454,
+        "bathrooms": 0.0029859126486792838,
+        "sqft": 0.014976628903586467,
+        "age_years": 1.0,
+        "garage_spaces": 0.037870757715973244,
+        "price": -0.04640711222644748
       },
-      "PetalWidthCm": {
-        "Id": 0.8997585770933499,
-        "SepalLengthCm": 0.8179536333691639,
-        "SepalWidthCm": -0.35558242421907,
-        "PetalLengthCm": 0.9627570970509662,
-        "PetalWidthCm": 1.0
+      "garage_spaces": {
+        "bedrooms": -0.020443610524195778,
+        "bathrooms": 0.04200215337737933,
+        "sqft": -0.017219079966265535,
+        "age_years": 0.037870757715973244,
+        "garage_spaces": 1.0,
+        "price": 0.050588816320542754
+      },
+      "price": {
+        "bedrooms": 0.15191785447595518,
+        "bathrooms": 0.05232581108963704,
+        "sqft": 0.5480242076374524,
+        "age_years": -0.04640711222644748,
+        "garage_spaces": 0.050588816320542754,
+        "price": 1.0
       }
     },
     "distributions": {
-      "Id": {
+      "bedrooms": {
         "data": [
           {
             "bingroup": "x",
-            "hovertemplate": "Id=%{x}<br>count=%{y}<extra></extra>",
+            "hovertemplate": "bedrooms=%{x}<br>count=%{y}<extra></extra>",
             "legendgroup": "",
             "marker": {
               "color": "#000001",
@@ -238,12 +413,11 @@
               }
             },
             "name": "",
-            "nbinsx": 20,
             "orientation": "v",
             "showlegend": false,
             "x": {
-              "dtype": "i2",
-              "bdata": "AQACAAMABAAFAAYABwAIAAkACgALAAwADQAOAA8AEAARABIAEwAUABUAFgAXABgAGQAaABsAHAAdAB4AHwAgACEAIgAjACQAJQAmACcAKAApACoAKwAsAC0ALgAvADAAMQAyADMANAA1ADYANwA4ADkAOgA7ADwAPQA+AD8AQABBAEIAQwBEAEUARgBHAEgASQBKAEsATABNAE4ATwBQAFEAUgBTAFQAVQBWAFcAWABZAFoAWwBcAF0AXgBfAGAAYQBiAGMAZABlAGYAZwBoAGkAagBrAGwAbQBuAG8AcABxAHIAcwB0AHUAdgB3AHgAeQB6AHsAfAB9AH4AfwCAAIEAggCDAIQAhQCGAIcAiACJAIoAiwCMAI0AjgCPAJAAkQCSAJMAlACVAJYA"
+              "dtype": "i1",
+              "bdata": "BAUDBQUCAwMDBQQDBQIEAgQFAQQCBQQBAQMDAgQEAwQEAQMFAwUBAgQBBAICAQIFAgQEBAQFAwEEAgQCAgQFAgIEAgIEBAEFBQIFAgEEBAQFAQUFAQEBAQQDAwEDAwEDBQICAQQBBAIBBQMEAwMBAwUDAQUCAwECAgQFAwEEBQQFBQMFBAUDAwQCAgUBBQQEBAQEAwIEAQEBAQMBBAUBAwMBBQEDAgQDAQQBAQIEBAIDAQUBAQMBAgIEBQEBAwIFBAIEAwMBBQQCAwEBBAMFAwQEAwQDAgMDBAQBAQIBAwQBAQICAwQCAQQEAQIBBAUFAwEBAwMDBAEEAwEEBAMBAwEFAgICAwUBBAEEAQUEAwEBBAMDBQMDAwIFAQQBBQQFAwQDAQEEBAUFAwQBBQUBBQMEAQQFBQEDAgECAgMCAgMCAgIBAQEDBQICAwIBBQQCAQQFBAEEAwQCAgMBAgUCAgEEAgMEBQEFBAQEBQQFBAMEBQIEAgMBAwQCAgUCBQEEBQECAgECAQUFAQUFBQMEAgMFAQUEBQEEBQQCAgUEAQUCAgUEAgQCAgMCAQUFBAIBBAMEBAIDBAEBBQMDBQQDAQECAwQFBQQCBQMCAwECBQICAgIDAQQCBQIFAwUEAQUFAQQCBQEDAQMEAgEFBAEFAQMBAQEEAQUDAwEEBAUBAwQBBAQDAgUFAwQBBAMFBAUBBQUCAgIFAwUDAwIEAQICBAEFBQIBAgMCAgUFBQMFAQQBAQUEBAQDBQQDAgIDAwUFAgQCBAQFAQEDBQQBBAEBAQUCBAUFBQUFAwQFBAMDBAECAQEBBQMBAwQCBAQFAgQEAgIEAgQEBQEEAwEBAQUEBQQFBQMFAgMFAQICAgMFBQEBAgEDBQIBAwMBBQECAQMBBQQBBQUDBQUFBQICAwEFAQEDBQUEAQECBAICAgMDAgQBBAUDAQEFBQIDAwQCAgICAwMCBAEBBAIDAQUFBAIBAgEEBAUCBQIFAwMDAwEDBAQBAwMDBQIFAgMDBQUCBAIFBQEFAQQCAgECBQMBAgEBAwUBAgQBAQMFBAIEAgUCAwMDAwQFAgIDAwEFBAIBAQIEAQEFBAEEAgMBBQIEAgEEAwIBBQQCAgMDBQUBAQUFBAMBAwMFBAIEBAMEAQMBAgMCAwUEBQIEAwQBBAEEAQIFAwQFAwMBAgIFAgQCBQIEAQUBAQEDAwEFBAQCBQMBAgQDAwEEBQMBBQQDBQUFAwMCBAEFAgECAwUBAQEBAQIFAwMDAwIEBQEEAwQFAQEFBQMBBAICBQMCAQUEBQQFBQUEBAUCAwMDBAQCAwMFBAMCAgMEAgUCAQEEAw=="
             },
             "xaxis": "x",
             "yaxis": "y",
@@ -734,8 +908,17 @@
               1.0
             ],
             "title": {
-              "text": "Id"
-            }
+              "text": "bedrooms"
+            },
+            "categoryorder": "array",
+            "categoryarray": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "type": "category"
           },
           "yaxis": {
             "anchor": "x",
@@ -751,16 +934,553 @@
             "tracegroupgap": 0
           },
           "title": {
-            "text": "Distribution of Id"
+            "text": "Distribution of bedrooms"
           },
           "barmode": "relative"
         }
       },
-      "SepalLengthCm": {
+      "bathrooms": {
         "data": [
           {
             "bingroup": "x",
-            "hovertemplate": "SepalLengthCm=%{x}<br>count=%{y}<extra></extra>",
+            "hovertemplate": "bathrooms=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "i1",
+              "bdata": "AQEDAgEDAgECAwECAQIDAwECAQECAgIDAQEDAgMDAwEDAQEBAgEBAgEDAwECAwICAwIDAgMBAwMDAwIBAwIBAQEBAwMCAgIBAQMBAQECAgMBAQMBAQIDAwMDAgIBAQEBAgMCAQIDAwICAgECAgIDAwEBAwMDAgIDAgIBAwMCAwEBAQMDAwMDAQIBAwEDAwEDAgMCAgMBAgECAwMCAwIDAQMBAwEDAQICAQMBAwIDAgMDAwEBAgIBAgEDAgIBAgIDAgMBAgMBAgECAQEDAQICAwICAgEBAgMBAwICAQIBAgIBAQECAgMBAgIBAwEDAgMCAQEBAwIBAQIBAgICAgIDAQMBAwIBAQMDAQMDAwICAwMCAgEBAgMDAwMBAgMBAwIBAgIBAQEBAQEBAwIBAwMDAgEDAgICAwEDAwEBAQIBAwEDAgMDAQEDAQICAQIBAwMCAQECAwIDAQMCAQICAwIDAQMBAwIDAwECAwIDAwIDAgMBAgMDAQIDAQMCAwMDAwEBAgEBAgEBAgICAwMCAgIDAwEBAgMDAwIBAgEBAgEBAwECAgEDAwEBAgEDAQICAgICAQEBAQIDAQMBAQMCAQEBAwIDAwIDAgECAQMDAQMCAQMBAgIDAgECAQECAwIBAQIDAwEBAwIBAQMCAwICAgEDAwIBAQMBAQIBAgMBAwMBAQMBAgIBAwEBAwMCAwIDAQICAgEBAQEBAgECAQMCAwIDAQEBAgMBAwMBAQMBAQECAwMCAwEDAQIBAwMDAgIDAQIDAwICAgEBAwIBAgMBAQEDAgEDAgMCAwIBAgMDAgEBAgIDAQIBAgIBAgIDAgICAwEDAwEDAQMBAgMDAwMCAwICAgIBAQMBAQMDAwEBAwIDAgIDAwMBAgEBAwEDAgMBAQMDAQICAwIBAwEBAgMDAgEBAQEDAwICAwMBAQIDAgMBAgIDAQIBAgEDAgIBAQIDAQEBAgICAgMDAgMBAQECAQMCAwEBAQIDAgIBAgIBAgEBAQECAQECAgMCAgMCAgICAwICAwEDAQMDAgECAQMDAQICAgIDAwMDAwICAgIDAwMBAgIDAgIDAQEBAwIDAwIBAQMBAwMCAgIDAgEBAwMCAwMBAQIDAwEDAQIBAwIBAQICAQMBAgECAgMCAgMCAwMCAgEDAQIBAwEDAgIDAgICAgMBAQIBAQICAQMCAwECAwIBAwEBAgMBAQMBAQMDAwMCAwICAgECAgEBAQMBAQIBAwEDAQEBAQMDAgMBAgICAQMBAgEBAwMCAQEDAQEBAwICAQIDAwICAQIBAQMDAwMCAwIDAgECAgMCAQEDAQIBAwIDAgEDAwIDAgICAg=="
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "bathrooms"
+            },
+            "categoryorder": "array",
+            "categoryarray": [
+              1,
+              2,
+              3
+            ],
+            "type": "category"
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of bathrooms"
+          },
+          "barmode": "relative"
+        }
+      },
+      "sqft": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "sqft=%{x}<br>count=%{y}<extra></extra>",
             "legendgroup": "",
             "marker": {
               "color": "#000001",
@@ -774,7 +1494,7 @@
             "showlegend": false,
             "x": {
               "dtype": "f8",
-              "bdata": "ZmZmZmZmFECamZmZmZkTQM3MzMzMzBJAZmZmZmZmEkAAAAAAAAAUQJqZmZmZmRVAZmZmZmZmEkAAAAAAAAAUQJqZmZmZmRFAmpmZmZmZE0CamZmZmZkVQDMzMzMzMxNAMzMzMzMzE0AzMzMzMzMRQDMzMzMzMxdAzczMzMzMFkCamZmZmZkVQGZmZmZmZhRAzczMzMzMFkBmZmZmZmYUQJqZmZmZmRVAZmZmZmZmFEBmZmZmZmYSQGZmZmZmZhRAMzMzMzMzE0AAAAAAAAAUQAAAAAAAABRAzczMzMzMFEDNzMzMzMwUQM3MzMzMzBJAMzMzMzMzE0CamZmZmZkVQM3MzMzMzBRAAAAAAAAAFkCamZmZmZkTQAAAAAAAABRAAAAAAAAAFkCamZmZmZkTQJqZmZmZmRFAZmZmZmZmFEAAAAAAAAAUQAAAAAAAABJAmpmZmZmZEUAAAAAAAAAUQGZmZmZmZhRAMzMzMzMzE0BmZmZmZmYUQGZmZmZmZhJAMzMzMzMzFUAAAAAAAAAUQAAAAAAAABxAmpmZmZmZGUCamZmZmZkbQAAAAAAAABZAAAAAAAAAGkDNzMzMzMwWQDMzMzMzMxlAmpmZmZmZE0BmZmZmZmYaQM3MzMzMzBRAAAAAAAAAFECamZmZmZkXQAAAAAAAABhAZmZmZmZmGEBmZmZmZmYWQM3MzMzMzBpAZmZmZmZmFkAzMzMzMzMXQM3MzMzMzBhAZmZmZmZmFkCamZmZmZkXQGZmZmZmZhhAMzMzMzMzGUBmZmZmZmYYQJqZmZmZmRlAZmZmZmZmGkAzMzMzMzMbQM3MzMzMzBpAAAAAAAAAGEDNzMzMzMwWQAAAAAAAABZAAAAAAAAAFkAzMzMzMzMXQAAAAAAAABhAmpmZmZmZFUAAAAAAAAAYQM3MzMzMzBpAMzMzMzMzGUBmZmZmZmYWQAAAAAAAABZAAAAAAAAAFkBmZmZmZmYYQDMzMzMzMxdAAAAAAAAAFEBmZmZmZmYWQM3MzMzMzBZAzczMzMzMFkDNzMzMzMwYQGZmZmZmZhRAzczMzMzMFkAzMzMzMzMZQDMzMzMzMxdAZmZmZmZmHEAzMzMzMzMZQAAAAAAAABpAZmZmZmZmHkCamZmZmZkTQDMzMzMzMx1AzczMzMzMGkDNzMzMzMwcQAAAAAAAABpAmpmZmZmZGUAzMzMzMzMbQM3MzMzMzBZAMzMzMzMzF0CamZmZmZkZQAAAAAAAABpAzczMzMzMHkDNzMzMzMweQAAAAAAAABhAmpmZmZmZG0BmZmZmZmYWQM3MzMzMzB5AMzMzMzMzGUDNzMzMzMwaQM3MzMzMzBxAzczMzMzMGEBmZmZmZmYYQJqZmZmZmRlAzczMzMzMHECamZmZmZkdQJqZmZmZmR9AmpmZmZmZGUAzMzMzMzMZQGZmZmZmZhhAzczMzMzMHkAzMzMzMzMZQJqZmZmZmRlAAAAAAAAAGECamZmZmZkbQM3MzMzMzBpAmpmZmZmZG0AzMzMzMzMXQDMzMzMzMxtAzczMzMzMGkDNzMzMzMwaQDMzMzMzMxlAAAAAAAAAGkDNzMzMzMwYQJqZmZmZmRdA"
+              "bdata": "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"
             },
             "xaxis": "x",
             "yaxis": "y",
@@ -1265,7 +1985,7 @@
               1.0
             ],
             "title": {
-              "text": "SepalLengthCm"
+              "text": "sqft"
             }
           },
           "yaxis": {
@@ -1282,16 +2002,1085 @@
             "tracegroupgap": 0
           },
           "title": {
-            "text": "Distribution of SepalLengthCm"
+            "text": "Distribution of sqft"
           },
           "barmode": "relative"
         }
       },
-      "SepalWidthCm": {
+      "age_years": {
         "data": [
           {
             "bingroup": "x",
-            "hovertemplate": "SepalWidthCm=%{x}<br>count=%{y}<extra></extra>",
+            "hovertemplate": "age_years=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "nbinsx": 20,
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "i1",
+              "bdata": "GSUAExsPLhAnGwsaKS4dKCEkBQYfHxggBgsPDyojDAYjLggfCgcgFhgHLBUDJwIcKBwhIRsMDhYrGQMZJwgEHxMxCg4fGxUoEBkrBikZGAksEgoMBycDLh4bCioAMC4lFy4eKC0xGTAxBBMoCiAxJRohDh8ULQQFJRURDQktDB4dAh0FHAcrLCorIBAvCgwxCh4bKwUoDwMiLxkLCiQYERIWJREZBQMrHCEQKioPASEHDCkHHR8jLh0AKiYQExcxFRwVKwgkCSMkGxspKhQXKScBBy8aFSQaHAIrDCwJIwgaIQAfGBwGMAITEx0iIjAmGhkNEBEsHBMaEQMAMQAZLBMWCQooKAQAEBUhLCgcAwQKFCILGRIsBi4GGScEFA0DFikTDjEsHAcoLxIvJi0bLRoDDiIkAAIuFxonIyEcFxcpAwIhMBYWLAQeKAUkCScGJiUUEwIVLgMbCyUjLigEDBYxHSQYLxoNLy4jJg8VFBQHMA8eKQkfIQgQCh8JFRADLy4YFCQlMAAYIxAoFwEnDh8mBQAuFiYQISgcCAwFBRMCEDALLy4sABACGQ4jHx8DETASKiInDSANIQMXHBIFIDAnEgAEGg8FJwwvIhILDyoJGBMeAysWARUkBwYNAjEPEhEPByAwCwoEGgsQBSAEGw0EIDEvKBIVBAEdLiYDIAwTBg4WDRYSHBMcFxEJKAcZHAkQAQUEGygEERkTKDAaMAsGAgkhGCIPARcJJRUZKiYaHC4lExooEysSEyIuAR0hFQIFDhoJCCAfLwUoIwEcAwASGRgJDhUvFBUjIR0YLBsAMCwDBjAIIxIACSMILC0pHx8FLyUQCTEaMSIUGBsuDgMcCBoZEhsQKigpMRMsJyYwFi4fLiAtBCovIScKMQIgCg8RHS8JESUSIwwtAgklABotBy0pEAgFKhgmMBsgJAgRFAEqJScjMSokDhsRIRUKDAMVBioXAxsOAAINJTEAJSUULxwEMAkbFDEGAiwuExIiAwQAAwsaKRYYFBcYLC0fHwQjLSkwKSYPIDAUCAUsIiYVKAQpFhALFg8CHRUIHC4kFgwfLS4vFiwQJxQBJAUrER0VIB0QKh8pDQkuIyEIKRsKDSYuEg4bFwcqCC4gIBICCScuKQAcMSEMACEcLy4MLzAcJhcZEAYMBBkwAgYwJgAwECoYAg4cKh8ZDxgbCAAcFQ8oKygGDRwSEgEoLA4CCi0dJxEvAR8HFQULLicjDhswLBEBDCwOExwpHAISAg0nAwoeKh8aHSoBMAgbHiEOLxgjBwgkLywmHxAiJBIrHAYbCBsFHBAPFh4CFBkjKSQVKQspDAoPBw=="
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "age_years"
+            }
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of age_years"
+          },
+          "barmode": "relative"
+        }
+      },
+      "garage_spaces": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "garage_spaces=%{x}<br>count=%{y}<extra></extra>",
+            "legendgroup": "",
+            "marker": {
+              "color": "#000001",
+              "pattern": {
+                "shape": ""
+              }
+            },
+            "name": "",
+            "orientation": "v",
+            "showlegend": false,
+            "x": {
+              "dtype": "i1",
+              "bdata": "AgECAgICAgICAQICAwICAgICAQICAgECAgACAgIDAgICAQECAQICAgICAgIBAgICAgACAgIDAgMDAgIAAgIBAQMCAgIAAAEAAAMCAQECAAMCAgEAAgICAQICAgEBAgICAgICAgMCAwIBAgEDAgACAwACAgICAQACAgMAAgABAgICAwIDAgICAgACAAICAAEDAgECAgIDAgECAgEBAQICAgMCAQECAQICAQICAgECAAMAAgIDAQEAAQECAQACAQEBAwECAgADAQACAgIBAgIBAQABAgIDAQIBAQEBAgMCAQABAgIDAAICAgICAgECAQICAgMCAgICAgICAwMCAQECAQICAgMCAgIBAgEDAgECAgEDAAECAgICAgIAAQEBAgEBAQMDAgMCAgACAgICAgIDAQICAgIAAgECAgIBAgECAwMCAgEBAgIDAQMCAgEAAgIBAgICAwEBAgIAAQIBAQEAAgICAQECAgIBAwECAgIBAgIBAQECAAMCAwMCAQEBAgEBAgMBAAADAgEBAQEDAgICAQICAQIBAQECAgMCAgIBAgECAwECAgIBAQABAAIBAgICAgIDAAECAAABAAIBAgICAgIBAgICAgECAgACAQEBAAIBAwIBAgICAAICAQACAQIBAwIBAQICAgEBAAIAAgIDAQECAgEDAgEBAgIAAgIBAgMAAQICAwICAgIBAQECAAMBAQICAAEDAQECAAIBAQEAAQACAQICAgADAQECAgIBAgEDAQICAgICAQEBAgICAQECAgIDAQICAQEAAgICAwIBAgICAgIBAgABAQABAgMBAQEBAAMBAgACAgMCAQECAQIAAAICAgECAQACAQEBAQAAAQACAQEBAgICAgICAgEBAQMCAgECAQECAgECAQMBAQEBAQICAgECAQACAgAAAwACAgEBAQICAgMCAgICAgICAAIBAQACAgECAgECAgICAgABAAMBAQIDAgAAAQEAAgMBAgIBAgEBAgEDAQICAQACAgICAgICAgICAQICAQABAgIBAgIBAgMCAgMCAQICAgECAAMBAQIAAgMCAQECAwICAQICAQECAAECAQACAgICAgIBAgMBAQIBAAIDAgAAAgIBAgECAgICAQICAQIBAgIDAAICAgECAgEBAgIBAQECAgIDAgAAAQMCAQECAgEDAgECAAMDAgIBAwICAwMCAQMCAwIBAQICAQIBAgIAAQACAQEDAgIDAAICAgECAgIBAQEBAgECAQECAAICAQABAAEBAQICAgEBAgICAQICAQICAQECAwEBAQIBAwEBAgICAgMAAgECAgECAAECAQIAAQEBAgIDAgECAQECAA=="
+            },
+            "xaxis": "x",
+            "yaxis": "y",
+            "type": "histogram"
+          }
+        ],
+        "layout": {
+          "template": {
+            "data": {
+              "candlestick": [
+                {
+                  "decreasing": {
+                    "line": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "line": {
+                      "color": "#000032"
+                    }
+                  },
+                  "type": "candlestick"
+                }
+              ],
+              "contourcarpet": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contourcarpet"
+                }
+              ],
+              "contour": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "contour"
+                }
+              ],
+              "heatmap": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "heatmap"
+                }
+              ],
+              "histogram2d": [
+                {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "type": "histogram2d"
+                }
+              ],
+              "icicle": [
+                {
+                  "textfont": {
+                    "color": "white"
+                  },
+                  "type": "icicle"
+                }
+              ],
+              "sankey": [
+                {
+                  "textfont": {
+                    "color": "#000036"
+                  },
+                  "type": "sankey"
+                }
+              ],
+              "scatter": [
+                {
+                  "marker": {
+                    "line": {
+                      "width": 0
+                    }
+                  },
+                  "type": "scatter"
+                }
+              ],
+              "table": [
+                {
+                  "cells": {
+                    "fill": {
+                      "color": "#000038"
+                    },
+                    "font": {
+                      "color": "#000037"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "header": {
+                    "fill": {
+                      "color": "#000040"
+                    },
+                    "font": {
+                      "color": "#000036"
+                    },
+                    "line": {
+                      "color": "#000039"
+                    }
+                  },
+                  "type": "table"
+                }
+              ],
+              "waterfall": [
+                {
+                  "connector": {
+                    "line": {
+                      "color": "#000036",
+                      "width": 2
+                    }
+                  },
+                  "decreasing": {
+                    "marker": {
+                      "color": "#000033"
+                    }
+                  },
+                  "increasing": {
+                    "marker": {
+                      "color": "#000032"
+                    }
+                  },
+                  "totals": {
+                    "marker": {
+                      "color": "#000034"
+                    }
+                  },
+                  "type": "waterfall"
+                }
+              ]
+            },
+            "layout": {
+              "coloraxis": {
+                "colorscale": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorscale": {
+                "diverging": [
+                  [
+                    0.0,
+                    "#000021"
+                  ],
+                  [
+                    0.1,
+                    "#000022"
+                  ],
+                  [
+                    0.2,
+                    "#000023"
+                  ],
+                  [
+                    0.3,
+                    "#000024"
+                  ],
+                  [
+                    0.4,
+                    "#000025"
+                  ],
+                  [
+                    0.5,
+                    "#000026"
+                  ],
+                  [
+                    0.6,
+                    "#000027"
+                  ],
+                  [
+                    0.7,
+                    "#000028"
+                  ],
+                  [
+                    0.8,
+                    "#000029"
+                  ],
+                  [
+                    0.9,
+                    "#000030"
+                  ],
+                  [
+                    1.0,
+                    "#000031"
+                  ]
+                ],
+                "sequential": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ],
+                "sequentialminus": [
+                  [
+                    0.0,
+                    "#000011"
+                  ],
+                  [
+                    0.1111111111111111,
+                    "#000012"
+                  ],
+                  [
+                    0.2222222222222222,
+                    "#000013"
+                  ],
+                  [
+                    0.3333333333333333,
+                    "#000014"
+                  ],
+                  [
+                    0.4444444444444444,
+                    "#000015"
+                  ],
+                  [
+                    0.5555555555555556,
+                    "#000016"
+                  ],
+                  [
+                    0.6666666666666666,
+                    "#000017"
+                  ],
+                  [
+                    0.7777777777777778,
+                    "#000018"
+                  ],
+                  [
+                    0.8888888888888888,
+                    "#000019"
+                  ],
+                  [
+                    1.0,
+                    "#000020"
+                  ]
+                ]
+              },
+              "colorway": [
+                "#000001",
+                "#000002",
+                "#000003",
+                "#000004",
+                "#000005",
+                "#000006",
+                "#000007",
+                "#000008",
+                "#000009",
+                "#000010"
+              ]
+            }
+          },
+          "xaxis": {
+            "anchor": "y",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "garage_spaces"
+            },
+            "categoryorder": "array",
+            "categoryarray": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "type": "category"
+          },
+          "yaxis": {
+            "anchor": "x",
+            "domain": [
+              0.0,
+              1.0
+            ],
+            "title": {
+              "text": "count"
+            }
+          },
+          "legend": {
+            "tracegroupgap": 0
+          },
+          "title": {
+            "text": "Distribution of garage_spaces"
+          },
+          "barmode": "relative"
+        }
+      },
+      "price": {
+        "data": [
+          {
+            "bingroup": "x",
+            "hovertemplate": "price=%{x}<br>count=%{y}<extra></extra>",
             "legendgroup": "",
             "marker": {
               "color": "#000001",
@@ -1305,7 +3094,7 @@
             "showlegend": false,
             "x": {
               "dtype": "f8",
-              "bdata": "AAAAAAAADEAAAAAAAAAIQJqZmZmZmQlAzczMzMzMCEDNzMzMzMwMQDMzMzMzMw9AMzMzMzMzC0AzMzMzMzMLQDMzMzMzMwdAzczMzMzMCECamZmZmZkNQDMzMzMzMwtAAAAAAAAACEAAAAAAAAAIQAAAAAAAABBAMzMzMzMzEEAzMzMzMzMPQAAAAAAAAAxAZmZmZmZmDkBmZmZmZmYOQDMzMzMzMwtAmpmZmZmZDUDNzMzMzMwMQGZmZmZmZgpAMzMzMzMzC0AAAAAAAAAIQDMzMzMzMwtAAAAAAAAADEAzMzMzMzMLQJqZmZmZmQlAzczMzMzMCEAzMzMzMzMLQDMzMzMzMxBAMzMzMzMzEEDNzMzMzMwIQJqZmZmZmQlAAAAAAAAADEDNzMzMzMwIQAAAAAAAAAhAMzMzMzMzC0AAAAAAAAAMQGZmZmZmZgJAmpmZmZmZCUAAAAAAAAAMQGZmZmZmZg5AAAAAAAAACEBmZmZmZmYOQJqZmZmZmQlAmpmZmZmZDUBmZmZmZmYKQJqZmZmZmQlAmpmZmZmZCUDNzMzMzMwIQGZmZmZmZgJAZmZmZmZmBkBmZmZmZmYGQGZmZmZmZgpAMzMzMzMzA0AzMzMzMzMHQJqZmZmZmQVAZmZmZmZmAEAAAAAAAAAIQJqZmZmZmQFAMzMzMzMzB0AzMzMzMzMHQM3MzMzMzAhAAAAAAAAACECamZmZmZkFQJqZmZmZmQFAAAAAAAAABECamZmZmZkJQGZmZmZmZgZAAAAAAAAABEBmZmZmZmYGQDMzMzMzMwdAAAAAAAAACEBmZmZmZmYGQAAAAAAAAAhAMzMzMzMzB0DNzMzMzMwEQDMzMzMzMwNAMzMzMzMzA0CamZmZmZkFQJqZmZmZmQVAAAAAAAAACEAzMzMzMzMLQM3MzMzMzAhAZmZmZmZmAkAAAAAAAAAIQAAAAAAAAARAzczMzMzMBEAAAAAAAAAIQM3MzMzMzARAZmZmZmZmAkCamZmZmZkFQAAAAAAAAAhAMzMzMzMzB0AzMzMzMzMHQAAAAAAAAARAZmZmZmZmBkBmZmZmZmYKQJqZmZmZmQVAAAAAAAAACEAzMzMzMzMHQAAAAAAAAAhAAAAAAAAACEAAAAAAAAAEQDMzMzMzMwdAAAAAAAAABEDNzMzMzMwMQJqZmZmZmQlAmpmZmZmZBUAAAAAAAAAIQAAAAAAAAARAZmZmZmZmBkCamZmZmZkJQAAAAAAAAAhAZmZmZmZmDkDNzMzMzMwEQJqZmZmZmQFAmpmZmZmZCUBmZmZmZmYGQGZmZmZmZgZAmpmZmZmZBUBmZmZmZmYKQJqZmZmZmQlAZmZmZmZmBkAAAAAAAAAIQGZmZmZmZgZAAAAAAAAACEBmZmZmZmYGQGZmZmZmZg5AZmZmZmZmBkBmZmZmZmYGQM3MzMzMzARAAAAAAAAACEAzMzMzMzMLQM3MzMzMzAhAAAAAAAAACEDNzMzMzMwIQM3MzMzMzAhAzczMzMzMCECamZmZmZkFQJqZmZmZmQlAZmZmZmZmCkAAAAAAAAAIQAAAAAAAAARAAAAAAAAACEAzMzMzMzMLQAAAAAAAAAhA"
+              "bdata": "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"
             },
             "xaxis": "x",
             "yaxis": "y",
@@ -1796,7 +3585,7 @@
               1.0
             ],
             "title": {
-              "text": "SepalWidthCm"
+              "text": "price"
             }
           },
           "yaxis": {
@@ -1813,1291 +3602,869 @@
             "tracegroupgap": 0
           },
           "title": {
-            "text": "Distribution of SepalWidthCm"
-          },
-          "barmode": "relative"
-        }
-      },
-      "PetalLengthCm": {
-        "data": [
-          {
-            "bingroup": "x",
-            "hovertemplate": "PetalLengthCm=%{x}<br>count=%{y}<extra></extra>",
-            "legendgroup": "",
-            "marker": {
-              "color": "#000001",
-              "pattern": {
-                "shape": ""
-              }
-            },
-            "name": "",
-            "nbinsx": 20,
-            "orientation": "v",
-            "showlegend": false,
-            "x": {
-              "dtype": "f8",
-              "bdata": "ZmZmZmZm9j9mZmZmZmb2P83MzMzMzPQ/AAAAAAAA+D9mZmZmZmb2PzMzMzMzM/s/ZmZmZmZm9j8AAAAAAAD4P2ZmZmZmZvY/AAAAAAAA+D8AAAAAAAD4P5qZmZmZmfk/ZmZmZmZm9j+amZmZmZnxPzMzMzMzM/M/AAAAAAAA+D/NzMzMzMz0P2ZmZmZmZvY/MzMzMzMz+z8AAAAAAAD4PzMzMzMzM/s/AAAAAAAA+D8AAAAAAADwPzMzMzMzM/s/ZmZmZmZm/j+amZmZmZn5P5qZmZmZmfk/AAAAAAAA+D9mZmZmZmb2P5qZmZmZmfk/mpmZmZmZ+T8AAAAAAAD4PwAAAAAAAPg/ZmZmZmZm9j8AAAAAAAD4PzMzMzMzM/M/zczMzMzM9D8AAAAAAAD4P83MzMzMzPQ/AAAAAAAA+D/NzMzMzMz0P83MzMzMzPQ/zczMzMzM9D+amZmZmZn5P2ZmZmZmZv4/ZmZmZmZm9j+amZmZmZn5P2ZmZmZmZvY/AAAAAAAA+D9mZmZmZmb2P83MzMzMzBJAAAAAAAAAEkCamZmZmZkTQAAAAAAAABBAZmZmZmZmEkAAAAAAAAASQM3MzMzMzBJAZmZmZmZmCkBmZmZmZmYSQDMzMzMzMw9AAAAAAAAADEDNzMzMzMwQQAAAAAAAABBAzczMzMzMEkDNzMzMzMwMQJqZmZmZmRFAAAAAAAAAEkBmZmZmZmYQQAAAAAAAABJAMzMzMzMzD0AzMzMzMzMTQAAAAAAAABBAmpmZmZmZE0DNzMzMzMwSQDMzMzMzMxFAmpmZmZmZEUAzMzMzMzMTQAAAAAAAABRAAAAAAAAAEkAAAAAAAAAMQGZmZmZmZg5AmpmZmZmZDUAzMzMzMzMPQGZmZmZmZhRAAAAAAAAAEkAAAAAAAAASQM3MzMzMzBJAmpmZmZmZEUBmZmZmZmYQQAAAAAAAABBAmpmZmZmZEUBmZmZmZmYSQAAAAAAAABBAZmZmZmZmCkDNzMzMzMwQQM3MzMzMzBBAzczMzMzMEEAzMzMzMzMRQAAAAAAAAAhAZmZmZmZmEEAAAAAAAAAYQGZmZmZmZhRAmpmZmZmZF0BmZmZmZmYWQDMzMzMzMxdAZmZmZmZmGkAAAAAAAAASQDMzMzMzMxlAMzMzMzMzF0BmZmZmZmYYQGZmZmZmZhRAMzMzMzMzFUAAAAAAAAAWQAAAAAAAABRAZmZmZmZmFEAzMzMzMzMVQAAAAAAAABZAzczMzMzMGkCamZmZmZkbQAAAAAAAABRAzczMzMzMFkCamZmZmZkTQM3MzMzMzBpAmpmZmZmZE0DNzMzMzMwWQAAAAAAAABhAMzMzMzMzE0CamZmZmZkTQGZmZmZmZhZAMzMzMzMzF0BmZmZmZmYYQJqZmZmZmRlAZmZmZmZmFkBmZmZmZmYUQGZmZmZmZhZAZmZmZmZmGEBmZmZmZmYWQAAAAAAAABZAMzMzMzMzE0CamZmZmZkVQGZmZmZmZhZAZmZmZmZmFEBmZmZmZmYUQJqZmZmZmRdAzczMzMzMFkDNzMzMzMwUQAAAAAAAABRAzczMzMzMFECamZmZmZkVQGZmZmZmZhRA"
-            },
-            "xaxis": "x",
-            "yaxis": "y",
-            "type": "histogram"
-          }
-        ],
-        "layout": {
-          "template": {
-            "data": {
-              "candlestick": [
-                {
-                  "decreasing": {
-                    "line": {
-                      "color": "#000033"
-                    }
-                  },
-                  "increasing": {
-                    "line": {
-                      "color": "#000032"
-                    }
-                  },
-                  "type": "candlestick"
-                }
-              ],
-              "contourcarpet": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "contourcarpet"
-                }
-              ],
-              "contour": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "contour"
-                }
-              ],
-              "heatmap": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "heatmap"
-                }
-              ],
-              "histogram2d": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "histogram2d"
-                }
-              ],
-              "icicle": [
-                {
-                  "textfont": {
-                    "color": "white"
-                  },
-                  "type": "icicle"
-                }
-              ],
-              "sankey": [
-                {
-                  "textfont": {
-                    "color": "#000036"
-                  },
-                  "type": "sankey"
-                }
-              ],
-              "scatter": [
-                {
-                  "marker": {
-                    "line": {
-                      "width": 0
-                    }
-                  },
-                  "type": "scatter"
-                }
-              ],
-              "table": [
-                {
-                  "cells": {
-                    "fill": {
-                      "color": "#000038"
-                    },
-                    "font": {
-                      "color": "#000037"
-                    },
-                    "line": {
-                      "color": "#000039"
-                    }
-                  },
-                  "header": {
-                    "fill": {
-                      "color": "#000040"
-                    },
-                    "font": {
-                      "color": "#000036"
-                    },
-                    "line": {
-                      "color": "#000039"
-                    }
-                  },
-                  "type": "table"
-                }
-              ],
-              "waterfall": [
-                {
-                  "connector": {
-                    "line": {
-                      "color": "#000036",
-                      "width": 2
-                    }
-                  },
-                  "decreasing": {
-                    "marker": {
-                      "color": "#000033"
-                    }
-                  },
-                  "increasing": {
-                    "marker": {
-                      "color": "#000032"
-                    }
-                  },
-                  "totals": {
-                    "marker": {
-                      "color": "#000034"
-                    }
-                  },
-                  "type": "waterfall"
-                }
-              ]
-            },
-            "layout": {
-              "coloraxis": {
-                "colorscale": [
-                  [
-                    0.0,
-                    "#000011"
-                  ],
-                  [
-                    0.1111111111111111,
-                    "#000012"
-                  ],
-                  [
-                    0.2222222222222222,
-                    "#000013"
-                  ],
-                  [
-                    0.3333333333333333,
-                    "#000014"
-                  ],
-                  [
-                    0.4444444444444444,
-                    "#000015"
-                  ],
-                  [
-                    0.5555555555555556,
-                    "#000016"
-                  ],
-                  [
-                    0.6666666666666666,
-                    "#000017"
-                  ],
-                  [
-                    0.7777777777777778,
-                    "#000018"
-                  ],
-                  [
-                    0.8888888888888888,
-                    "#000019"
-                  ],
-                  [
-                    1.0,
-                    "#000020"
-                  ]
-                ]
-              },
-              "colorscale": {
-                "diverging": [
-                  [
-                    0.0,
-                    "#000021"
-                  ],
-                  [
-                    0.1,
-                    "#000022"
-                  ],
-                  [
-                    0.2,
-                    "#000023"
-                  ],
-                  [
-                    0.3,
-                    "#000024"
-                  ],
-                  [
-                    0.4,
-                    "#000025"
-                  ],
-                  [
-                    0.5,
-                    "#000026"
-                  ],
-                  [
-                    0.6,
-                    "#000027"
-                  ],
-                  [
-                    0.7,
-                    "#000028"
-                  ],
-                  [
-                    0.8,
-                    "#000029"
-                  ],
-                  [
-                    0.9,
-                    "#000030"
-                  ],
-                  [
-                    1.0,
-                    "#000031"
-                  ]
-                ],
-                "sequential": [
-                  [
-                    0.0,
-                    "#000011"
-                  ],
-                  [
-                    0.1111111111111111,
-                    "#000012"
-                  ],
-                  [
-                    0.2222222222222222,
-                    "#000013"
-                  ],
-                  [
-                    0.3333333333333333,
-                    "#000014"
-                  ],
-                  [
-                    0.4444444444444444,
-                    "#000015"
-                  ],
-                  [
-                    0.5555555555555556,
-                    "#000016"
-                  ],
-                  [
-                    0.6666666666666666,
-                    "#000017"
-                  ],
-                  [
-                    0.7777777777777778,
-                    "#000018"
-                  ],
-                  [
-                    0.8888888888888888,
-                    "#000019"
-                  ],
-                  [
-                    1.0,
-                    "#000020"
-                  ]
-                ],
-                "sequentialminus": [
-                  [
-                    0.0,
-                    "#000011"
-                  ],
-                  [
-                    0.1111111111111111,
-                    "#000012"
-                  ],
-                  [
-                    0.2222222222222222,
-                    "#000013"
-                  ],
-                  [
-                    0.3333333333333333,
-                    "#000014"
-                  ],
-                  [
-                    0.4444444444444444,
-                    "#000015"
-                  ],
-                  [
-                    0.5555555555555556,
-                    "#000016"
-                  ],
-                  [
-                    0.6666666666666666,
-                    "#000017"
-                  ],
-                  [
-                    0.7777777777777778,
-                    "#000018"
-                  ],
-                  [
-                    0.8888888888888888,
-                    "#000019"
-                  ],
-                  [
-                    1.0,
-                    "#000020"
-                  ]
-                ]
-              },
-              "colorway": [
-                "#000001",
-                "#000002",
-                "#000003",
-                "#000004",
-                "#000005",
-                "#000006",
-                "#000007",
-                "#000008",
-                "#000009",
-                "#000010"
-              ]
-            }
-          },
-          "xaxis": {
-            "anchor": "y",
-            "domain": [
-              0.0,
-              1.0
-            ],
-            "title": {
-              "text": "PetalLengthCm"
-            }
-          },
-          "yaxis": {
-            "anchor": "x",
-            "domain": [
-              0.0,
-              1.0
-            ],
-            "title": {
-              "text": "count"
-            }
-          },
-          "legend": {
-            "tracegroupgap": 0
-          },
-          "title": {
-            "text": "Distribution of PetalLengthCm"
-          },
-          "barmode": "relative"
-        }
-      },
-      "PetalWidthCm": {
-        "data": [
-          {
-            "bingroup": "x",
-            "hovertemplate": "PetalWidthCm=%{x}<br>count=%{y}<extra></extra>",
-            "legendgroup": "",
-            "marker": {
-              "color": "#000001",
-              "pattern": {
-                "shape": ""
-              }
-            },
-            "name": "",
-            "nbinsx": 20,
-            "orientation": "v",
-            "showlegend": false,
-            "x": {
-              "dtype": "f8",
-              "bdata": "mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP5qZmZmZmdk/MzMzMzMz0z+amZmZmZnJP5qZmZmZmck/mpmZmZmZuT+amZmZmZnJP5qZmZmZmck/mpmZmZmZuT+amZmZmZm5P5qZmZmZmck/mpmZmZmZ2T+amZmZmZnZPzMzMzMzM9M/MzMzMzMz0z8zMzMzMzPTP5qZmZmZmck/mpmZmZmZ2T+amZmZmZnJPwAAAAAAAOA/mpmZmZmZyT+amZmZmZnJP5qZmZmZmdk/mpmZmZmZyT+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnZP5qZmZmZmbk/mpmZmZmZyT+amZmZmZm5P5qZmZmZmck/mpmZmZmZyT+amZmZmZm5P5qZmZmZmck/mpmZmZmZyT8zMzMzMzPTPzMzMzMzM9M/mpmZmZmZyT8zMzMzMzPjP5qZmZmZmdk/MzMzMzMz0z+amZmZmZnJP5qZmZmZmck/mpmZmZmZyT+amZmZmZnJP2ZmZmZmZvY/AAAAAAAA+D8AAAAAAAD4P83MzMzMzPQ/AAAAAAAA+D/NzMzMzMz0P5qZmZmZmfk/AAAAAAAA8D/NzMzMzMz0P2ZmZmZmZvY/AAAAAAAA8D8AAAAAAAD4PwAAAAAAAPA/ZmZmZmZm9j/NzMzMzMz0P2ZmZmZmZvY/AAAAAAAA+D8AAAAAAADwPwAAAAAAAPg/mpmZmZmZ8T/NzMzMzMz8P83MzMzMzPQ/AAAAAAAA+D8zMzMzMzPzP83MzMzMzPQ/ZmZmZmZm9j9mZmZmZmb2PzMzMzMzM/s/AAAAAAAA+D8AAAAAAADwP5qZmZmZmfE/AAAAAAAA8D8zMzMzMzPzP5qZmZmZmfk/AAAAAAAA+D+amZmZmZn5PwAAAAAAAPg/zczMzMzM9D/NzMzMzMz0P83MzMzMzPQ/MzMzMzMz8z9mZmZmZmb2PzMzMzMzM/M/AAAAAAAA8D/NzMzMzMz0PzMzMzMzM/M/zczMzMzM9D/NzMzMzMz0P5qZmZmZmfE/zczMzMzM9D8AAAAAAAAEQGZmZmZmZv4/zczMzMzMAEDNzMzMzMz8P5qZmZmZmQFAzczMzMzMAEAzMzMzMzP7P83MzMzMzPw/zczMzMzM/D8AAAAAAAAEQAAAAAAAAABAZmZmZmZm/j/NzMzMzMwAQAAAAAAAAABAMzMzMzMzA0BmZmZmZmYCQM3MzMzMzPw/mpmZmZmZAUBmZmZmZmYCQAAAAAAAAPg/ZmZmZmZmAkAAAAAAAAAAQAAAAAAAAABAzczMzMzM/D/NzMzMzMwAQM3MzMzMzPw/zczMzMzM/D/NzMzMzMz8P83MzMzMzABAmpmZmZmZ+T9mZmZmZmb+PwAAAAAAAABAmpmZmZmZAUAAAAAAAAD4P2ZmZmZmZvY/ZmZmZmZmAkAzMzMzMzMDQM3MzMzMzPw/zczMzMzM/D/NzMzMzMwAQDMzMzMzMwNAZmZmZmZmAkBmZmZmZmb+P2ZmZmZmZgJAAAAAAAAABEBmZmZmZmYCQGZmZmZmZv4/AAAAAAAAAEBmZmZmZmYCQM3MzMzMzPw/"
-            },
-            "xaxis": "x",
-            "yaxis": "y",
-            "type": "histogram"
-          }
-        ],
-        "layout": {
-          "template": {
-            "data": {
-              "candlestick": [
-                {
-                  "decreasing": {
-                    "line": {
-                      "color": "#000033"
-                    }
-                  },
-                  "increasing": {
-                    "line": {
-                      "color": "#000032"
-                    }
-                  },
-                  "type": "candlestick"
-                }
-              ],
-              "contourcarpet": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "contourcarpet"
-                }
-              ],
-              "contour": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "contour"
-                }
-              ],
-              "heatmap": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "heatmap"
-                }
-              ],
-              "histogram2d": [
-                {
-                  "colorscale": [
-                    [
-                      0.0,
-                      "#000011"
-                    ],
-                    [
-                      0.1111111111111111,
-                      "#000012"
-                    ],
-                    [
-                      0.2222222222222222,
-                      "#000013"
-                    ],
-                    [
-                      0.3333333333333333,
-                      "#000014"
-                    ],
-                    [
-                      0.4444444444444444,
-                      "#000015"
-                    ],
-                    [
-                      0.5555555555555556,
-                      "#000016"
-                    ],
-                    [
-                      0.6666666666666666,
-                      "#000017"
-                    ],
-                    [
-                      0.7777777777777778,
-                      "#000018"
-                    ],
-                    [
-                      0.8888888888888888,
-                      "#000019"
-                    ],
-                    [
-                      1.0,
-                      "#000020"
-                    ]
-                  ],
-                  "type": "histogram2d"
-                }
-              ],
-              "icicle": [
-                {
-                  "textfont": {
-                    "color": "white"
-                  },
-                  "type": "icicle"
-                }
-              ],
-              "sankey": [
-                {
-                  "textfont": {
-                    "color": "#000036"
-                  },
-                  "type": "sankey"
-                }
-              ],
-              "scatter": [
-                {
-                  "marker": {
-                    "line": {
-                      "width": 0
-                    }
-                  },
-                  "type": "scatter"
-                }
-              ],
-              "table": [
-                {
-                  "cells": {
-                    "fill": {
-                      "color": "#000038"
-                    },
-                    "font": {
-                      "color": "#000037"
-                    },
-                    "line": {
-                      "color": "#000039"
-                    }
-                  },
-                  "header": {
-                    "fill": {
-                      "color": "#000040"
-                    },
-                    "font": {
-                      "color": "#000036"
-                    },
-                    "line": {
-                      "color": "#000039"
-                    }
-                  },
-                  "type": "table"
-                }
-              ],
-              "waterfall": [
-                {
-                  "connector": {
-                    "line": {
-                      "color": "#000036",
-                      "width": 2
-                    }
-                  },
-                  "decreasing": {
-                    "marker": {
-                      "color": "#000033"
-                    }
-                  },
-                  "increasing": {
-                    "marker": {
-                      "color": "#000032"
-                    }
-                  },
-                  "totals": {
-                    "marker": {
-                      "color": "#000034"
-                    }
-                  },
-                  "type": "waterfall"
-                }
-              ]
-            },
-            "layout": {
-              "coloraxis": {
-                "colorscale": [
-                  [
-                    0.0,
-                    "#000011"
-                  ],
-                  [
-                    0.1111111111111111,
-                    "#000012"
-                  ],
-                  [
-                    0.2222222222222222,
-                    "#000013"
-                  ],
-                  [
-                    0.3333333333333333,
-                    "#000014"
-                  ],
-                  [
-                    0.4444444444444444,
-                    "#000015"
-                  ],
-                  [
-                    0.5555555555555556,
-                    "#000016"
-                  ],
-                  [
-                    0.6666666666666666,
-                    "#000017"
-                  ],
-                  [
-                    0.7777777777777778,
-                    "#000018"
-                  ],
-                  [
-                    0.8888888888888888,
-                    "#000019"
-                  ],
-                  [
-                    1.0,
-                    "#000020"
-                  ]
-                ]
-              },
-              "colorscale": {
-                "diverging": [
-                  [
-                    0.0,
-                    "#000021"
-                  ],
-                  [
-                    0.1,
-                    "#000022"
-                  ],
-                  [
-                    0.2,
-                    "#000023"
-                  ],
-                  [
-                    0.3,
-                    "#000024"
-                  ],
-                  [
-                    0.4,
-                    "#000025"
-                  ],
-                  [
-                    0.5,
-                    "#000026"
-                  ],
-                  [
-                    0.6,
-                    "#000027"
-                  ],
-                  [
-                    0.7,
-                    "#000028"
-                  ],
-                  [
-                    0.8,
-                    "#000029"
-                  ],
-                  [
-                    0.9,
-                    "#000030"
-                  ],
-                  [
-                    1.0,
-                    "#000031"
-                  ]
-                ],
-                "sequential": [
-                  [
-                    0.0,
-                    "#000011"
-                  ],
-                  [
-                    0.1111111111111111,
-                    "#000012"
-                  ],
-                  [
-                    0.2222222222222222,
-                    "#000013"
-                  ],
-                  [
-                    0.3333333333333333,
-                    "#000014"
-                  ],
-                  [
-                    0.4444444444444444,
-                    "#000015"
-                  ],
-                  [
-                    0.5555555555555556,
-                    "#000016"
-                  ],
-                  [
-                    0.6666666666666666,
-                    "#000017"
-                  ],
-                  [
-                    0.7777777777777778,
-                    "#000018"
-                  ],
-                  [
-                    0.8888888888888888,
-                    "#000019"
-                  ],
-                  [
-                    1.0,
-                    "#000020"
-                  ]
-                ],
-                "sequentialminus": [
-                  [
-                    0.0,
-                    "#000011"
-                  ],
-                  [
-                    0.1111111111111111,
-                    "#000012"
-                  ],
-                  [
-                    0.2222222222222222,
-                    "#000013"
-                  ],
-                  [
-                    0.3333333333333333,
-                    "#000014"
-                  ],
-                  [
-                    0.4444444444444444,
-                    "#000015"
-                  ],
-                  [
-                    0.5555555555555556,
-                    "#000016"
-                  ],
-                  [
-                    0.6666666666666666,
-                    "#000017"
-                  ],
-                  [
-                    0.7777777777777778,
-                    "#000018"
-                  ],
-                  [
-                    0.8888888888888888,
-                    "#000019"
-                  ],
-                  [
-                    1.0,
-                    "#000020"
-                  ]
-                ]
-              },
-              "colorway": [
-                "#000001",
-                "#000002",
-                "#000003",
-                "#000004",
-                "#000005",
-                "#000006",
-                "#000007",
-                "#000008",
-                "#000009",
-                "#000010"
-              ]
-            }
-          },
-          "xaxis": {
-            "anchor": "y",
-            "domain": [
-              0.0,
-              1.0
-            ],
-            "title": {
-              "text": "PetalWidthCm"
-            }
-          },
-          "yaxis": {
-            "anchor": "x",
-            "domain": [
-              0.0,
-              1.0
-            ],
-            "title": {
-              "text": "count"
-            }
-          },
-          "legend": {
-            "tracegroupgap": 0
-          },
-          "title": {
-            "text": "Distribution of PetalWidthCm"
+            "text": "Distribution of price"
           },
           "barmode": "relative"
         }
       }
     },
+    "custom_visualizations": {},
+    "custom_insights": {},
     "eda_insights": {
-      "insights": "Analyzing the provided dataset, here are some key insights that could be relevant for machine learning:\n\n1. **Balanced Dataset**:\n   - With a total of 150 samples and the problem being a classification task with the target variable 'Species', it's likely the dataset consists of three species in roughly equal proportions. This is typical in the widely recognized Iris dataset. A balanced dataset is advantageous as it helps prevent bias towards any one class in classification algorithms, potentially resulting in more robust models.\n\n2. **Feature Informative Nature**:\n   - The four numerical features ('SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm') are critical for distinguishing between the classes ('Species'). In similar datasets, features like 'PetalLengthCm' and 'PetalWidthCm' tend to be particularly informative, offering significant variations across different species. Identifying which features are the most informative can help in feature selection and dimensionality reduction techniques.\n\n3. **Correlation and Interdependence**:\n   - Analyzing the correlation between these features can provide insights. Typically, 'PetalLengthCm' and 'PetalWidthCm' have a strong positive correlation, which suggests redundancy in terms of information if one intends to perform dimensionality reduction. Understanding these correlations can guide feature engineering efforts to improve model performance.\n\n4. **Potential Non-Linear Decision Boundaries**:\n   - There is often an overlap in the feature distribution of some species (e.g",
+      "insights": "To analyze a dataset with the given characteristics and generate key insights, we would typically want to perform some exploratory data analysis (EDA). Here are a few potential insights you could derive even without the actual data:\n\n1. **Feature Importance and Correlation**:\n   - Evaluate the correlation between the target variable (`price`) and the predictor variables. Typically, variables such as `sqft`, `bedrooms`, and `bathrooms` tend to have a high correlation with property prices. Utilize Pearson or Spearman correlation coefficients for this analysis.\n   - You could also use feature importance techniques such as calculating the importance from a tree-based model (like Random Forest) to understand which features contribute most to predicting price.\n\n2. **Neighborhood and Price Premiums**:\n   - The `neighborhood` feature might play a significant role in determining property prices. Perform a group-by analysis or one-hot encode this feature to observe how different neighborhoods impact property values. Certain neighborhoods might command higher premiums irrespective of the physical characteristics of the property.\n\n3. **Non-Linear Relationships and Interactions**:\n   - Check for potential non-linear relationships between predictors and the target, such as diminishing returns on price increases with additional square footage or secondary features like `garage_spaces`.\n   - Consider interaction effects, such as between `sqft` and `neighborhood`, where the value of additional square footage varies greatly in high-demand neighborhoods compared to others.\n\n4. **Age and Property Value Depreciation**:\n   - The `",
       "data_quality_score": 1.0,
       "recommendations": [
-        "Consider using classification algorithms (Random Forest, XGBoost)"
+        "Consider using regression algorithms (Linear Regression, Random Forest)"
       ]
     },
-    "target_variable": "Species",
-    "problem_type": "classification"
+    "target_variable": "price",
+    "problem_type": "regression"
   },
   "model_results": {
-    "selected_model": "RandomForestClassifier",
-    "cv_score": 1.0,
+    "selected_model": "GradientBoostingRegressor",
+    "cv_score": 0.9661677020043072,
     "feature_importance": [
       {
-        "feature": "Id",
-        "importance": 0.39800426454220117
+        "feature": "neighborhood",
+        "importance": 0.5522222155757842
       },
       {
-        "feature": "PetalLengthCm",
-        "importance": 0.27306279438426506
+        "feature": "sqft",
+        "importance": 0.42102373936865684
       },
       {
-        "feature": "PetalWidthCm",
-        "importance": 0.27201114975171825
+        "feature": "bedrooms",
+        "importance": 0.016343686743859175
       },
       {
-        "feature": "SepalLengthCm",
-        "importance": 0.05309213647240581
+        "feature": "age_years",
+        "importance": 0.006180826325062052
       },
       {
-        "feature": "SepalWidthCm",
-        "importance": 0.0038296548494099096
+        "feature": "garage_spaces",
+        "importance": 0.0024377379484465016
+      },
+      {
+        "feature": "bathrooms",
+        "importance": 0.0017917940381912262
       }
     ],
     "model_comparison": [
       {
-        "model": "RandomForest",
-        "cv_score": 1.0
+        "model": "RandomForestRegressor",
+        "cv_score": 0.9657784327298966
       },
       {
-        "model": "LogisticRegression",
-        "cv_score": 0.9916666666666668
+        "model": "LinearRegression",
+        "cv_score": 0.40004012616001683
+      },
+      {
+        "model": "SVR",
+        "cv_score": -0.025694886513445515
+      },
+      {
+        "model": "GradientBoostingRegressor",
+        "cv_score": 0.9661677020043072
+      },
+      {
+        "model": "KNeighborsRegressor",
+        "cv_score": 0.6069576849373025
       }
     ],
     "training_summary": {
       "metrics": {
-        "accuracy": 1.0,
-        "classification_report": {
-          "0": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 10.0
-          },
-          "1": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 10.0
-          },
-          "2": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 10.0
-          },
-          "accuracy": 1.0,
-          "macro avg": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 30.0
-          },
-          "weighted avg": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 30.0
-          }
-        }
+        "r2": 0.9738714557921895,
+        "mse": 556095363.1405224,
+        "rmse": 23581.67430740494
       },
-      "insights": "The performance of the RandomForestClassifier model in this scenario is exceptionally high, with an accuracy of 1.0, indicating that the model has correctly classified all instances in the test set. The classification report further corroborates this, as each class (0, 1, and 2) has perfect precision, recall, and F1-score of 1.0, which means that the model neither made any false positives nor false negatives for any class. This perfect performance is consistent across all metrics, including macro and weighted averages.\n\nKey insights from this might include:\n\n1. **Model Performance**: The model demonstrates perfect performance metrics, which are typically rare in practice unless the test data is very similar to the training data or the model is overfitting.\n\n2. **Data Set Characteristics**: It's important to consider the size and nature of the dataset. Given the support of 10 samples per class (30 in total), the dataset appears to be very small, which could contribute to the"
+      "insights": "The performance analysis of the GradientBoostingRegressor model is as follows:\n\n1. **R-squared (R\u00b2):** The R\u00b2 value is 0.9739, which indicates that approximately 97.39% of the variability in the dependent variable is explained by the model. This high R\u00b2 value suggests that the model fits the data well and accurately captures the underlying patterns.\n\n2. **Mean Squared Error (MSE):** The MSE is 556,095,363.14. While MSE provides insight into the average squared difference between the observed and predicted values, its interpretability can be challenging due to being in squared units. However, it serves as a basis for calculating RMSE.\n\n3. **Root Mean Squared Error (RMSE):** The RMSE is 23,581.67. As a measure of the average magnitude of the prediction errors, RMSE is expressed in the same units as the dependent variable, making it more interpretable"
     },
     "y_test": [
-      0,
-      2,
-      1,
-      1,
-      0,
-      1,
-      0,
-      0,
-      2,
-      1,
-      2,
-      2,
-      2,
-      1,
-      0,
-      0,
-      0,
-      1,
-      1,
-      2,
-      0,
-      2,
-      1,
-      2,
-      2,
-      1,
-      1,
-      0,
-      2,
-      0
+      261614.0,
+      362893.0,
+      270752.0,
+      490774.0,
+      320828.0,
+      375504.0,
+      389717.0,
+      303426.0,
+      291629.0,
+      436387.0,
+      640110.0,
+      230968.0,
+      480958.0,
+      285723.0,
+      393353.0,
+      646535.0,
+      347630.0,
+      691449.0,
+      186266.0,
+      325879.0,
+      455154.0,
+      478109.0,
+      321244.0,
+      353783.0,
+      668089.0,
+      437842.0,
+      514105.0,
+      307383.0,
+      466068.0,
+      293462.0,
+      247165.0,
+      306527.0,
+      378496.0,
+      561076.0,
+      519881.0,
+      336724.0,
+      599500.0,
+      354565.0,
+      191639.0,
+      301309.0,
+      455976.0,
+      412356.0,
+      276840.0,
+      736114.375,
+      220147.0,
+      736114.375,
+      198908.0,
+      308621.0,
+      238223.0,
+      299633.0,
+      597879.0,
+      240277.0,
+      320880.0,
+      312883.0,
+      438948.0,
+      363474.0,
+      260758.0,
+      280772.0,
+      336080.0,
+      133585.0,
+      167354.0,
+      336751.0,
+      298169.0,
+      666905.0,
+      282843.0,
+      447114.0,
+      736114.375,
+      344785.0,
+      273018.0,
+      431951.0,
+      468565.0,
+      311333.0,
+      488205.0,
+      444296.0,
+      475023.0,
+      321458.0,
+      401660.0,
+      508639.0,
+      282408.0,
+      461696.0,
+      183937.0,
+      445183.0,
+      250545.0,
+      693024.0,
+      200140.0,
+      366295.0,
+      736114.375,
+      273828.0,
+      515481.0,
+      258173.0,
+      603733.0,
+      515850.0,
+      236344.0,
+      339239.0,
+      426258.0,
+      178565.0,
+      308311.0,
+      366800.0,
+      271151.0,
+      353207.0,
+      525379.0,
+      466772.0,
+      335607.0,
+      276319.0,
+      392154.0,
+      357805.0,
+      321049.0,
+      390349.0,
+      298155.0,
+      360176.0,
+      279744.0,
+      736114.375,
+      634101.0,
+      325251.0,
+      594443.0,
+      295716.0,
+      636153.0,
+      462663.0,
+      352752.0,
+      689471.0,
+      482463.0,
+      422302.0,
+      474372.0,
+      353383.0,
+      393997.0,
+      368179.0,
+      399313.0,
+      670336.0,
+      323847.0,
+      490068.0,
+      351004.0,
+      402070.0,
+      335095.0,
+      146833.0,
+      316449.0,
+      472787.0,
+      685233.0,
+      387348.0,
+      300503.0,
+      195598.0,
+      341605.0,
+      258205.0,
+      419799.0,
+      353917.0,
+      266947.0,
+      327497.0,
+      343627.0,
+      699138.0,
+      222701.0,
+      596298.0,
+      283807.0,
+      400625.0,
+      583319.0,
+      264346.0,
+      528936.0,
+      504416.0,
+      403652.0,
+      423256.0,
+      179262.0,
+      331993.0,
+      736114.375,
+      736114.375,
+      505798.0,
+      633411.0,
+      487010.0,
+      234580.0,
+      447300.0,
+      492805.0,
+      188860.0,
+      342480.0,
+      375245.0,
+      597577.0,
+      192206.0,
+      394368.0,
+      393858.0,
+      552100.0,
+      736114.375,
+      227732.0,
+      253858.0,
+      372120.0,
+      226416.0,
+      690880.0,
+      554012.0,
+      458670.0,
+      366369.0,
+      596331.0,
+      596858.0,
+      368109.0,
+      201310.0,
+      508375.0,
+      441332.0,
+      277287.0,
+      516096.0,
+      366868.0,
+      313628.0,
+      378917.0,
+      259557.0,
+      246952.0,
+      525316.0,
+      447923.0
     ],
     "predictions": [
-      0,
-      2,
-      1,
-      1,
-      0,
-      1,
-      0,
-      0,
-      2,
-      1,
-      2,
-      2,
-      2,
-      1,
-      0,
-      0,
-      0,
-      1,
-      1,
-      2,
-      0,
-      2,
-      1,
-      2,
-      2,
-      1,
-      1,
-      0,
-      2,
-      0
+      288907.464463934,
+      383979.068854406,
+      298443.5096902183,
+      487203.17995006725,
+      305507.67046187527,
+      397234.857177725,
+      414342.18680930167,
+      300043.5742449793,
+      305101.76430381456,
+      427156.8838702444,
+      591073.8517195886,
+      219906.99485704806,
+      491014.6095133115,
+      285051.5371656716,
+      402511.5551761214,
+      687352.2977294573,
+      349111.15706176637,
+      693372.8724220778,
+      178981.8235675536,
+      324534.8820665872,
+      394191.8612797934,
+      488645.9228033646,
+      352120.7836290866,
+      368970.19230512145,
+      644516.4695590438,
+      422927.4402579666,
+      470328.3996169687,
+      301116.01612298196,
+      428915.2331523427,
+      301344.8025831515,
+      231658.96096956023,
+      312589.4214796824,
+      382323.09915189585,
+      541634.4334837195,
+      528666.6956944338,
+      320680.6302334883,
+      601570.3954030934,
+      369809.4320666621,
+      222298.8239943028,
+      302386.2317385493,
+      438000.6036817422,
+      411430.07397452596,
+      307767.3360522019,
+      716533.2231772182,
+      253239.7673633613,
+      740068.4914579615,
+      175427.42345638087,
+      297032.142253759,
+      271966.0752632685,
+      271987.02002997365,
+      578415.582395112,
+      290007.58592106117,
+      352490.2427756842,
+      307177.78630238073,
+      457467.75185209606,
+      344458.6755635036,
+      289606.17369903845,
+      297197.82407129696,
+      317544.53234842635,
+      155072.8476052241,
+      178145.8504014385,
+      334441.21025784896,
+      316794.77076188003,
+      655677.262090002,
+      285105.3637565604,
+      438101.9366685452,
+      698848.6882531798,
+      361324.0899536672,
+      313020.71108512924,
+      430763.26626452996,
+      442356.102158637,
+      284461.7749513109,
+      494705.4260234234,
+      428200.58810623933,
+      461644.5949866211,
+      338854.7282110568,
+      391605.01471027045,
+      541897.5539893205,
+      274010.78471907735,
+      476440.9618498528,
+      138045.0277661087,
+      463511.0379006357,
+      250955.33381118622,
+      710607.6674846116,
+      231311.38693339558,
+      370085.0784846163,
+      722166.752868045,
+      288567.6517454292,
+      512940.8364418055,
+      272712.6045251551,
+      599878.9573249,
+      551567.081520042,
+      199569.4635698129,
+      330884.13077888027,
+      393726.4547800749,
+      190661.57383764465,
+      327908.9089189046,
+      382131.7534682559,
+      284612.5842682234,
+      329027.79326118075,
+      507766.379407333,
+      472330.1334395869,
+      384465.1095529872,
+      290007.9484499607,
+      385155.2648411163,
+      360442.5263862616,
+      328945.9752616546,
+      377901.533342489,
+      319594.1139514832,
+      354630.92342361965,
+      305598.9836229409,
+      723543.4319532776,
+      593569.1379586977,
+      354094.4278467791,
+      561930.4511314689,
+      275374.9691648268,
+      666404.4360366951,
+      439411.3308647028,
+      403801.818238453,
+      716010.7405615376,
+      489987.6862569063,
+      410709.6401867301,
+      509931.9940781997,
+      340088.5064632032,
+      376710.2550843271,
+      368314.704453624,
+      417449.52807256527,
+      653836.3850930418,
+      317842.6146935365,
+      472046.7049542883,
+      338547.3584484284,
+      432020.94505576324,
+      348065.87709074037,
+      155209.91038494825,
+      358647.89475628815,
+      420962.03392370895,
+      705608.2099646433,
+      364405.413445621,
+      309481.80856642674,
+      216246.2565572897,
+      302841.3182726824,
+      298001.3451510576,
+      385288.87575154414,
+      379024.28173449566,
+      295366.62239839364,
+      331252.6877299981,
+      353880.388844518,
+      726625.7633348514,
+      229529.1454661512,
+      583153.7341534732,
+      306963.7555003916,
+      387359.1891604279,
+      533535.4038442424,
+      272883.89169901615,
+      496288.7546772844,
+      485622.3675179998,
+      404703.3879885805,
+      418262.8355704083,
+      197059.50405725028,
+      338126.32410208776,
+      749231.0010275897,
+      735826.1331170188,
+      495533.9121321774,
+      600610.8705236895,
+      452328.349906508,
+      301048.54530474375,
+      452403.20112811826,
+      500406.6819527424,
+      182093.52777714876,
+      368444.1674899697,
+      430544.4888635098,
+      584490.8270714809,
+      198429.92615156522,
+      395249.76674338203,
+      374595.5128512432,
+      530684.4517933129,
+      710199.5683172931,
+      206148.04784664363,
+      255198.0431049629,
+      398659.58835382684,
+      260169.2784642698,
+      643050.3496839924,
+      517508.0672511984,
+      445735.3078991178,
+      348343.1523831701,
+      591642.9412083583,
+      604048.3985574623,
+      335455.9785203638,
+      247757.60972911632,
+      509605.2740036546,
+      470381.2966789918,
+      291249.3576871555,
+      507327.3766628379,
+      370489.2192131285,
+      271528.19855440146,
+      374013.00956878293,
+      267868.93745792814,
+      249754.07747304538,
+      478762.2638230795,
+      440163.3333788322
     ],
-    "problem_type": "classification",
-    "target_column": "Species"
+    "hyperparameters_used": {},
+    "cv_strategy_used": "stratified_kfold",
+    "algorithm_explanation": {
+      "description": "GradientBoostingRegressor - Algorithm explanation not available.",
+      "strengths": [
+        "Refer to documentation for details"
+      ],
+      "weaknesses": [
+        "Refer to documentation for details"
+      ],
+      "when_to_use": "Refer to algorithm documentation for guidance."
+    },
+    "training_insights": {
+      "general_insights": {
+        "model_selected": "GradientBoostingRegressor",
+        "cv_score": 0.9661677020043072,
+        "problem_type": "regression",
+        "num_features": 6
+      },
+      "algorithm_specific_insights": {
+        "RandomForestRegressor": {
+          "cv_scores": [
+            0.9657784327298966
+          ],
+          "description": "RandomForestRegressor - Algorithm explanation not available."
+        },
+        "LinearRegression": {
+          "cv_scores": [
+            0.40004012616001683
+          ],
+          "description": "Linear Regression models the relationship between features and target as a linear equation."
+        },
+        "SVR": {
+          "cv_scores": [
+            -0.025694886513445515
+          ],
+          "description": "SVR - Algorithm explanation not available."
+        },
+        "GradientBoostingRegressor": {
+          "cv_scores": [
+            0.9661677020043072
+          ],
+          "description": "GradientBoostingRegressor - Algorithm explanation not available."
+        },
+        "KNeighborsRegressor": {
+          "cv_scores": [
+            0.6069576849373025
+          ],
+          "description": "KNeighborsRegressor - Algorithm explanation not available."
+        }
+      }
+    },
+    "problem_type": "regression",
+    "target_column": "price"
   },
   "evaluation_results": {
     "performance_metrics": {
-      "accuracy": 1.0,
-      "classification_report": {
-        "0": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1-score": 1.0,
-          "support": 10.0
-        },
-        "1": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1-score": 1.0,
-          "support": 10.0
-        },
-        "2": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1-score": 1.0,
-          "support": 10.0
-        },
-        "accuracy": 1.0,
-        "macro avg": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1-score": 1.0,
-          "support": 30.0
-        },
-        "weighted avg": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1-score": 1.0,
-          "support": 30.0
-        }
-      },
-      "cv_score": 1.0,
-      "model_type": "RandomForestClassifier"
+      "r2": 0.9738714557921895,
+      "mse": 556095363.1405224,
+      "rmse": 23581.67430740494,
+      "cv_score": 0.9661677020043072,
+      "model_type": "GradientBoostingRegressor"
+    },
+    "detailed_metrics": {
+      "r2": 0.9738714557921895,
+      "mse": 556095363.1405224,
+      "rmse": 23581.67430740494,
+      "mae": 19032.221528510432,
+      "mape": 5.430026417903189,
+      "explained_variance": 0.9738973686964029,
+      "cv_score": 0.9661677020043072
     },
     "plots": {
-      "feature_importance": "{\"data\":[{\"hovertemplate\":\"Importance Score=%{x}\\u003cbr\\u003eFeatures=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"pattern\":{\"shape\":\"\"}},\"name\":\"\",\"orientation\":\"h\",\"showlegend\":false,\"textposition\":\"auto\",\"x\":{\"dtype\":\"f8\",\"bdata\":\"diX44OZ42T9qoOhe3HnRP+ouFXShaNE\\u002fysKle+Quqz8qcKlKXl9vPw==\"},\"xaxis\":\"x\",\"y\":[\"Id\",\"PetalLengthCm\",\"PetalWidthCm\",\"SepalLengthCm\",\"SepalWidthCm\"],\"yaxis\":\"y\",\"type\":\"bar\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Importance Score\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Features\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Feature Importance\"},\"barmode\":\"relative\"}}",
-      "model_comparison": "{\"data\":[{\"hovertemplate\":\"Model Type=%{x}\\u003cbr\\u003eCross-Validation Score=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"pattern\":{\"shape\":\"\"}},\"name\":\"\",\"orientation\":\"v\",\"showlegend\":false,\"textposition\":\"auto\",\"x\":[\"RandomForest\",\"LogisticRegression\"],\"xaxis\":\"x\",\"y\":{\"dtype\":\"f8\",\"bdata\":\"AAAAAAAA8D+9u7u7u7vvPw==\"},\"yaxis\":\"y\",\"type\":\"bar\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Model Type\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Cross-Validation Score\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Model Comparison (CV Scores)\"},\"barmode\":\"relative\"}}",
-      "confusion_matrix": "{\"data\":[{\"coloraxis\":\"coloraxis\",\"name\":\"0\",\"texttemplate\":\"%{z}\",\"x\":[\"0\",\"1\",\"2\"],\"y\":[\"0\",\"1\",\"2\"],\"z\":{\"dtype\":\"i1\",\"bdata\":\"CgAAAAoAAAAK\",\"shape\":\"3, 3\"},\"type\":\"heatmap\",\"xaxis\":\"x\",\"yaxis\":\"y\",\"hovertemplate\":\"Predicted: %{x}\\u003cbr\\u003eActual: %{y}\\u003cbr\\u003eCount: %{z}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"scaleanchor\":\"y\",\"constrain\":\"domain\",\"title\":{\"text\":\"Predicted\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"autorange\":\"reversed\",\"constrain\":\"domain\",\"title\":{\"text\":\"Actual\"}},\"coloraxis\":{\"colorbar\":{\"title\":{\"text\":\"Count\"}},\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"title\":{\"text\":\"Confusion Matrix\"}}}"
+      "feature_importance": "{\"data\":[{\"hovertemplate\":\"Importance Score=%{x}\\u003cbr\\u003eFeatures=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"pattern\":{\"shape\":\"\"}},\"name\":\"\",\"orientation\":\"h\",\"showlegend\":false,\"textposition\":\"auto\",\"x\":{\"dtype\":\"f8\",\"bdata\":\"l7mA7M2r4T9\\u002fZNuNDfLaPxNoPkBmvJA\\u002fNrfa7hBReT8qNXmYTvhjP7uK5DJUW10\\u002f\"},\"xaxis\":\"x\",\"y\":[\"neighborhood\",\"sqft\",\"bedrooms\",\"age_years\",\"garage_spaces\",\"bathrooms\"],\"yaxis\":\"y\",\"type\":\"bar\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Importance Score\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Features\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Feature Importance\"},\"barmode\":\"relative\"}}",
+      "model_comparison": "{\"data\":[{\"hovertemplate\":\"Model Type=%{x}\\u003cbr\\u003eCross-Validation Score=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"pattern\":{\"shape\":\"\"}},\"name\":\"\",\"orientation\":\"v\",\"showlegend\":false,\"textposition\":\"auto\",\"x\":[\"RandomForestRegressor\",\"LinearRegression\",\"SVR\",\"GradientBoostingRegressor\",\"KNeighborsRegressor\"],\"xaxis\":\"x\",\"y\":{\"dtype\":\"f8\",\"bdata\":\"sDn4K6jn7j+oerzmQZrZPxqs\\u002f6TCT5q\\u002fTetRh9jq7j8dktuFMmzjPw==\"},\"yaxis\":\"y\",\"type\":\"bar\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Model Type\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Cross-Validation Score\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Model Comparison (CV Scores)\"},\"barmode\":\"relative\"}}",
+      "actual_vs_predicted": "{\"data\":[{\"hovertemplate\":\"Actual=%{x}\\u003cbr\\u003ePredicted=%{y}\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"legendgroup\":\"\",\"marker\":{\"color\":\"#000001\",\"symbol\":\"circle\"},\"mode\":\"markers\",\"name\":\"\",\"orientation\":\"v\",\"showlegend\":false,\"x\":{\"dtype\":\"f8\",\"bdata\":\"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\"},\"xaxis\":\"x\",\"y\":{\"dtype\":\"f8\",\"bdata\":\"+26c2y2iEUH4xIFGrG8XQYs77AkuNxJBl9REuIy8HUHOjo2ujqUSQV\\u002f\\u002fv23LPhhBBfBKvxhKGUE44AZMLlASQb+opQ43nxJBBkgViVMSGkEFlxS0wwkiQa2cd\\u002fUX2ApB7UEkcBr4HUEAwg4m7mURQdQWgDg+kRhB1P5vmPD5JEG4zNSg3E4VQUkbrr75KCVB5pWqli7ZBUGkdjyH284TQYVU83E\\u002fDxhBfl3zsBfTHUHNqW8i430VQT6i68QohRZBAQtq8EirI0EB\\u002fNLCPdAZQc4wNZnhtBxBAYuCEPBgEkHcfL\\u002fuzC0aQZBb2DWDZBJBDc8QsFdHDEGvXpivNRQTQRgTiGXMVRdB\\u002fZPx3YSHIEGSDzJkNSIgQXTtW4WikhNBNkZyysRbIkHerm+6RZIWQTVTipfWIgtByt5M7ch0EkHwiytqwrsaQWf6v0uYHBlBhBEeWN3IEkHLSERy6t0lQedmjyO+6Q5BwGCg+8iVJkFZGT1jG2oFQSv4qpEgIRJBc9ARTXiZEEHHvIIUzJkQQS+xLyrfpiFBz7D7V16zEUFgMJr4qIMVQYhzLCWnvxJBEITlAe\\u002frG0FJ68azKgYVQSYp3rEYrRFBmFjZS7cjEkEl8h8homETQWs\\u002f5ccG7gJB90SfzQ6\\u002fBUFk1U3XpGkUQS+aQhXrVRNBJqkwhnoCJEGKmXx0xWYRQQMKJr9XvRpBhbhiYMFTJUFr0BxcsA0WQTuzJtjyGhNBIaanEK1KGkEURpxo0P8aQSHWjBm3XBFB+3s\\u002ftMUxHkGihThaoiIaQT0sRGEyLRxBxiiw6ZquFEGKNRAP1OYXQfx8pBuTiSBB12WNI2u5EEH2Ku\\u002fYYxQdQQZw3Tjo2QBBm2zPJlxKHEH\\u002fMqWrWqIOQQOLwFWfryVBPolwGHs8DEFxRV5QlJYWQZ\\u002frd4HtCSZBXydjm96cEUFfM4RYs04fQWukCGsipRBBQn0m6o1OIkG1\\u002frwpHtUgQQ8XZLWLXAhBF+bqhRAyFEEy3rHR+QcYQegwOJcsRgdBKKO7opMDFEG3Lo0Dz1IXQb5oSlYSXxFBsqhMLA8VFEEcW4OE2f0eQRdjpIgo1BxBhagucER3F0FsdzbLX7MRQXWCMg8NghdBCwAFG+r\\u002fFUG+\\u002farmxxMUQY+IJCK2EBdBl7KvdKiBE0Eb9pWxG6UVQSvaOu\\u002f7phJB4foo3a4UJkG+haJGQh0iQVB3Hba5nBVBMrT65hQmIUGOvmzgu84QQaMzQN9IViRBWDLOUs3RGkEQTeBFZ6UYQcHhKnvV2SVBZSG6vg7oHUE0HI2PVhEZQbai7\\u002fmvHx9BOUqeBuLBFEFq0zQFGf4WQXNKXNHqehZB9w2\\u002fHKZ6GUFJ6irFGPQjQfE4cnVKZhNBdonf0brPHEHVGg1vzakUQbCyvMdTXhpBNhMkgoc+FUFc53dIT\\u002fICQQ7+OpTf4xVBkuW8IoixGUFZfIBrkIglQfNJXqfVPRZBXtb4O6fjEkGG6G0NsmUKQShG6UXlexJBYkdvYUUwEkFGA8WAI4QXQfQBfyBBIhdBJwFWfRoHEkHpSjzA0jcUQeBBLY5hmRVBXdPThsMsJkFRKOopyQQMQcv24nfjyyFBCOWhBU+8EkFuRbPBfKQXQSysxM4+SCBBAYwZkc+nEEE+H8oEg0oeQXejVnjZox1B4uBMjX2zGEHlxJ9XW4cZQeoqTwgcDghB7mrhSzmjFEEwsIYAXt0mQfXpJ0SkdCZBPvoFprc+HkHyR7W9RVQiQULkTWahmxtB411kLuJfEkGJh\\u002fTNzJwbQdjRUbraih5BzDnjOGw6BkGZfYKr8HwWQcuimPRBRxpBxOl1p1XWIUHeJsJo7zgIQVktJRHHHxhBVeAoDQ7dFkH\\u002fc1Hn+DEgQfd7+iJvrCVBzWv9YSAqCUEwakdY8CYPQfNseVoOVRhBn3lLOkrCD0G\\u002fxwmz1J8jQYd\\u002f3UQQlh9BBuhJO500G0FwVQqc3EIVQdsP5uE1DiJBRLkPzCBvIkEEPgHqf3kUQbCoueBsPg5B\\u002fmmUGJUaH0EdnswvtbUcQayKRW7FxhFBKuezgf32HkEHaHng5JwWQVPYUcugkhBBJ2bMCfTTFkGb+PS\\u002fc1kQQSIwqp7QfA5BKqMnDqk4HUG2QmFVjd0aQQ==\"},\"yaxis\":\"y\",\"type\":\"scatter\"},{\"mode\":\"lines\",\"name\":\"Ideal\",\"x\":[133585.0,736114.375],\"y\":[133585.0,736114.375],\"type\":\"scatter\"}],\"layout\":{\"template\":{\"data\":{\"candlestick\":[{\"decreasing\":{\"line\":{\"color\":\"#000033\"}},\"increasing\":{\"line\":{\"color\":\"#000032\"}},\"type\":\"candlestick\"}],\"contourcarpet\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contourcarpet\"}],\"contour\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"contour\"}],\"heatmap\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"heatmap\"}],\"histogram2d\":[{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"type\":\"histogram2d\"}],\"icicle\":[{\"textfont\":{\"color\":\"white\"},\"type\":\"icicle\"}],\"sankey\":[{\"textfont\":{\"color\":\"#000036\"},\"type\":\"sankey\"}],\"scatter\":[{\"marker\":{\"line\":{\"width\":0}},\"type\":\"scatter\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#000038\"},\"font\":{\"color\":\"#000037\"},\"line\":{\"color\":\"#000039\"}},\"header\":{\"fill\":{\"color\":\"#000040\"},\"font\":{\"color\":\"#000036\"},\"line\":{\"color\":\"#000039\"}},\"type\":\"table\"}],\"waterfall\":[{\"connector\":{\"line\":{\"color\":\"#000036\",\"width\":2}},\"decreasing\":{\"marker\":{\"color\":\"#000033\"}},\"increasing\":{\"marker\":{\"color\":\"#000032\"}},\"totals\":{\"marker\":{\"color\":\"#000034\"}},\"type\":\"waterfall\"}]},\"layout\":{\"coloraxis\":{\"colorscale\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorscale\":{\"diverging\":[[0.0,\"#000021\"],[0.1,\"#000022\"],[0.2,\"#000023\"],[0.3,\"#000024\"],[0.4,\"#000025\"],[0.5,\"#000026\"],[0.6,\"#000027\"],[0.7,\"#000028\"],[0.8,\"#000029\"],[0.9,\"#000030\"],[1.0,\"#000031\"]],\"sequential\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]],\"sequentialminus\":[[0.0,\"#000011\"],[0.1111111111111111,\"#000012\"],[0.2222222222222222,\"#000013\"],[0.3333333333333333,\"#000014\"],[0.4444444444444444,\"#000015\"],[0.5555555555555556,\"#000016\"],[0.6666666666666666,\"#000017\"],[0.7777777777777778,\"#000018\"],[0.8888888888888888,\"#000019\"],[1.0,\"#000020\"]]},\"colorway\":[\"#000001\",\"#000002\",\"#000003\",\"#000004\",\"#000005\",\"#000006\",\"#000007\",\"#000008\",\"#000009\",\"#000010\"]}},\"xaxis\":{\"anchor\":\"y\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Actual\"}},\"yaxis\":{\"anchor\":\"x\",\"domain\":[0.0,1.0],\"title\":{\"text\":\"Predicted\"}},\"legend\":{\"tracegroupgap\":0},\"title\":{\"text\":\"Actual vs Predicted Values\"}}}"
     },
-    "model_insights": "### Analysis of the Model's Performance\n\n1. **Overall Effectiveness:**\n   - The RandomForestClassifier model demonstrates perfect performance with an accuracy of 1.0. This implies that the model correctly classified all instances in the dataset, achieving 100% predictive accuracy.\n   - The cross-validation (CV) score of 1.0000 further supports this perfect classification performance, indicating consistent results across different data partitions during the validation process.\n\n2. **Key Strengths:**\n   - **High Precision, Recall, and F1-Score:** The model achieves a perfect precision, recall, and F1-score of 1.0 across all classes (0, 1, and 2). This suggests that the model can perfectly identify both positive and negative cases for each class without errors, which is ideal for applications where false positives and false negatives are equally critical.\n   - **Balanced Performance:** The macro average and weighted average metrics also equal 1.0, indicating that the model maintains consistent performance across all classes, regardless of class imbalance.\n   - **Consistency:** The high CV score suggests that the model's performance is stable and not merely due to overfitting on a specific train-test split.\n\n3. **Potential Areas for Improvement:**\n   - **Overfitting Consideration:** Although perfect metrics are desirable, they can sometimes indicate overfitting, especially if the dataset is small or not adequately diverse. Ensuring the dataset is sufficiently large and varied can confirm the model",
+    "model_insights": "The provided performance metrics for the GradientBoostingRegressor model give us a good indication of its effectiveness and potential areas for improvement. Here's a brief analysis:\n\n1. **Overall Effectiveness:**\n   - The model demonstrates high effectiveness in its predictive capabilities. The **R-squared (r2) value of 0.9739** suggests that the model explains approximately 97.39% of the variance in the target variable, indicating an excellent fit.\n   - The **mean squared error (mse)** of 556,095,363 and the corresponding **root mean squared error (rmse)** of 23,581.67 provide a quantitative measure of the model's predictive error. Although these are absolute values and depend on the scale of the data, they should be contextualized with the domain to judge effectiveness accordingly.\n\n2. **Key Strengths:**\n   - The model exhibits strong cross-validation performance with a **CV score of 0.9662**, indicating that it generalizes well to unseen data. This aligns closely with the in-sample R-squared value, suggesting low variance between training and validation datasets.\n   - The high R-squared value and low difference between the CV score and r2 imply that the model is both accurate and generalizes well across different splits of the data, which is a desirable attribute in predictive modeling.\n\n3. **Potential Areas for Improvement:**\n   - **Error Metrics Interpretation:** While the RMSE gives a measure of error magnitude,",
     "recommendations": [
       "\ud83d\udcca Monitor model performance over time",
       "\ud83d\udd0d Analyze prediction errors",
       "\ud83d\udcc8 Consider model interpretability",
       "\ud83d\udd04 Plan for model retraining"
-    ]
+    ],
+    "metric_explanations": {
+      "r2": {
+        "definition": "Coefficient of determination - proportion of variance explained",
+        "formula": "1 - (SS_res / SS_tot)",
+        "when_to_use": "Understanding how well model explains variance",
+        "range": "0 to 1 (higher is better, can be negative)"
+      },
+      "mse": {
+        "definition": "Mean Squared Error - average of squared differences",
+        "formula": "Average of (y_true - y_pred)\u00b2",
+        "when_to_use": "Penalizes large errors more heavily",
+        "range": "0 to \u221e (lower is better)"
+      },
+      "rmse": {
+        "definition": "Root Mean Squared Error - square root of MSE",
+        "formula": "\u221a(MSE)",
+        "when_to_use": "Same units as target variable",
+        "range": "0 to \u221e (lower is better)"
+      },
+      "mae": {
+        "definition": "Mean Absolute Error - average of absolute differences",
+        "formula": "Average of |y_true - y_pred|",
+        "when_to_use": "Less sensitive to outliers than MSE",
+        "range": "0 to \u221e (lower is better)"
+      },
+      "mape": {
+        "definition": "Mean Absolute Percentage Error - percentage error",
+        "formula": "Average of |y_true - y_pred| / |y_true| * 100",
+        "when_to_use": "Relative error measurement, interpretable as percentage",
+        "range": "0 to \u221e (lower is better)"
+      }
+    },
+    "model_comparison_results": null
   },
   "cleaning_summary_results": {
     "original_shape": [
-      150,
-      6
+      1000,
+      7
     ],
     "cleaned_shape": [
-      150,
-      6
+      1000,
+      7
     ],
     "missing_values_info": {},
     "outliers_info": [
-      "SepalWidthCm"
+      "sqft: capped by agent (IQR\u00d71.5)",
+      "price: capped by agent (IQR\u00d71.5)"
     ],
     "data_type_fixes": {},
-    "cleaning_summary": "The data cleaning process aimed to prepare the dataset for further analysis, but based on the information provided, the impact of the cleaning operations appears to be minimal or negligible. Here is a brief summary of the process and its outcomes:\n\n1. **Original and Cleaned Shape**: The dataset's shape remained unchanged before and after the cleaning process, consistently at (150, 6). This indicates that no rows or columns were removed or added during cleaning. The dataset still contains 150 records and 6 features, suggesting that structural modifications, such as filtering out duplicate entries or dropping unnecessary columns, were not required or performed.\n\n2. **Missing Values**: The dataset had no missing values initially, and this remained true after cleaning. This suggests that the dataset was well-maintained regarding data completeness and that the cleaning process did not involve operations like imputing missing values or removing rows with missing data.\n\nIn conclusion, the data cleaning process likely focused on non-quantifiable aspects such as standardizing formats,"
+    "cleaning_summary": "This data cleaning process is an exemplary model of transparency and educational enrichment in data management practices. Despite the dataset's dimensionality remaining unchanged from its original (1000 rows and 7 columns) to its cleaned state, the process underscores a critical facet of transparent analytics: the rationale behind decisions is clearly logged and accessible. This ensures that all stakeholders, from novice analysts to seasoned data scientists, can understand the steps and logic employed in transforming the data.\n\nA notable highlight of this approach is its focus on maintaining zero missing values, demonstrating meticulous data integrity throughout the cleaning process. Two key decisions were made, utilizing an intelligent agent to assess and address data characteristics, thus showcasing the application of machine learning (ML) concepts like outlier detection and treatment. These ML techniques are essential for maintaining data quality, as they help identify and adjust values that deviate significantly from normal patterns, ensuring robust analytical outcomes.\n\nFurthermore, the process offers educational explanations of the ML concepts involved, providing a learning opportunity for users to deepen their understanding of data science methodologies. Each action taken is broken down step-by-step, enhancing clarity and easing the learning curve for individuals new to data cleaning techniques.\n\nIn summary, this process serves not only to maintain the dataset's integrity but also to promote educational growth and confidence through an open and well-documented cleaning strategy, empowering users to replicate and understand complex data transformations independently.",
+    "decision_log": [
+      {
+        "timestamp": "2025-08-17T17:24:38.482196",
+        "decision_type": "outlier_handling",
+        "column": "sqft",
+        "reasoning": "Capping outliers in 'sqft' because outlier percentage (0.3%) is low. Capping preserves sample size while reducing extreme influence.",
+        "action_taken": "Cap 3 outliers (low percentage)",
+        "alternatives_considered": [
+          "Remove outliers",
+          "No action",
+          "Robust scaling"
+        ],
+        "ml_concept": "Outlier Detection & Treatment"
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.484310",
+        "decision_type": "outlier_handling",
+        "column": "price",
+        "reasoning": "Capping outliers in 'price' because outlier percentage (3.2%) is low. Capping preserves sample size while reducing extreme influence.",
+        "action_taken": "Cap 32 outliers (low percentage)",
+        "alternatives_considered": [
+          "Remove outliers",
+          "No action",
+          "Robust scaling"
+        ],
+        "ml_concept": "Outlier Detection & Treatment"
+      }
+    ],
+    "step_log": [
+      {
+        "timestamp": "2025-08-17T17:24:38.456337",
+        "description": "\ud83d\ude80 Starting Data Cleaning Process",
+        "details": {
+          "original_shape": [
+            1000,
+            7
+          ],
+          "columns": [
+            "bedrooms",
+            "bathrooms",
+            "sqft",
+            "age_years",
+            "garage_spaces",
+            "neighborhood",
+            "price"
+          ],
+          "data_types": {
+            "bedrooms": "int64",
+            "bathrooms": "int64",
+            "sqft": "int64",
+            "age_years": "int64",
+            "garage_spaces": "int64",
+            "neighborhood": "object",
+            "price": "int64"
+          },
+          "excluded_columns": [
+            "price"
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.456393",
+        "description": "\ud83d\udd0d Conducting Data Quality Assessment",
+        "details": {}
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.456735",
+        "description": "\ud83d\udcca Missing Values Analysis Complete",
+        "details": {
+          "total_missing_values": 0,
+          "columns_affected": 0,
+          "missing_analysis": {}
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.467321",
+        "description": "\ud83c\udff7\ufe0f Data Types Analysis Complete",
+        "details": {
+          "dtype_analysis": {
+            "bedrooms": {
+              "current_type": "int64",
+              "unique_values": 5,
+              "suggested_type": "categorical"
+            },
+            "bathrooms": {
+              "current_type": "int64",
+              "unique_values": 3,
+              "suggested_type": "categorical"
+            },
+            "sqft": {
+              "current_type": "int64",
+              "unique_values": 759,
+              "suggested_type": "numeric"
+            },
+            "age_years": {
+              "current_type": "int64",
+              "unique_values": 50,
+              "suggested_type": "numeric"
+            },
+            "garage_spaces": {
+              "current_type": "int64",
+              "unique_values": 4,
+              "suggested_type": "categorical"
+            },
+            "neighborhood": {
+              "current_type": "object",
+              "unique_values": 4,
+              "suggested_type": "categorical"
+            },
+            "price": {
+              "current_type": "int64",
+              "unique_values": 998,
+              "suggested_type": "numeric"
+            }
+          }
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.467331",
+        "description": "\ud83d\udd0d Analyzing Missing Values",
+        "details": {
+          "step": "missing_values_analysis"
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.469499",
+        "description": "\ud83d\udd0d Starting Missing Values Treatment",
+        "details": {
+          "total_missing": 0,
+          "strategy": "Agent Decides",
+          "columns_with_missing": [],
+          "excluded_columns": [
+            "price"
+          ]
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.471658",
+        "description": "\ud83d\udcca Analyzing Outliers",
+        "details": {
+          "step": "outlier_analysis"
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.477867",
+        "description": "\ud83d\udcca Starting Outlier Detection and Treatment",
+        "details": {
+          "numeric_columns": [
+            "bedrooms",
+            "bathrooms",
+            "sqft",
+            "age_years",
+            "garage_spaces",
+            "price"
+          ],
+          "strategy": "Agent Decides",
+          "iqr_multiplier": 1.5
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.485322",
+        "description": "\u2705 Outlier Treatment Complete",
+        "details": {
+          "columns_processed": 6
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.485384",
+        "description": "\ud83d\udd27 Optimizing Data Types",
+        "details": {
+          "step": "data_type_optimization"
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.485633",
+        "description": "\ud83d\udd27 Starting Data Type Optimization",
+        "details": {
+          "strategy": "Agent Decides",
+          "manual_conversions": {},
+          "current_dtypes": {
+            "bedrooms": "int64",
+            "bathrooms": "int64",
+            "sqft": "float64",
+            "age_years": "int64",
+            "garage_spaces": "int64",
+            "neighborhood": "object",
+            "price": "float64"
+          }
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.491381",
+        "description": "\u2705 Data Type Optimization Complete",
+        "details": {
+          "conversions": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.491435",
+        "description": "\ud83c\udfaf Handling Target Column",
+        "details": {
+          "step": "target_column_handling"
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:38.491688",
+        "description": "\ud83d\udcdd Generating Cleaning Report",
+        "details": {
+          "step": "summary_generation"
+        }
+      },
+      {
+        "timestamp": "2025-08-17T17:24:41.985415",
+        "description": "\u2705 Data Cleaning Completed",
+        "details": {
+          "final_shape": [
+            1000,
+            7
+          ],
+          "total_decisions": 2,
+          "concepts_learned": 1
+        }
+      }
+    ],
+    "explanations": {},
+    "ml_concepts_used": [
+      "Outlier Detection & Treatment"
+    ],
+    "educational_insights": {
+      "Outlier Detection & Treatment": {
+        "definition": "Identifying and handling data points that significantly differ from other observations in the dataset.",
+        "why_important": "Outliers can skew statistical measures and negatively impact model performance, especially for linear models.",
+        "common_methods": [
+          "IQR method",
+          "Z-score method",
+          "Isolation Forest",
+          "Local Outlier Factor"
+        ],
+        "best_practices": "Understand if outliers are errors or valid extreme values. Capping preserves data while removing extreme influence."
+      },
+      "decision_summary": {
+        "total_decisions": 2,
+        "decision_types": [
+          "outlier_handling"
+        ],
+        "columns_affected": 2,
+        "transparency_level": "Full transparency with step-by-step logging and rationale"
+      }
+    }
   }
 }
