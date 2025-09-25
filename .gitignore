@@ -1,1 +1,82 @@
+# Virtual Environment
+crewai-env/
+venv/
+env/
 .env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Model files (optional - uncomment if you don't want to track model files)
+# *.joblib
+# *.pkl
+# *.pickle
+
+# Generated images (optional - uncomment if you don't want to track generated images)
+# *.png
+# *.jpg
+# *.jpeg
+
+# Data files (optional - uncomment if you don't want to track data files)
+# *.csv
+# *.json
+# *.xlsx
+# *.parquet
+
+# Streamlit
+.streamlit/secrets.toml
