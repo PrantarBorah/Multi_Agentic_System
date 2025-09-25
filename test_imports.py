@@ -26,8 +26,8 @@ def test_imports():
         from dotenv import load_dotenv
         print("✅ Python-dotenv imported successfully")
         
-        import xgboost
-        print("✅ XGBoost imported successfully")
+        from crewai import Agent, Task, Crew, Process
+        print("✅ CrewAI imported successfully")
         
         import matplotlib
         print("✅ Matplotlib imported successfully")
