@@ -12,6 +12,7 @@ from sklearn.metrics import accuracy_score, classification_report, mean_squared_
 import joblib
 import openai
 import os
+import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
