@@ -1571,6 +1571,80 @@ def display_enhanced_data_cleaning(cleaning_results):
                 st.metric(improvement.replace('_', ' ').title(), f"{value:.2f}")
             else:
                 st.write(f"**{improvement.replace('_', ' ').title()}:** {value}")
+    
+    # NaN Analysis Section
+    if 'nan_analysis_before' in cleaning_results or 'nan_analysis_after' in cleaning_results:
+        st.markdown("---")
+        st.markdown("#### 🔍 NaN Values Analysis")
+        
+        nan_before = cleaning_results.get('nan_analysis_before', {})
+        nan_after = cleaning_results.get('nan_analysis_after', {})
+        nan_final = cleaning_results.get('nan_analysis_final', nan_after)
+        
+        # Summary metrics
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            before_count = nan_before.get('total_nan_count', 0)
+            st.metric("NaN Values Before", f"{before_count:,}", 
+                     help="Total missing values in the original dataset")
+        
+        with col2:
+            after_count = nan_final.get('total_nan_count', 0)
+            st.metric("NaN Values After", f"{after_count:,}", 
+                     help="Total missing values after cleaning")
+        
+        with col3:
+            cleaned_count = before_count - after_count
+            st.metric("NaN Values Cleaned", f"{cleaned_count:,}", 
+                     delta=f"-{cleaned_count}" if cleaned_count > 0 else "0",
+                     help="Number of missing values successfully handled")
+        
+        # Detailed per-column analysis
+        if nan_before.get('column_details') or nan_final.get('column_details'):
+            with st.expander("📊 Detailed NaN Analysis by Column", expanded=False):
+                
+                # Create comparison table
+                columns_to_show = set()
+                if nan_before.get('column_details'):
+                    columns_to_show.update(nan_before['column_details'].keys())
+                if nan_final.get('column_details'):
+                    columns_to_show.update(nan_final['column_details'].keys())
+                
+                if columns_to_show:
+                    comparison_data = []
+                    
+                    for column in sorted(columns_to_show):
+                        before_info = nan_before.get('column_details', {}).get(column, {})
+                        after_info = nan_final.get('column_details', {}).get(column, {})
+                        
+                        before_nan = before_info.get('nan_count', 0)
+                        after_nan = after_info.get('nan_count', 0)
+                        cleaned = before_nan - after_nan
+                        
+                        comparison_data.append({
+                            'Column': column,
+                            'Data Type': before_info.get('data_type', after_info.get('data_type', 'Unknown')),
+                            'NaN Before': before_nan,
+                            'NaN After': after_nan,
+                            'Cleaned': cleaned,
+                            'Status': '✅ Clean' if after_nan == 0 else f'⚠️ {after_nan} remaining'
+                        })
+                    
+                    if comparison_data:
+                        df_comparison = pd.DataFrame(comparison_data)
+                        st.dataframe(df_comparison, use_container_width=True, hide_index=True)
+                        
+                        # Show any remaining issues
+                        remaining_nan_columns = [row['Column'] for row in comparison_data if row['NaN After'] > 0]
+                        if remaining_nan_columns:
+                            st.warning(f"⚠️ Columns with remaining NaN values: {', '.join(remaining_nan_columns)}")
+                        else:
+                            st.success("✅ All NaN values have been successfully handled!")
+        
+        # Emergency cleanup notification
+        if 'nan_analysis_final' in cleaning_results and cleaning_results['nan_analysis_final'] != nan_after:
+            st.info("🔧 Emergency NaN cleanup was applied to ensure model training compatibility.")
 
 def display_enhanced_eda(eda_results):
     """Enhanced display for EDA results with visualizations"""

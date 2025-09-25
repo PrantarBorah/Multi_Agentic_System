@@ -74,6 +74,10 @@ class CleanerAgent:
         try:
             print(f"📋 Original data shape: {data.shape}")
             
+            # Step 0: Comprehensive NaN analysis
+            nan_analysis = self._comprehensive_nan_analysis(data)
+            cleaned_state["nan_analysis_before"] = nan_analysis
+            
             # Step 1: Analyze data quality
             self._analyze_data_quality(data)
             
@@ -96,12 +100,25 @@ class CleanerAgent:
             if cleaning_options.get("drop_missing_targets", False):
                 data_cleaned = self._handle_target_column(data_cleaned, cleaning_options)
             
-            # Step 6: Generate comprehensive cleaning summary
+            # Step 6: Final NaN verification
+            nan_analysis_after = self._comprehensive_nan_analysis(data_cleaned)
+            cleaned_state["nan_analysis_after"] = nan_analysis_after
+            
+            # Ensure no NaN values remain (critical for model training)
+            if nan_analysis_after["total_nan_count"] > 0:
+                print(f"⚠️ WARNING: {nan_analysis_after['total_nan_count']} NaN values still remain after cleaning!")
+                print("🔧 Applying emergency NaN removal...")
+                data_cleaned = self._emergency_nan_cleanup(data_cleaned)
+                nan_analysis_final = self._comprehensive_nan_analysis(data_cleaned)
+                cleaned_state["nan_analysis_final"] = nan_analysis_final
+                print(f"✅ Final NaN count: {nan_analysis_final['total_nan_count']}")
+            
+            # Step 7: Generate comprehensive cleaning summary
             self._log_step("📝 Generating Cleaning Report", {"step": "summary_generation"})
             cleaning_summary = self._generate_cleaning_summary(data, data_cleaned)
             cleaned_state["cleaning_summary"] = cleaning_summary.get("summary", "LLM summary not generated.")
             
-            # Step 7: Compile transparency information
+            # Step 8: Compile transparency information
             cleaned_state["decision_log"] = self.decision_log
             cleaned_state["step_log"] = self.step_log
             cleaned_state["explanations"] = self.explanations
@@ -700,3 +717,70 @@ class CleanerAgent:
                     "ml_concept_explanations": True
                 }
             }
+    
+    def _comprehensive_nan_analysis(self, data: pd.DataFrame) -> dict:
+        """Comprehensive analysis of NaN values in the dataset"""
+        nan_info = {}
+        
+        # Overall statistics
+        total_cells = data.shape[0] * data.shape[1]
+        total_nan = data.isnull().sum().sum()
+        nan_percentage = (total_nan / total_cells) * 100 if total_cells > 0 else 0
+        
+        # Per-column analysis
+        column_nan_info = {}
+        for column in data.columns:
+            nan_count = data[column].isnull().sum()
+            nan_pct = (nan_count / len(data)) * 100 if len(data) > 0 else 0
+            column_nan_info[column] = {
+                "nan_count": int(nan_count),
+                "nan_percentage": float(nan_pct),
+                "data_type": str(data[column].dtype)
+            }
+        
+        nan_info = {
+            "total_nan_count": int(total_nan),
+            "total_cells": int(total_cells),
+            "overall_nan_percentage": float(nan_percentage),
+            "columns_with_nan": [col for col, info in column_nan_info.items() if info["nan_count"] > 0],
+            "column_details": column_nan_info
+        }
+        
+        print(f"📊 NaN Analysis: {total_nan} total NaN values ({nan_percentage:.2f}% of all data)")
+        if nan_info["columns_with_nan"]:
+            print(f"📋 Columns with NaN: {nan_info['columns_with_nan']}")
+        
+        return nan_info
+    
+    def _emergency_nan_cleanup(self, data: pd.DataFrame) -> pd.DataFrame:
+        """Emergency cleanup to remove any remaining NaN values"""
+        data_copy = data.copy()
+        
+        print("🚨 EMERGENCY NaN CLEANUP - Ensuring model training compatibility")
+        
+        for column in data_copy.columns:
+            nan_count = data_copy[column].isnull().sum()
+            if nan_count > 0:
+                print(f"🔧 Cleaning {nan_count} NaN values in '{column}'")
+                
+                if data_copy[column].dtype in ['object', 'category']:
+                    # For categorical: use mode or 'Unknown'
+                    mode_val = data_copy[column].mode()
+                    fill_value = mode_val[0] if len(mode_val) > 0 else 'Unknown'
+                    data_copy[column] = data_copy[column].fillna(fill_value)
+                    print(f"   → Filled with mode/Unknown: '{fill_value}'")
+                else:
+                    # For numerical: use median (robust to outliers)
+                    median_val = data_copy[column].median()
+                    if pd.isna(median_val):
+                        # If median is also NaN (all values are NaN), use 0
+                        fill_value = 0
+                    else:
+                        fill_value = median_val
+                    data_copy[column] = data_copy[column].fillna(fill_value)
+                    print(f"   → Filled with median/zero: {fill_value}")
+        
+        final_nan_count = data_copy.isnull().sum().sum()
+        print(f"✅ Emergency cleanup completed. Remaining NaN values: {final_nan_count}")
+        
+        return data_copy
