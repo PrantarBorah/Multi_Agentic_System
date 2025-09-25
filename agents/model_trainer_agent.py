@@ -314,9 +314,15 @@ class ModelTrainerAgent:
         algorithms_list = options.get("algorithms", [])
         hyperparameters = options.get("hyperparameters", {})
         
+        # Debug: Print what we received
+        print(f"🔍 DEBUG: Received algorithms_list: {algorithms_list}")
+        print(f"🔍 DEBUG: Received algorithm: {algorithm}")
+        print(f"🔍 DEBUG: Full options: {options}")
+        
         # If algorithms list is provided from UI, use it instead of auto-select
         if algorithms_list and len(algorithms_list) > 0:
             algorithm = "Custom-List"
+            print(f"🔍 DEBUG: Switching to Custom-List mode with {len(algorithms_list)} algorithms")
         
         if algorithm == "Auto-Select Best" or algorithm == "Custom-List":
             # Define all available models
@@ -341,12 +347,17 @@ class ModelTrainerAgent:
             
             # Filter models based on user selection
             if algorithm == "Custom-List" and algorithms_list:
+                print(f"🔍 DEBUG: Available models: {list(all_models.keys())}")
                 models = {}
                 for alg_name in algorithms_list:
                     if alg_name in all_models:
                         models[alg_name] = all_models[alg_name]
+                        print(f"✅ DEBUG: Added algorithm '{alg_name}' to training list")
                     else:
                         print(f"⚠️ Algorithm '{alg_name}' not recognized, skipping...")
+                        print(f"🔍 DEBUG: Available options are: {list(all_models.keys())}")
+                
+                print(f"🔍 DEBUG: Final models to train: {list(models.keys())}")
                 
                 if not models:
                     print("⚠️ No valid algorithms selected, using RandomForest as fallback")
@@ -354,6 +365,7 @@ class ModelTrainerAgent:
             else:
                 # Use all models for auto-select
                 models = all_models
+                print(f"🔍 DEBUG: Using auto-select with all models: {list(models.keys())}")
             
             best_model = None
             best_score = -np.inf
