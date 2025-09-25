@@ -1334,14 +1334,18 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
             available_algorithms = ["RandomForest", "LogisticRegression", "SVM", "XGBoost", "GradientBoosting", "KNN"]
         else:
             available_algorithms = ["RandomForest", "LinearRegression", "SVM", "XGBoost", "GradientBoosting", "KNN"]
+        
+        # Filter recommendations to only include available algorithms
+        filtered_recommendations = [alg for alg in recommendations["algorithms"] if alg in available_algorithms]
+        
         algorithms = st.multiselect(
             "Select algorithms:",
             available_algorithms,
-            default=recommendations["algorithms"],
+            default=filtered_recommendations,
             help="Multiple algorithms will be compared to find the best performer"
         )
         
-        if set(algorithms) != set(recommendations["algorithms"]):
+        if set(algorithms) != set(filtered_recommendations):
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended algorithms</div>', unsafe_allow_html=True)
         
         # Cross Validation
