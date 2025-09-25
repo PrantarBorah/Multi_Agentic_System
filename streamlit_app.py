@@ -2199,7 +2199,7 @@ def main():
                         raise ValueError("API key not found")
             except:
                 st.error("❌ OpenAI API key not found. Please add it to .env file or Streamlit secrets.")
-            return
+                return
         
         # Run pipeline
         try:
