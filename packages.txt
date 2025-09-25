@@ -1,0 +1,6 @@
+# System packages required for the ML Pipeline Orchestrator
+libgomp1
+libgfortran5
+libatlas3-base
+libopenblas0
+liblapack3
