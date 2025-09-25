@@ -13,8 +13,13 @@ from utils.data_utils import load_data, save_state
 load_dotenv()
 
 class DataPipelineOrchestrator:
-    def __init__(self, data_path: str, cleaning_options: dict = None, eda_options: dict = None, model_training_options: dict = None, evaluation_options: dict = None):
+    def __init__(self, data_path: str, openai_api_key: str = None, cleaning_options: dict = None, eda_options: dict = None, model_training_options: dict = None, evaluation_options: dict = None):
         self.data_path = data_path
+        self.openai_api_key = openai_api_key or os.getenv('OPENAI_API_KEY')
+        
+        if not self.openai_api_key:
+            raise ValueError("OpenAI API key not found. Please set it in Streamlit secrets or environment variables.")
+        
         self.pipeline_state = {
             "original_data": None,
             "problem_analysis": None,
@@ -24,12 +29,12 @@ class DataPipelineOrchestrator:
             "evaluation_results": None
         }
         
-        # Initialize agents
+        # Initialize agents with API key
         self.problem_type_agent = ProblemTypeAgent()
-        self.cleaner_agent = CleanerAgent()
-        self.eda_agent = EDAAgent()
-        self.model_trainer_agent = ModelTrainerAgent()
-        self.evaluator_agent = EvaluatorAgent()
+        self.cleaner_agent = CleanerAgent(openai_api_key=self.openai_api_key)
+        self.eda_agent = EDAAgent(openai_api_key=self.openai_api_key)
+        self.model_trainer_agent = ModelTrainerAgent(openai_api_key=self.openai_api_key)
+        self.evaluator_agent = EvaluatorAgent(openai_api_key=self.openai_api_key)
         
         self.cleaning_options = cleaning_options if cleaning_options is not None else {}
         self.eda_options = eda_options if eda_options is not None else {}

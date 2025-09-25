@@ -13,13 +13,14 @@ import json
 from datetime import datetime
 
 class EvaluatorAgent:
-    def __init__(self):
-        # Try Streamlit secrets first, fallback to environment variable
-        api_key = None
-        try:
-            api_key = st.secrets["OPENAI_API_KEY"]
-        except:
-            api_key = os.getenv('OPENAI_API_KEY')
+    def __init__(self, openai_api_key: str = None):
+        # Use provided API key, or try Streamlit secrets, or fallback to environment variable
+        api_key = openai_api_key
+        if not api_key:
+            try:
+                api_key = st.secrets["OPENAI_API_KEY"]
+            except:
+                api_key = os.getenv('OPENAI_API_KEY')
         
         if not api_key:
             raise ValueError("OpenAI API key not found. Please set it in Streamlit secrets or environment variables.")

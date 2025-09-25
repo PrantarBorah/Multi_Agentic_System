@@ -1668,14 +1668,21 @@ def main():
             st.subheader("📋 Pipeline Execution Log")
             log_display = st.empty()
         
+        # Get OpenAI API key from Streamlit secrets
+        try:
+            openai_api_key = st.secrets["OPENAI_API_KEY"]
+        except:
+            st.error("❌ OpenAI API key not found in Streamlit secrets. Please add it in the app settings.")
+            return
+        
         # Run pipeline in background with progress updates
         try:
             if uploaded_data is not None:
                 temp_path = "temp_uploaded_data.csv"
                 uploaded_data.to_csv(temp_path, index=False)
-                orchestrator = DataPipelineOrchestrator(temp_path)
+                orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
             else:
-                orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}")
+                orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
             
             # Progress callback function
             def update_progress(stage, progress, message):
