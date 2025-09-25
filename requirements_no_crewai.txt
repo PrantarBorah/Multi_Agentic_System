@@ -5,7 +5,6 @@ scikit-learn
 plotly
 openai
 python-dotenv
-crewai
 xgboost
 matplotlib
 seaborn
