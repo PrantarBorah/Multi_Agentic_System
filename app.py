@@ -234,9 +234,7 @@ class DataPipelineOrchestrator:
         self.pipeline_state["model_results"] = self.model_trainer_agent.train_model(
             self.pipeline_state["cleaned_data"],
             self.pipeline_state["eda_results"],
-            model_training_options=self.model_training_options,
-            problem_type=problem_analysis.get('problem_type'),
-            target_column=problem_analysis.get('target_variable')
+            model_training_options=self.model_training_options
         )
         
     def _execute_evaluation(self):
