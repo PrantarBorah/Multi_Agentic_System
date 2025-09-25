@@ -181,7 +181,16 @@ class ModelTrainerAgent:
         if X.shape[1] == 0:
             raise ValueError("No suitable numeric features remain after preprocessing. Please check your dataset and cleaning/type conversion settings.")
         
-        # Handle categorical target for classification
+        # Handle target encoding robustly
+        unique_classes = y.nunique()
+        # If numeric but low cardinality, treat as classification labels
+        if pd.api.types.is_numeric_dtype(y) and unique_classes <= 10 and set(pd.Series(y.dropna().unique()).astype(float).astype(int)) == set(pd.Series(y.dropna().unique()).astype(float)):
+            # Coerce to int labels (e.g., 0.0/1.0 -> 0/1)
+            try:
+                y = y.astype(float).round().astype(int)
+                print(f"🎯 Target variable coerced to integer classes (unique={unique_classes})")
+            except Exception:
+                pass
         if y.dtype in ['object', 'category']:
             unique_classes = y.nunique()
             print(f"🎯 Target variable info: {unique_classes} unique classes detected")
@@ -300,27 +309,51 @@ class ModelTrainerAgent:
     def _select_and_train_model(self, X_train: np.ndarray, y_train: np.ndarray, problem_type: str, options: dict, cv_strategy) -> tuple:
         """Select and train the best model based on options"""
         
+        # Handle both 'algorithm' (legacy) and 'algorithms' (new UI format)
         algorithm = options.get("algorithm", "Auto-Select Best")
+        algorithms_list = options.get("algorithms", [])
         hyperparameters = options.get("hyperparameters", {})
         
-        if algorithm == "Auto-Select Best":
+        # If algorithms list is provided from UI, use it instead of auto-select
+        if algorithms_list and len(algorithms_list) > 0:
+            algorithm = "Custom-List"
+        
+        if algorithm == "Auto-Select Best" or algorithm == "Custom-List":
+            # Define all available models
             if problem_type == "classification":
-                # Try multiple models and select best one
-                models = {
-                    "RandomForestClassifier": RandomForestClassifier(n_estimators=100, random_state=42),
+                all_models = {
+                    "RandomForest": RandomForestClassifier(n_estimators=100, random_state=42),
                     "LogisticRegression": LogisticRegression(random_state=42, max_iter=1000),
-                    "SVC": SVC(random_state=42),
-                    "GradientBoostingClassifier": GradientBoostingClassifier(n_estimators=100, random_state=42),
-                    "KNeighborsClassifier": KNeighborsClassifier(n_neighbors=5)
+                    "SVM": SVC(random_state=42),
+                    "XGBoost": GradientBoostingClassifier(n_estimators=100, random_state=42),  # Using GradientBoosting as XGBoost substitute
+                    "GradientBoosting": GradientBoostingClassifier(n_estimators=100, random_state=42),
+                    "KNN": KNeighborsClassifier(n_neighbors=5)
                 }
             else:
-                models = {
-                    "RandomForestRegressor": RandomForestRegressor(n_estimators=100, random_state=42),
+                all_models = {
+                    "RandomForest": RandomForestRegressor(n_estimators=100, random_state=42),
                     "LinearRegression": LinearRegression(),
-                    "SVR": SVR(),
-                    "GradientBoostingRegressor": GradientBoostingRegressor(n_estimators=100, random_state=42),
-                    "KNeighborsRegressor": KNeighborsRegressor(n_neighbors=5)
+                    "SVM": SVR(),
+                    "XGBoost": GradientBoostingRegressor(n_estimators=100, random_state=42),  # Using GradientBoosting as XGBoost substitute
+                    "GradientBoosting": GradientBoostingRegressor(n_estimators=100, random_state=42),
+                    "KNN": KNeighborsRegressor(n_neighbors=5)
                 }
+            
+            # Filter models based on user selection
+            if algorithm == "Custom-List" and algorithms_list:
+                models = {}
+                for alg_name in algorithms_list:
+                    if alg_name in all_models:
+                        models[alg_name] = all_models[alg_name]
+                    else:
+                        print(f"⚠️ Algorithm '{alg_name}' not recognized, skipping...")
+                
+                if not models:
+                    print("⚠️ No valid algorithms selected, using RandomForest as fallback")
+                    models = {"RandomForest": all_models.get("RandomForest", list(all_models.values())[0])}
+            else:
+                # Use all models for auto-select
+                models = all_models
             
             best_model = None
             best_score = -np.inf

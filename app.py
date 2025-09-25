@@ -178,6 +178,14 @@ class DataPipelineOrchestrator:
                 if target_chars.get('imbalance_warning'):
                     self.cleaning_options['handle_class_imbalance'] = True
             
+            # Translate UI parameter names to cleaner agent parameter names
+            if 'imputation_method' in self.cleaning_options:
+                self.cleaning_options['missing_value_strategy'] = self.cleaning_options['imputation_method']
+            if 'outlier_method' in self.cleaning_options:
+                self.cleaning_options['outlier_strategy'] = self.cleaning_options['outlier_method']
+            
+            print(f"🧹 Cleaning with options: {self.cleaning_options}")
+            
             # Execute cleaning with updated options
             cleaned_result = self.cleaner_agent.clean_data(
                 self.pipeline_state["original_data"], 
@@ -202,22 +210,41 @@ class DataPipelineOrchestrator:
     def _execute_eda(self):
         """Execute EDA step"""
         print("\n📊 Step 2: Exploratory Data Analysis...")
+        # Pass through detected target/problem type from problem detection to keep consistency
+        problem_analysis = self.pipeline_state.get("problem_analysis", {})
+        eda_opts = dict(self.eda_options) if isinstance(self.eda_options, dict) else {}
+        if problem_analysis.get("target_variable"):
+            eda_opts["force_target_variable"] = problem_analysis["target_variable"]
+        if problem_analysis.get("problem_type"):
+            eda_opts["force_problem_type"] = problem_analysis["problem_type"]
+
         self.pipeline_state["eda_results"] = self.eda_agent.perform_eda(
             self.pipeline_state["cleaned_data"],
-            self.eda_options
+            eda_opts
         )
         
     def _execute_training(self):
         """Execute model training step"""
         print("\n🤖 Step 3: Model Training...")
+        # Pass problem type and target variable from problem analysis to ensure consistency
+        problem_analysis = self.pipeline_state.get("problem_analysis", {})
+        
+        print(f"🤖 Training with options: {self.model_training_options}")
+        
         self.pipeline_state["model_results"] = self.model_trainer_agent.train_model(
             self.pipeline_state["cleaned_data"],
-            self.pipeline_state["eda_results"]
+            self.pipeline_state["eda_results"],
+            model_training_options=self.model_training_options,
+            problem_type=problem_analysis.get('problem_type'),
+            target_column=problem_analysis.get('target_variable')
         )
         
     def _execute_evaluation(self):
         """Execute model evaluation step"""
         print("\n📈 Step 4: Model Evaluation...")
+        
+        print(f"📈 Evaluation with options: {self.evaluation_options}")
+        
         self.pipeline_state["evaluation_results"] = self.evaluator_agent.evaluate_model(
             self.pipeline_state["model_results"],
             self.pipeline_state["cleaned_data"],

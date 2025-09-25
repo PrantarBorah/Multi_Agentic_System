@@ -70,7 +70,40 @@ class EDAAgent:
             
             # Target variable detection is often needed for model training later
             print("🎯 Detecting target variable...")
-            eda_results["target_variable"], eda_results["problem_type"] = self._detect_target_and_problem_type(data)
+            # Allow orchestrator to force a specific target/problem type for consistency across agents
+            forced_target = None
+            forced_problem_type = None
+            try:
+                forced_target = eda_options.get("force_target_variable") if isinstance(eda_options, dict) else None
+                forced_problem_type = eda_options.get("force_problem_type") if isinstance(eda_options, dict) else None
+            except Exception:
+                forced_target = None
+                forced_problem_type = None
+
+            if forced_target and forced_target in data.columns:
+                # Use forced target; infer or normalize problem type
+                target_series = data[forced_target]
+                inferred_problem = None
+                if forced_problem_type:
+                    # Normalize to expected values
+                    lower = str(forced_problem_type).strip().lower()
+                    if "class" in lower:
+                        inferred_problem = "classification"
+                    elif "regress" in lower:
+                        inferred_problem = "regression"
+                if not inferred_problem:
+                    # Infer based on dtype and cardinality
+                    if target_series.dtype in ['object', 'category']:
+                        inferred_problem = "classification"
+                    elif target_series.nunique() < 10:
+                        inferred_problem = "classification"
+                    else:
+                        inferred_problem = "regression"
+
+                eda_results["target_variable"] = forced_target
+                eda_results["problem_type"] = inferred_problem
+            else:
+                eda_results["target_variable"], eda_results["problem_type"] = self._detect_target_and_problem_type(data)
             
             print("🧠 Generating AI insights...")
             if eda_options.get("enable_eda_insights", True):
