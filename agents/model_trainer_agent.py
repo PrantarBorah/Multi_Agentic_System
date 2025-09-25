@@ -314,15 +314,10 @@ class ModelTrainerAgent:
         algorithms_list = options.get("algorithms", [])
         hyperparameters = options.get("hyperparameters", {})
         
-        # Debug: Print what we received
-        print(f"🔍 DEBUG: Received algorithms_list: {algorithms_list}")
-        print(f"🔍 DEBUG: Received algorithm: {algorithm}")
-        print(f"🔍 DEBUG: Full options: {options}")
-        
         # If algorithms list is provided from UI, use it instead of auto-select
         if algorithms_list and len(algorithms_list) > 0:
             algorithm = "Custom-List"
-            print(f"🔍 DEBUG: Switching to Custom-List mode with {len(algorithms_list)} algorithms")
+            print(f"🎯 User selected {len(algorithms_list)} specific algorithms: {algorithms_list}")
         
         if algorithm == "Auto-Select Best" or algorithm == "Custom-List":
             # Define all available models
@@ -347,25 +342,25 @@ class ModelTrainerAgent:
             
             # Filter models based on user selection
             if algorithm == "Custom-List" and algorithms_list:
-                print(f"🔍 DEBUG: Available models: {list(all_models.keys())}")
                 models = {}
                 for alg_name in algorithms_list:
                     if alg_name in all_models:
                         models[alg_name] = all_models[alg_name]
-                        print(f"✅ DEBUG: Added algorithm '{alg_name}' to training list")
+                        print(f"✅ Added '{alg_name}' to training queue")
                     else:
-                        print(f"⚠️ Algorithm '{alg_name}' not recognized, skipping...")
-                        print(f"🔍 DEBUG: Available options are: {list(all_models.keys())}")
-                
-                print(f"🔍 DEBUG: Final models to train: {list(models.keys())}")
+                        print(f"⚠️ Algorithm '{alg_name}' not available for {problem_type}")
+                        print(f"   Available options: {list(all_models.keys())}")
                 
                 if not models:
-                    print("⚠️ No valid algorithms selected, using RandomForest as fallback")
+                    print("❌ No valid algorithms selected from user choices")
+                    print("🔧 DEVELOPER DEBUG: Check algorithm availability logic in UI")
                     models = {"RandomForest": all_models.get("RandomForest", list(all_models.values())[0])}
+                else:
+                    print(f"🎯 Training {len(models)} user-selected algorithms: {list(models.keys())}")
             else:
                 # Use all models for auto-select
                 models = all_models
-                print(f"🔍 DEBUG: Using auto-select with all models: {list(models.keys())}")
+                print(f"🔄 Auto-selecting from {len(models)} available algorithms")
             
             best_model = None
             best_score = -np.inf
@@ -408,11 +403,25 @@ class ModelTrainerAgent:
                             
                     except Exception as e2:
                         print(f"❌ {name} also failed holdout validation: {str(e2)[:100]}...")
+                        print(f"🔧 DEVELOPER DEBUG - {name} Error Details:")
+                        print(f"   - CV Error: {str(e)}")
+                        print(f"   - Holdout Error: {str(e2)}")
+                        print(f"   - Data shape: {X_train.shape}")
+                        print(f"   - Data has NaN: {pd.DataFrame(X_train).isnull().any().any()}")
+                        print(f"   - Target shape: {y_train.shape}")
                         # Skip this model entirely
             
-            # If no model worked, use a safe fallback
+            # If no model worked, provide detailed error information
             if best_model is None:
-                print("⚠️ All models failed. Using RandomForest as fallback.")
+                failed_algorithms = list(models.keys()) if algorithm == "Custom-List" else "all available algorithms"
+                print(f"❌ CRITICAL: All selected algorithms failed: {failed_algorithms}")
+                print(f"🔧 DEVELOPER DEBUG - Fallback Analysis:")
+                print(f"   - User selected: {algorithms_list if algorithm == 'Custom-List' else 'Auto-select'}")
+                print(f"   - Models attempted: {list(models.keys())}")
+                print(f"   - Problem type: {problem_type}")
+                print(f"   - Likely cause: Data preprocessing issues (NaN values, scaling, etc.)")
+                
+                print("⚠️ Using RandomForest as emergency fallback with robust settings...")
                 if problem_type == "classification":
                     best_model = RandomForestClassifier(n_estimators=100, random_state=42)
                 else:

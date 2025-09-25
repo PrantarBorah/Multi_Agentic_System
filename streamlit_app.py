@@ -1328,7 +1328,12 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
         if "algorithms" in recommendations["reasoning"]:
             st.markdown(f"💡 **Recommended:** {', '.join(recommendations['algorithms'])} - {recommendations['reasoning']['algorithms']}")
         
-        available_algorithms = ["RandomForest", "LogisticRegression", "SVM", "XGBoost", "GradientBoosting", "KNN", "LinearRegression"]
+        # Filter algorithms based on problem type
+        problem_type = dataset_info.get('problem_type', 'classification')
+        if problem_type == 'classification':
+            available_algorithms = ["RandomForest", "LogisticRegression", "SVM", "XGBoost", "GradientBoosting", "KNN"]
+        else:
+            available_algorithms = ["RandomForest", "LinearRegression", "SVM", "XGBoost", "GradientBoosting", "KNN"]
         algorithms = st.multiselect(
             "Select algorithms:",
             available_algorithms,
