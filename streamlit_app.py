@@ -1623,13 +1623,14 @@ def display_enhanced_eda(eda_results):
         insights = eda_results['distribution_insights']
         
         col1, col2 = st.columns(2)
-    with col1:
+        
+        with col1:
             if 'numerical_features' in insights:
                 st.markdown("**Numerical Features:**")
                 for feature, info in insights['numerical_features'].items():
                     st.write(f"• **{feature}:** {info}")
         
-    with col2:
+        with col2:
             if 'categorical_features' in insights:
                 st.markdown("**Categorical Features:**")
                 for feature, info in insights['categorical_features'].items():
