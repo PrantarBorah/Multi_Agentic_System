@@ -7,12 +7,23 @@ import os
 import dotenv
 from datetime import datetime
 from typing import Dict, List, Tuple, Any
+import streamlit as st
 dotenv.load_dotenv()
 
 
 class CleanerAgent:
     def __init__(self):
-        self.openai_client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        # Try Streamlit secrets first, fallback to environment variable
+        api_key = None
+        try:
+            api_key = st.secrets["OPENAI_API_KEY"]
+        except:
+            api_key = os.getenv('OPENAI_API_KEY')
+        
+        if not api_key:
+            raise ValueError("OpenAI API key not found. Please set it in Streamlit secrets or environment variables.")
+        
+        self.openai_client = openai.OpenAI(api_key=api_key)
         # Enhanced transparency tracking
         self.decision_log = []
         self.step_log = []

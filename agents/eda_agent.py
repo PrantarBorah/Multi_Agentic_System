@@ -11,7 +11,17 @@ import plotly.graph_objects as go
 
 class EDAAgent:
     def __init__(self):
-        self.openai_client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        # Try Streamlit secrets first, fallback to environment variable
+        api_key = None
+        try:
+            api_key = st.secrets["OPENAI_API_KEY"]
+        except:
+            api_key = os.getenv('OPENAI_API_KEY')
+        
+        if not api_key:
+            raise ValueError("OpenAI API key not found. Please set it in Streamlit secrets or environment variables.")
+        
+        self.openai_client = openai.OpenAI(api_key=api_key)
     
     def perform_eda(self, data: pd.DataFrame, eda_options: dict = None) -> dict:
         """Perform comprehensive exploratory data analysis"""
