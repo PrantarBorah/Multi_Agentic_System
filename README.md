@@ -46,17 +46,17 @@ Experience the future of ML education with our interactive AI-powered platform. 
 - **Real-time Progress Tracking**: Visual feedback on pipeline stages
 - **Error Handling**: Beginner-friendly explanations and recovery suggestions
 
-### **📚 Educational Integration**
-- **Contextual Learning Popups**: ML concepts explained at relevant pipeline stages
-- **Comprehensive ML Glossary**: Quick reference for terminology
-- **Step-by-Step Breakdowns**: Detailed explanations of each process
-- **Interactive Configurations**: Learn by experimenting with different approaches
+### **📚 Enhanced Educational Experience**
+- **ML Best Practices Guide**: Interactive sidebar with comprehensive ML methodology guidance
+- **Progress Tracking**: Gamified learning with topic exploration tracking and achievement recognition
+- **Contextual Learning**: ML concepts explained at relevant pipeline stages with practical examples
+- **Interactive Configurations**: Learn by experimenting with different approaches and see real-time results
 
-### **🎨 User Experience**
-- **Dark Mode Support**: Adaptive styling for different user preferences
-- **Responsive Design**: Optimized layout for efficient space usage
-- **Interactive Visualizations**: Plotly-powered charts with hover details
-- **File Upload Support**: Use your own datasets or sample data
+### **🎨 Superior User Experience**
+- **Intelligent Sidebar Navigation**: Streamlined workflow with Data Source at top, followed by ML Guide
+- **Theme-Adaptive Design**: Full light/dark mode support with automatic theme detection
+- **Clean Visual Hierarchy**: Professional typography and spacing optimized for learning
+- **Responsive Layout**: Mobile-friendly design that works seamlessly across all devices
 
 ## 🧠 **AI Agents Architecture**
 
@@ -125,13 +125,14 @@ Multi_Agentic_System/
 │   ├── model_trainer_agent.py     # ENHANCED: 15+ algorithms, adaptive CV
 │   └── evaluator_agent.py         # ENHANCED: Model comparison & storage
 ├── sample_data/
-│   ├── 1_survey_lung_cancer.csv  # Binary classification
-│   ├── 2_Iris.csv                # Multi-class classification
-│   ├── 3_titanic.csv             # Binary classification
-│   ├── 4_wine_quality.csv         # Multi-class classification
-│   ├── 5_diabetes.csv            # Regression
-│   ├── 6_housing.csv             # Regression
-│   └── 7_customer_segments.csv   # Clustering (300 samples)
+│   ├── survey_lung_cancer.csv    # Binary classification
+│   ├── iris.csv                  # Multi-class classification
+│   ├── titanic.csv               # Binary classification
+│   ├── wine_quality.csv          # Multi-class classification
+│   ├── house_prices.csv          # Regression
+│   ├── customer_churn.csv        # Binary classification
+│   ├── student_performance.csv   # Regression
+│   └── customer_segments.csv     # Clustering
 ├── utils/
 │   ├── __init__.py
 │   └── data_utils.py
@@ -186,40 +187,42 @@ Open your browser to `http://localhost:8501`
 
 ### **Features Available in the UI**:
 
-#### **📁 Data Selection**
-- **Upload your own CSV files** or choose from **7 sample datasets**
-- **Automatic target identification** with transparency
-- **Dataset overview** with key characteristics
+#### **📁 Smart Data Management**
+- **Streamlined Data Source Selection**: Top-positioned for optimal workflow
+- **Upload CSV files** or choose from **8 curated sample datasets** 
+- **Automatic target identification** with transparent reasoning
+- **Dynamic dataset information** with adaptive card layouts
 
-#### **⚙️ Interactive Configurations**
-- **Data Cleaning Options**: Choose between agent decisions or manual methods
-- **Algorithm Selection**: Auto-select best or choose specific algorithms
-- **Cross-validation Strategies**: K-fold, stratified K-fold, time series split
-- **Evaluation Metrics**: Select specific metrics to focus on
+#### **🧠 ML Best Practices Guide**
+- **Interactive Learning Hub**: Prominent animated header with 4 comprehensive categories
+- **11 In-depth Topics**: Covering Data Preprocessing, Model Training, Evaluation, and Algorithms
+- **Progress Gamification**: Topic exploration tracking with achievement celebrations
+- **Professional Knowledge Base**: Definitions, methods, best practices, and when-to-use guidance
 
-#### **📚 Educational Features**
-- **Contextual Learning Popups**: ML concepts explained at each stage
-- **Comprehensive ML Glossary**: Quick reference for terminology
-- **Step-by-step Process Breakdowns**: Detailed explanations
-- **Interactive Visualizations**: Hover for explanations
+#### **⚙️ Enhanced Interactive Configurations**
+- **Intelligent Data Cleaning**: Choose between AI agent decisions or manual methods
+- **Advanced Algorithm Selection**: Auto-select optimal algorithms or choose specific ones
+- **Adaptive Cross-validation**: K-fold, stratified K-fold, time series split strategies
+- **Comprehensive Evaluation Metrics**: Select and customize performance metrics
 
-#### **🎨 User Experience**
-- **Dark Mode Support**: Automatic adaptation to system preferences
-- **Real-time Progress Tracking**: Visual feedback on pipeline stages
-- **Responsive Layout**: Optimized for different screen sizes
-- **Error Handling**: Beginner-friendly explanations and suggestions
+#### **🎨 Superior User Experience**
+- **Advanced Theme System**: Automatic light/dark mode with JavaScript detection and CSS variables
+- **Responsive Design**: Mobile-optimized layouts with adaptive card sizing
+- **Clean Visual Hierarchy**: Professional typography, bounded containers, and logical information flow
+- **Achievement System**: Completion recognition with motivational feedback and visual rewards
 
-## 📊 **Sample Datasets Included**
+## 📊 **Curated Sample Datasets**
 
 | Dataset | Problem Type | Samples | Features | Description |
 |---------|-------------|---------|----------|-------------|
-| **Lung Cancer Survey** | Binary Classification | 309 | 15 | Medical survey data for lung cancer prediction |
+| **Survey Lung Cancer** | Binary Classification | 309 | 15 | Medical survey data for lung cancer prediction |
 | **Iris** | Multi-class Classification | 150 | 4 | Classic flower species classification |
 | **Titanic** | Binary Classification | 891 | 12 | Passenger survival prediction |
 | **Wine Quality** | Multi-class Classification | 1,599 | 11 | Wine quality assessment |
-| **Diabetes** | Regression | 442 | 10 | Disease progression prediction |
-| **Housing** | Regression | 506 | 13 | House price prediction |
-| **Customer Segments** | Clustering | 300 | 4 | Customer segmentation analysis |
+| **House Prices** | Regression | 506 | 13 | House price prediction with location features |
+| **Customer Churn** | Binary Classification | 7,043 | 21 | Telecom customer retention analysis |
+| **Student Performance** | Regression | 395 | 33 | Academic performance prediction |
+| **Customer Segments** | Clustering | 200 | 4 | Customer segmentation for marketing |
 
 ## 🔧 **Pipeline Stages**
 
@@ -257,43 +260,56 @@ Open your browser to `http://localhost:8501`
 - **AI-generated insights and recommendations**
 - **Model storage for future comparison**
 
-## 📚 **Educational Features**
+## 📚 **Revolutionary Educational Features**
 
-### **🎓 Learning Modules**
-- **Contextual ML Concepts**: Explained at relevant pipeline stages
-- **Interactive Glossary**: Quick reference for ML terminology
-- **Step-by-step Tutorials**: Detailed process explanations
-- **Best Practices**: Industry-standard approaches and recommendations
+### **🧠 ML Best Practices Guide (Sidebar)**
+- **4 Comprehensive Categories**: Data Preprocessing, Model Training, Model Evaluation, and Algorithms
+- **11 In-depth Topics**: From imputation methods to algorithm selection strategies
+- **Interactive Learning Hub**: Prominent animated header with progress tracking
+- **Achievement System**: Gamified exploration with completion celebrations
+- **Professional Knowledge Base**: Definitions, methods, best practices, and practical guidance
 
-### **🔍 Transparency Features**
-- **Decision Logging**: Every agent decision with rationale
-- **Process Breakdowns**: Detailed explanations of each step
-- **Educational Insights**: ML concepts applied to real data
-- **Interactive Explanations**: Click for detailed information
+### **🎓 Enhanced Learning Experience**
+- **Contextual ML Concepts**: Explained at relevant pipeline stages with real examples
+- **Progress Gamification**: Topic exploration tracking with motivational feedback
+- **Pro Tips Integration**: Highlighted practical guidance throughout the learning content
+- **Visual Learning**: Bounded containers and clean typography for better comprehension
 
-### **🎯 Hands-on Learning**
-- **Interactive Configurations**: Experiment with different approaches
-- **A/B Testing Framework**: Compare different pipeline configurations
-- **Real-time Feedback**: Immediate results and explanations
-- **Error Learning**: Understanding and fixing common issues
+### **🔍 Advanced Transparency Features**
+- **Decision Logging**: Every agent decision documented with clear rationale
+- **Process Breakdowns**: Detailed explanations of each pipeline step
+- **Educational Insights**: ML concepts applied to real data with practical context
+- **Interactive Explanations**: Expandable sections with comprehensive information
 
-## 🎨 **UI/UX Features**
+### **🎯 Hands-on Learning Environment**
+- **Interactive Configurations**: Experiment with different approaches and see immediate results
+- **Real-time Feedback**: Live progress tracking with educational context
+- **Achievement Recognition**: Completion rewards and motivational messaging
+- **Error Learning**: Understanding and fixing common issues with guided explanations
 
-### **🌙 Dark Mode Support**
-- **Automatic Adaptation**: Responds to system preferences
-- **Consistent Styling**: All components adapt seamlessly
-- **Improved Readability**: Optimized contrast and colors
+## 🎨 **Enhanced UI/UX Features**
 
-### **📱 Responsive Design**
-- **Mobile-Friendly**: Works on various screen sizes
-- **Efficient Layout**: Optimized space usage
-- **Intuitive Navigation**: Clear section organization
+### **🧠 Intelligent Sidebar Design**
+- **ML Best Practices Guide**: Prominent, animated header with 4 categories and 11 comprehensive topics
+- **Smart Navigation Flow**: Data Source → ML Guide → Pipeline execution for optimal workflow
+- **Progress Gamification**: Topic exploration tracking with achievement celebrations
+- **Clean Visual Hierarchy**: Bounded containers and professional typography for better learning
 
-### **⚡ Interactive Elements**
-- **Real-time Updates**: Live progress tracking
-- **Hover Explanations**: Detailed information on hover
-- **Expandable Sections**: Collapsible detailed information
-- **Contextual Help**: Relevant guidance at each stage
+### **🌙 Advanced Theme System**
+- **Dual Theme Support**: Automatic light/dark mode detection with JavaScript theme switching
+- **Comprehensive Adaptation**: All UI elements seamlessly adapt with CSS variables
+- **Professional Styling**: Consistent color schemes and improved readability across themes
+
+### **📱 Responsive & Accessible Design**
+- **Mobile-Optimized**: Adaptive layouts for all screen sizes with responsive card designs
+- **Efficient Space Usage**: Streamlined sidebar with collapsible sections and optimal information density
+- **Intuitive Navigation**: Clear visual grouping and logical information flow
+
+### **⚡ Interactive Learning Elements**
+- **Real-time Progress**: Live topic exploration tracking with motivational feedback
+- **Hover Insights**: Detailed explanations and contextual help throughout the interface
+- **Achievement System**: Completion recognition with celebratory messages and visual rewards
+- **Educational Tooltips**: Comprehensive guidance for ML concepts and best practices
 
 ## 🔍 **Advanced Features**
 
