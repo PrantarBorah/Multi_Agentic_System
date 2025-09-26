@@ -2189,17 +2189,34 @@ def display_results(results):
         display_enhanced_evaluation(results.get("evaluation_results", {}))
 
 def main():
-    # Compact header
     st.markdown("""
-    <div style="text-align: center; padding: 1.25rem 0; background: linear-gradient(135deg, var(--bg-info), var(--bg-secondary)); border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
-        <h1 style="margin: 0; font-size: 2rem; background: linear-gradient(135deg, var(--border-primary), var(--border-hover)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-            ⚙️ CrewML
-        </h1>
-        <p style="font-size: 1rem; margin: 0.25rem 0 0 0; color: var(--text-secondary); opacity: 0.9;">
-            Learn and Experiment with 5 AI Crew Buddies - ML Made Fun!
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+<div style="text-align: center; padding: 1.5rem 0; 
+            background: linear-gradient(145deg, #121212, #1c1c1c); 
+            border-radius: 1rem; 
+            margin-bottom: 1.5rem; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
+
+    <h1 style="margin: 0; 
+               font-size: 2.25rem; 
+               font-weight: 700; 
+               background: linear-gradient(135deg, #f0f0f0, #c0c0c0); 
+               -webkit-background-clip: text; 
+               -webkit-text-fill-color: transparent; 
+               background-clip: text;">
+        ⚙️ CrewML
+    </h1>
+
+    <p style="font-size: 1rem; 
+              margin: 0.5rem 0 0 0; 
+              color: #d0d0d0; 
+              opacity: 0.95;">
+        Learn and Experiment with 5 AI Crew Buddies — 
+        <span style="color:#58a6ff; font-weight:500;">ML Made Fun!</span>
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+
     
     # Compelling distinguishing features with card design
     st.markdown('<h3 style="color: #3b82f6; margin-bottom: 1rem;">🚀 Why Choose This Pipeline?</h3>', unsafe_allow_html=True)
