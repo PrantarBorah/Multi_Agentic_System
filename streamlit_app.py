@@ -1901,44 +1901,87 @@ def display_enhanced_evaluation(evaluation_results):
         metrics = evaluation_results.get('performance_metrics', {})
         detailed = evaluation_results.get('detailed_metrics', {})
         
-        # Create metric cards for key metrics
+        # Determine problem type from metrics or default to classification
+        problem_type = metrics.get('problem_type') or detailed.get('problem_type') or 'classification'
+        
+        # Create metric cards based on problem type
         col1, col2, col3, col4 = st.columns(4)
         
-    with col1:
-            accuracy = metrics.get('accuracy', detailed.get('accuracy', 0))
-            st.markdown(f"""
-            <div class="results-metric-card">
-                <div class="metric-value">{accuracy:.3f}</div>
-                <div class="metric-label">🎯 Accuracy</div>
-        </div>
-        """, unsafe_allow_html=True)
+        if problem_type == 'classification':
+            # Classification metrics
+            with col1:
+                accuracy = metrics.get('accuracy', detailed.get('accuracy', 0))
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{accuracy:.3f}</div>
+                    <div class="metric-label">🎯 Accuracy</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col2:
+                precision = detailed.get('precision_weighted', 0)
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{precision:.3f}</div>
+                    <div class="metric-label">🔍 Precision</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col3:
+                recall = detailed.get('recall_weighted', 0)
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{recall:.3f}</div>
+                    <div class="metric-label">📈 Recall</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col4:
+                f1_score = detailed.get('f1_weighted', 0)
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{f1_score:.3f}</div>
+                    <div class="metric-label">⚖️ F1-Score</div>
+                </div>
+                """, unsafe_allow_html=True)
         
-    with col2:
-        precision = detailed.get('precision_weighted', 0)
-        st.markdown(f"""
-        <div class="results-metric-card">
-            <div class="metric-value">{precision:.3f}</div>
-            <div class="metric-label">🔍 Precision</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col3:
-        recall = detailed.get('recall_weighted', 0)
-        st.markdown(f"""
-        <div class="results-metric-card">
-            <div class="metric-value">{recall:.3f}</div>
-            <div class="metric-label">📈 Recall</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    with col4:
-        f1_score = detailed.get('f1_weighted', 0)
-        st.markdown(f"""
-        <div class="results-metric-card">
-            <div class="metric-value">{f1_score:.3f}</div>
-            <div class="metric-label">⚖️ F1-Score</div>
-        </div>
-        """, unsafe_allow_html=True)
+        else:  # regression
+            # Regression metrics
+            with col1:
+                r2 = metrics.get('r2', detailed.get('r2', 0))
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{r2:.3f}</div>
+                    <div class="metric-label">📊 R² Score</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col2:
+                rmse = metrics.get('rmse', detailed.get('rmse', 0))
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{rmse:.3f}</div>
+                    <div class="metric-label">📏 RMSE</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col3:
+                mae = metrics.get('mae', detailed.get('mae', 0))
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{mae:.3f}</div>
+                    <div class="metric-label">📐 MAE</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col4:
+                mse = metrics.get('mse', detailed.get('mse', 0))
+                st.markdown(f"""
+                <div class="results-metric-card">
+                    <div class="metric-value">{mse:.3f}</div>
+                    <div class="metric-label">📈 MSE</div>
+                </div>
+                """, unsafe_allow_html=True)
                 
     st.markdown("---")
     

@@ -114,15 +114,18 @@ class EvaluatorAgent:
                     "accuracy": metrics.get("accuracy", "N/A"),
                     "classification_report": metrics.get("classification_report", "N/A"),
                     "cv_score": cv_score,
-                    "model_type": model_type
+                    "model_type": model_type,
+                    "problem_type": problem_type
                 }
             else:
                 return {
                     "r2": metrics.get("r2", "N/A"),
                     "mse": metrics.get("mse", "N/A"),
                     "rmse": metrics.get("rmse", "N/A"),
+                    "mae": metrics.get("mae", "N/A"),
                     "cv_score": cv_score,
-                    "model_type": model_type
+                    "model_type": model_type,
+                    "problem_type": problem_type
                 }
         else:
             # Fallback for cases without training_summary or metrics
