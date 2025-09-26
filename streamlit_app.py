@@ -564,28 +564,33 @@ st.markdown("""
         border: 1px solid var(--border-secondary);
         border-radius: var(--radius-md);
         padding: 1.5rem;
-        margin: 1rem 0;
+        margin: 0.5rem 0;
         box-shadow: var(--shadow-sm);
+        height: fit-content;
     }
     
     .config-section-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: var(--text-primary);
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--border-secondary);
     }
     
     .override-notice {
-        background: var(--bg-info);
-        border: 1px solid var(--border-primary);
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        border: 1px solid #f59e0b;
         border-radius: var(--radius-sm);
         padding: 0.5rem 0.75rem;
-        margin: 0.5rem 0;
+        margin: 0.75rem 0;
         font-size: 0.85rem;
-        color: var(--text-secondary);
+        font-weight: 500;
+        color: #92400e;
+        box-shadow: 0 1px 3px rgba(245, 158, 11, 0.2);
     }
     </style>
     
@@ -1268,7 +1273,7 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
     # Get recommendations
     recommendations = get_dataset_recommendations(dataset_info)
     
-    # Show recommendation summary
+    # Show smart recommendations summary card
     st.markdown("""
     <div class="config-recommendation">
         <div class="config-recommendation-text">
@@ -1277,56 +1282,68 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
     </div>
     """, unsafe_allow_html=True)
     
+    # Show recommendation overview in a clean format
+    with st.expander("📋 View All Recommendations", expanded=False):
+        rec_col1, rec_col2 = st.columns(2)
+        
+        with rec_col1:
+            st.markdown("**🧹 Data Cleaning Recommendations**")
+            st.markdown(f"• **Missing Values:** `{recommendations['missing_value_strategy']}` - {recommendations['reasoning']['missing_value_strategy']}")
+            st.markdown(f"• **Outliers:** `{recommendations['outlier_handling']}` - {recommendations['reasoning']['outlier_handling']}")
+        
+        with rec_col2:
+            st.markdown("**🤖 Model Training Recommendations**")
+            st.markdown(f"• **Algorithms:** `{', '.join(recommendations['algorithms'][:2])}{'...' if len(recommendations['algorithms']) > 2 else ''}` - {recommendations['reasoning']['algorithms']}")
+            st.markdown(f"• **Cross Validation:** `{recommendations['cv_strategy']}` - {recommendations['reasoning']['cv_strategy']}")
+    
+    st.markdown("---")
+    
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
         <div class="config-section">
             <div class="config-section-title">🧹 Data Cleaning</div>
+        </div>
         """, unsafe_allow_html=True)
         
         # Missing Value Strategy
-        st.markdown("**Missing Value Strategy**")
-        if "missing_value_strategy" in recommendations["reasoning"]:
-            st.markdown(f"💡 **Recommended:** {recommendations['missing_value_strategy']} - {recommendations['reasoning']['missing_value_strategy']}")
-        
+        st.markdown("##### Missing Value Strategy")
         imputation = st.selectbox(
             "Select strategy:",
             ["auto", "mean", "median", "mode", "drop"],
             index=["auto", "mean", "median", "mode", "drop"].index(recommendations["missing_value_strategy"]),
-            help="Auto lets the AI choose the best strategy based on data distribution"
+            help="Auto lets the AI choose the best strategy based on data distribution",
+            key="imputation_select"
         )
         
         if imputation != recommendations["missing_value_strategy"]:
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended setting</div>', unsafe_allow_html=True)
         
+        st.markdown("")  # Add spacing
+        
         # Outlier Handling
-        st.markdown("**Outlier Handling**")
-        if "outlier_handling" in recommendations["reasoning"]:
-            st.markdown(f"💡 **Recommended:** {recommendations['outlier_handling']} - {recommendations['reasoning']['outlier_handling']}")
-            
+        st.markdown("##### Outlier Handling")
         outliers = st.selectbox(
             "Select method:",
             ["auto", "remove", "cap", "none"],
             index=["auto", "remove", "cap", "none"].index(recommendations["outlier_handling"]),
-            help="Auto uses IQR method with intelligent thresholds"
+            help="Auto uses IQR method with intelligent thresholds",
+            key="outlier_select"
         )
         
         if outliers != recommendations["outlier_handling"]:
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended setting</div>', unsafe_allow_html=True)
-        
-        st.markdown("</div>", unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
         <div class="config-section">
             <div class="config-section-title">🤖 Model Training</div>
+        </div>
         """, unsafe_allow_html=True)
         
         # Algorithms
-        st.markdown("**Algorithms**")
-        if "algorithms" in recommendations["reasoning"]:
-            st.markdown(f"💡 **Recommended:** {', '.join(recommendations['algorithms'])} - {recommendations['reasoning']['algorithms']}")
+        st.markdown("##### Algorithms")
         
         # Filter algorithms based on problem type
         problem_type = dataset_info.get('problem_type', 'classification')
@@ -1342,28 +1359,27 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
             "Select algorithms:",
             available_algorithms,
             default=filtered_recommendations,
-            help="Multiple algorithms will be compared to find the best performer"
+            help="Multiple algorithms will be compared to find the best performer",
+            key="algorithms_select"
         )
         
         if set(algorithms) != set(filtered_recommendations):
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended algorithms</div>', unsafe_allow_html=True)
         
+        st.markdown("")  # Add spacing
+        
         # Cross Validation
-        st.markdown("**Cross Validation**")
-        if "cv_strategy" in recommendations["reasoning"]:
-            st.markdown(f"💡 **Recommended:** {recommendations['cv_strategy']} - {recommendations['reasoning']['cv_strategy']}")
-            
+        st.markdown("##### Cross Validation")
         cv_strategy = st.selectbox(
             "Select strategy:",
             ["auto", "stratified", "kfold", "timeseries"],
             index=["auto", "stratified", "kfold", "timeseries"].index(recommendations["cv_strategy"]),
-            help="Auto selects the best strategy based on your problem type"
+            help="Auto selects the best strategy based on your problem type",
+            key="cv_select"
         )
         
         if cv_strategy != recommendations["cv_strategy"]:
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended setting</div>', unsafe_allow_html=True)
-        
-        st.markdown("</div>", unsafe_allow_html=True)
     
     # Show configuration summary
     with st.expander("📋 Configuration Summary", expanded=False):
