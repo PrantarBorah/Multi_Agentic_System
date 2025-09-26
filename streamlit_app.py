@@ -659,10 +659,10 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Binary classification patterns
         if unique_vals == 2:
-            score += 8
+                    score += 8
             reasons.append(f"Binary values suggest classification target")
         elif unique_ratio < 0.1:
-            score += 5
+                score += 5
             reasons.append(f"Low cardinality suggests categorical target")
         
         if score > 0:
@@ -684,14 +684,14 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Determine problem type
         target_data = data[best_candidate['column']]
-        if target_data.nunique() == 2:
-            analysis["problem_type"] = "Binary Classification"
+            if target_data.nunique() == 2:
+                analysis["problem_type"] = "Binary Classification"
         elif target_data.nunique() < 20 and target_data.dtype in ['object', 'category']:
-            analysis["problem_type"] = "Multi-class Classification"
+                analysis["problem_type"] = "Multi-class Classification"
         else:
             analysis["problem_type"] = "Regression"
             
-        analysis["difficulty"] = "🟡 Intermediate"
+                    analysis["difficulty"] = "🟡 Intermediate"
     
     return analysis
 
@@ -1039,7 +1039,7 @@ def display_educational_sidebar():
             🎓 Learning Centre
         </div>
         <div style="font-size: 0.9rem; opacity: 0.95; font-weight: 500; line-height: 1.3;">
-            ✨ Explore before running pipeline
+            Explore before running pipeline
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1277,10 +1277,10 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
             st.markdown(f"• **Cross Validation:** `{recommendations['cv_strategy']}` - {recommendations['reasoning']['cv_strategy']}")
     
     st.markdown("---")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
         st.markdown('<div class="config-section-title">🧹 Data Cleaning</div>', unsafe_allow_html=True)
         
         # Missing Value Strategy
@@ -1407,7 +1407,7 @@ def display_enhanced_problem_detection(problem_analysis):
             except Exception:
                 confidence = 0.7
         confidence_color = "#10b981" if confidence > 0.8 else "#f59e0b" if confidence > 0.6 else "#ef4444"
-        st.markdown("""
+                    st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="color: {};">{:.1%}</div>
             <div class="metric-label">Confidence</div>
@@ -1416,7 +1416,7 @@ def display_enhanced_problem_detection(problem_analysis):
     
     with col3:
         target_col = problem_analysis.get('target_variable', problem_analysis.get('target_column', 'Not detected'))
-        st.markdown("""
+                    st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="font-size: 1.2rem;">{}</div>
             <div class="metric-label">Target Column</div>
@@ -1623,7 +1623,7 @@ def display_enhanced_data_cleaning(cleaning_results):
                         remaining_nan_columns = [row['Column'] for row in comparison_data if row['NaN After'] > 0]
                         if remaining_nan_columns:
                             st.warning(f"⚠️ Columns with remaining NaN values: {', '.join(remaining_nan_columns)}")
-                        else:
+                    else:
                             st.success("✅ All NaN values have been successfully handled!")
     
     # Emergency cleanup notification
@@ -1653,7 +1653,7 @@ def display_enhanced_eda(eda_results):
                     # Transpose if typical describe format
                     if set(['mean','std','min','max']).intersection(set(num_df.index.astype(str))):
                         num_df = num_df
-                    else:
+            else:
                         num_df = num_df.transpose()
                     with st.expander("See Numeric Columns", expanded=False):
                         st.dataframe(num_df.round(3), use_container_width=True)
@@ -1801,7 +1801,7 @@ def display_enhanced_model_training(model_results):
                     yaxis={'categoryorder': 'total ascending'}
                 )
             st.plotly_chart(fig, use_container_width=True)
-            
+    
             # Display ranking table
             with st.expander("📋 Detailed Model Rankings", expanded=False):
                 display_df = df[['rank', 'model', 'cv_score']].copy()
@@ -2018,8 +2018,8 @@ def display_enhanced_evaluation(evaluation_results):
     
     # Detailed Performance Analysis
     col1, col2 = st.columns([1, 1])
-    
-    with col1:
+                
+                with col1:
         # Classification Report
         if 'classification_report' in evaluation_results.get('performance_metrics', {}):
             st.markdown('<div class="results-section-header">📋 Class-wise Performance</div>', unsafe_allow_html=True)
@@ -2052,7 +2052,7 @@ def display_enhanced_evaluation(evaluation_results):
                         - **Macro Avg F1-Score:** {macro_avg.get('f1-score', 0):.3f}
                         """)
                 
-    with col2:
+                with col2:
         # Confusion Matrix
         if 'plots' in evaluation_results and 'confusion_matrix' in evaluation_results['plots']:
             st.markdown('<div class="results-section-header">🎯 Confusion Matrix</div>', unsafe_allow_html=True)
@@ -2135,7 +2135,7 @@ def display_enhanced_evaluation(evaluation_results):
         if isinstance(recommendations, list):
             for i, rec in enumerate(recommendations, 1):
                 st.markdown(f"<div class='recommendation-item'><strong>{i}.</strong> {rec}</div>", unsafe_allow_html=True)
-        else:
+                        else:
             st.write(recommendations)
     
     # Metric Explanations (Educational Component)
@@ -2201,8 +2201,8 @@ def main():
     st.markdown('<h3 style="color: #3b82f6; margin-bottom: 1rem;">🚀 Why Choose This Pipeline?</h3>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
-    
-    with col1:
+                
+                with col1:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #10b981; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🤖 5 AI Agents Orchestra</div>
@@ -2216,8 +2216,8 @@ def main():
             <div style="font-size: 0.9rem; color: #64748b;">Target-aware preprocessing prevents common pitfalls</div>
         </div>
         ''', unsafe_allow_html=True)
-    
-    with col2:
+                
+                with col2:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🎓 Learn While You Build</div>
@@ -2245,28 +2245,82 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Data source selection with enhanced styling and better spacing
+    # Enhanced data source selection with clear options
     st.markdown("""
-    <div style="text-align: center; margin: 1.5rem 0;">
-        <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem;">
-            💡 Choose between uploading your own CSV file or exploring our curated sample datasets
+    <div style="text-align: center; margin: 2rem 0 1.5rem 0;">
+        <h2 style="color: var(--text-primary); font-size: 1.4rem; margin-bottom: 1rem;">
+            Choose Your Data Source
+        </h2>
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5;">
+            Get started with your ML journey by selecting one of two convenient options below
         </p>
     </div>
     """, unsafe_allow_html=True)
     
+    # Create two distinct option cards
+    col1, col2 = st.columns(2, gap="large")
+    
+                            with col1:
+        st.markdown("""
+        <div style="
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border-secondary);
+            text-align: center;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">📁 Upload Your Own Data</h4>
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                Upload a CSV file from your computer<br>
+                <small>Perfect for your own datasets</small>
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+                            with col2:
+        st.markdown("""
+        <div style="
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border-secondary);
+            text-align: center;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">📊 Explore Sample Datasets</h4>
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                Choose from 8 curated datasets<br>
+                <small>Great for learning and experimentation</small>
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Radio button selection with better spacing
+    st.markdown("<div style='margin: 1.5rem 0;'></div>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         data_source = st.radio(
-            "",
-            ["📤 Upload CSV File", "📊 Use Sample Dataset"],
+            "Select your preferred option:",
+            ["Upload CSV File", "Use Sample Dataset"],
             horizontal=True,
-            label_visibility="collapsed"
+            help="Choose how you'd like to provide data for the ML pipeline"
         )
     
     # Sample dataset selection with clean layout
     selected_dataset = None
-    if data_source == "📊 Use Sample Dataset":
-        st.markdown("### 🎯 Choose from Curated Sample Datasets")
+    if data_source == "Use Sample Dataset":
+        st.markdown("""
+        <h3 style="text-align: center; color: var(--text-primary); margin: 1.5rem 0 1rem 0;">
+            Choose from Curated Sample Datasets
+        </h3>
+        """, unsafe_allow_html=True)
         
         st.markdown("""
         <div style="text-align: center; margin: 1rem 0;">
@@ -2277,14 +2331,14 @@ def main():
         """, unsafe_allow_html=True)
         
         # Create a clean grid layout for sample datasets
-        available_datasets = load_sample_datasets()
+    available_datasets = load_sample_datasets()
         
         # Display datasets in a clean, organized manner with better spacing
         col1, col2 = st.columns([3, 2])
         with col1:
             selected_dataset = st.selectbox(
                 "Select a dataset to explore:",
-                available_datasets,
+        available_datasets,
                 label_visibility="collapsed"
             )
         
@@ -2311,15 +2365,28 @@ def main():
     uploaded_analysis = None
     uploaded_file = None
     
-    if data_source == "📤 Upload CSV File":
-        st.markdown("### 📤 Upload Your Custom Dataset")
-        
-        # Enhanced file uploader with better styling and space efficiency
+    if data_source == "Upload CSV File":
         st.markdown("""
-        <div style="text-align: center; margin: 1rem 0;">
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                📁 Supported format: CSV files (max 200MB) • Ensure your data has column headers
-            </p>
+        <h3 style="text-align: center; color: var(--text-primary); margin: 1.5rem 0 1rem 0;">
+            Upload Your Custom Dataset
+        </h3>
+        """, unsafe_allow_html=True)
+        
+        # Enhanced file uploader with better styling and clear instructions
+        st.markdown("""
+        <div style="
+            background: var(--bg-info);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--border-primary);
+            margin: 1rem 0;
+        ">
+            <div style="text-align: center;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">📁 File Requirements</h4>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                    <strong>Format:</strong> CSV files only • <strong>Size:</strong> Max 200MB • <strong>Headers:</strong> Required
+                </p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -2421,12 +2488,12 @@ def main():
         # Run pipeline
         try:
             with st.spinner("🤖 AI Agents are working..."):
-                if uploaded_data is not None:
-                    temp_path = "temp_uploaded_data.csv"
-                    uploaded_data.to_csv(temp_path, index=False)
-                    orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
-                else:
-                    orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
+            if uploaded_data is not None:
+                temp_path = "temp_uploaded_data.csv"
+                uploaded_data.to_csv(temp_path, index=False)
+                orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
+            else:
+                orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
             
             orchestrator.run_pipeline(
                 cleaning_config=config["cleaning"],
