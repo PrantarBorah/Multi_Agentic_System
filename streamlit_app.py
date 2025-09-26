@@ -2256,12 +2256,14 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Full-width radio buttons with minimal height
-    data_source = st.radio(
-        "",
-        ["Upload CSV File", "Use Sample Dataset"],
-        horizontal=True
-    )
+    # Centered radio buttons with left margin
+    col1, col2 = st.columns([1, 4])
+    with col2:
+        data_source = st.radio(
+            "",
+            ["Upload CSV File", "Use Sample Dataset"],
+            horizontal=True
+        )
     
     
     # Conditional content based on data source selection
