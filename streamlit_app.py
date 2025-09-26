@@ -1036,7 +1036,7 @@ def display_educational_sidebar():
         justify-content: center;
     ">
         <div style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 0.5px;">
-            🧠 ML Guide
+            🎓 Learning Centre
         </div>
         <div style="font-size: 0.9rem; opacity: 0.95; font-weight: 500; line-height: 1.3;">
             ✨ Explore before running pipeline
@@ -2232,44 +2232,95 @@ def main():
         </div>
         ''', unsafe_allow_html=True)
     
-    # Data source selection - positioned at top for workflow
-    st.sidebar.markdown("## 📁 Data Source")
-    data_source = st.sidebar.radio(
-        "Choose your data source",
-        ["📤 Upload CSV File", "📊 Use Sample Dataset"]
-    )
+    # ========== DATA SOURCE SECTION - MOVED TO MAIN PAGE ==========
+    st.markdown("---")
+    st.markdown("""
+    <div style="text-align: center; padding: 2rem 0; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 1rem; margin: 2rem 0;">
+        <h2 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 2rem;">📊 Upload Your Dataset</h2>
+        <p style="color: #64748b; font-size: 1.1rem; margin-bottom: 2rem;">Choose your data source to get started with AI-powered ML pipeline</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Sample dataset selection (appears right below data source)
+    # Data source selection with enhanced styling
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        data_source = st.radio(
+            "",
+            ["📤 Upload CSV File", "📊 Use Sample Dataset"],
+            horizontal=True,
+            help="Choose between uploading your own CSV file or selecting from our curated sample datasets"
+        )
+    
+    # Sample dataset selection with clean layout
     selected_dataset = None
     if data_source == "📊 Use Sample Dataset":
+        st.markdown("### 🎯 Choose from Curated Sample Datasets")
+        
+        # Create a clean grid layout for sample datasets
         available_datasets = load_sample_datasets()
-        selected_dataset = st.sidebar.selectbox("Choose a dataset", available_datasets)
+        
+        # Display datasets in a clean, organized manner
+        col1, col2 = st.columns(2)
+        with col1:
+            selected_dataset = st.selectbox(
+                "Select a dataset to explore:",
+                available_datasets,
+                help="Each dataset is carefully curated for different ML learning scenarios"
+            )
+        
+        with col2:
+            if selected_dataset:
+                # Show a preview of the selected dataset
+                st.markdown(f"**Selected:** `{selected_dataset}`")
+                dataset_preview_info = get_dataset_info(selected_dataset)
+                st.caption(f"🎯 {dataset_preview_info['problem_type']} • 📊 {dataset_preview_info.get('dataset_shape', 'Multiple features')}")
     
-    # Educational sidebar - positioned below data source
+    # Simplified sidebar - only Learning Centre
     display_educational_sidebar()
     
     uploaded_data = None
     uploaded_analysis = None
     
     if data_source == "📤 Upload CSV File":
-        st.markdown("### 📤 Upload Your Dataset")
+        st.markdown("### 📤 Upload Your Custom Dataset")
         
-        uploaded_file = st.file_uploader("Choose a CSV file", type=['csv'])
+        # Enhanced file uploader with better styling
+        col1, col2, col3 = st.columns([1, 3, 1])
+        with col2:
+            uploaded_file = st.file_uploader(
+                "Drag and drop your CSV file here or click to browse",
+                type=['csv'],
+                help="Upload a CSV file (max 200MB). Make sure your data has column headers."
+            )
         
         if uploaded_file is not None:
             try:
                 uploaded_data = pd.read_csv(uploaded_file)
-                st.success(f"✅ File uploaded successfully! Shape: {uploaded_data.shape}")
+                
+                # Enhanced success message with dataset info
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.success(f"✅ **File uploaded successfully!**")
+                    st.markdown(f"📊 **Shape:** {uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns")
+                
+                with col2:
+                    # Show a quick preview
+                    st.markdown("**📋 Preview:**")
+                    st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
                 
                 # Analyze dataset
-                with st.spinner("🔍 Analyzing dataset..."):
+                with st.spinner("🔍 Analyzing your dataset..."):
                     uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
                 
             except Exception as e:
-                st.markdown(create_info_box(f"""
-                <strong>❌ Error reading file:</strong><br>
-                {str(e)}
-                """, "error"), unsafe_allow_html=True)
+                st.error(f"❌ **Error reading file:** {str(e)}")
+                st.markdown("""
+                **💡 Tips for successful upload:**
+                - Ensure your file is in CSV format
+                - Make sure the file has column headers
+                - Check that the file size is under 200MB
+                - Verify there are no special characters in column names
+                """)
     
     # Dataset information
     if uploaded_data is not None:
