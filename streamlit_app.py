@@ -2261,8 +2261,7 @@ def main():
         data_source = st.radio(
             "",
             ["Upload CSV File", "Use Sample Dataset"],
-            horizontal=True,
-            help="Choose how you'd like to provide data for the ML pipeline"
+            horizontal=True
         )
     
     
