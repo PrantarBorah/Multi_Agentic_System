@@ -2190,7 +2190,7 @@ def display_results(results):
 
 def main():
     st.markdown("""
-<div style="text-align: center; padding: 1.5rem 0; 
+    <div style="text-align: center; padding: 1.5rem 0; 
             background: linear-gradient(145deg, #121212, #1c1c1c); 
             border-radius: 1rem; 
             margin-bottom: 1.5rem; 
@@ -2213,7 +2213,7 @@ def main():
         Learn and Experiment with 5 AI Crew Buddies — 
         <span style="color:#58a6ff; font-weight:500;">ML Made Fun!</span>
     </p>
-</div>
+    </div>
 """, unsafe_allow_html=True)
 
 
