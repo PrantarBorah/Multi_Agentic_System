@@ -685,13 +685,13 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         # Determine problem type
         target_data = data[best_candidate['column']]
         if target_data.nunique() == 2:
-            analysis["problem_type"] = "Binary Classification"
+                analysis["problem_type"] = "Binary Classification"
         elif target_data.nunique() < 20 and target_data.dtype in ['object', 'category']:
-            analysis["problem_type"] = "Multi-class Classification"
+                analysis["problem_type"] = "Multi-class Classification"
         else:
             analysis["problem_type"] = "Regression"
             
-        analysis["difficulty"] = "🟡 Intermediate"
+            analysis["difficulty"] = "🟡 Intermediate"
     
     return analysis
 
@@ -1407,7 +1407,7 @@ def display_enhanced_problem_detection(problem_analysis):
             except Exception:
                 confidence = 0.7
         confidence_color = "#10b981" if confidence > 0.8 else "#f59e0b" if confidence > 0.6 else "#ef4444"
-        st.markdown("""
+    st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="color: {};">{:.1%}</div>
             <div class="metric-label">Confidence</div>
@@ -1416,7 +1416,7 @@ def display_enhanced_problem_detection(problem_analysis):
     
     with col3:
         target_col = problem_analysis.get('target_variable', problem_analysis.get('target_column', 'Not detected'))
-        st.markdown("""
+    st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="font-size: 1.2rem;">{}</div>
             <div class="metric-label">Target Column</div>
@@ -2192,7 +2192,7 @@ def main():
             ⚙️ CrewML
         </h1>
         <p style="font-size: 1rem; margin: 0.25rem 0 0 0; color: var(--text-secondary); opacity: 0.9;">
-            AI-Powered Machine Learning Pipeline with Educational Transparency
+            Learn and Experiment with 5 AI Crew Buddies - ML Made Fun!
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -2240,121 +2240,63 @@ def main():
             🚀 Get Started - Upload Your Dataset
         </h1>
         <p style="font-size: 1.1rem; margin: 0; color: var(--text-secondary); opacity: 0.9;">
-            Begin your AI-powered ML journey • Explore our educational features • Build with 5 specialized agents
+            Begin your AI-powered ML journey • Explore our educational features
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Enhanced data source selection with clear options
+    # Clean and focused data source selection
     st.markdown("""
     <div style="text-align: center; margin: 2rem 0 1.5rem 0;">
         <h2 style="color: var(--text-primary); font-size: 1.4rem; margin-bottom: 1rem;">
             Choose Your Data Source
         </h2>
         <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5;">
-            🎓 Don't forget to explore our <strong>Learning Centre</strong> for ML best practices • Then choose your data source below
+            🎓 Explore our <strong>Learning Centre</strong> first, then choose your data source below
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Create two distinct option cards
-    col1, col2 = st.columns(2, gap="large")
-    
-    with col1:
-        st.markdown("""
-        <div style="
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--border-secondary);
-            text-align: center;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        ">
-            <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">📁 Upload Your Own Data</h4>
-            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-                Upload a CSV file from your computer<br>
-                <small>Perfect for your own datasets</small>
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("""
-        <div style="
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: var(--radius-lg);
-            border: 2px solid var(--border-secondary);
-            text-align: center;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        ">
-            <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">📊 Explore Sample Datasets</h4>
-            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-                Choose from 8 curated datasets<br>
-                <small>Great for learning and experimentation</small>
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    # Radio button selection with better spacing
-    st.markdown("<div style='margin: 1.5rem 0;'></div>", unsafe_allow_html=True)
+    # Centered radio button selection with clear labels
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         data_source = st.radio(
-            "Select your preferred option:",
+            "How would you like to provide your data?",
             ["Upload CSV File", "Use Sample Dataset"],
             horizontal=True,
             help="Choose how you'd like to provide data for the ML pipeline"
         )
     
-    # Encouraging exploration message
-    st.markdown("""
-    <div style="text-align: center; margin: 1.5rem 0; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-secondary);">
-        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-            💡 <strong>New to ML?</strong> Check out our <strong>Learning Centre</strong> in the sidebar first! 
-            It covers everything from data preprocessing to model evaluation.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
     
-    # Sample dataset selection with clean layout
+    # Conditional content based on data source selection
     selected_dataset = None
+    uploaded_data = None
+    uploaded_analysis = None
+    uploaded_file = None
+    
     if data_source == "Use Sample Dataset":
+        # Sample dataset selection - only show when this option is selected
         st.markdown("""
         <h3 style="text-align: center; color: var(--text-primary); margin: 1.5rem 0 1rem 0;">
             Choose from Curated Sample Datasets
         </h3>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
-        <div style="text-align: center; margin: 1rem 0;">
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                📚 Each dataset is carefully curated for different ML learning scenarios
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        # Load and display sample datasets
+        available_datasets = load_sample_datasets()
         
-        # Create a clean grid layout for sample datasets
-    available_datasets = load_sample_datasets()
-        
-        # Display datasets in a clean, organized manner with better spacing
-    col1, col2 = st.columns([3, 2])
-    with col1:
+        # Clean layout for dataset selection
+        col1, col2 = st.columns([3, 2])
+        with col1:
             selected_dataset = st.selectbox(
                 "Select a dataset to explore:",
-        available_datasets,
+                available_datasets,
                 label_visibility="collapsed"
             )
         
-    with col2:
+        with col2:
             if selected_dataset:
-                # Show a preview of the selected dataset with better styling
+                # Show a preview of the selected dataset
                 dataset_preview_info = get_dataset_info(selected_dataset)
                 st.markdown(f"""
                 <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary);">
@@ -2368,21 +2310,15 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
     
-    # Simplified sidebar - only Learning Centre
-    display_educational_sidebar()
-    
-    uploaded_data = None
-    uploaded_analysis = None
-    uploaded_file = None
-    
-    if data_source == "Upload CSV File":
+    elif data_source == "Upload CSV File":
+        # File upload section - only show when this option is selected
         st.markdown("""
         <h3 style="text-align: center; color: var(--text-primary); margin: 1.5rem 0 1rem 0;">
             Upload Your Custom Dataset
         </h3>
         """, unsafe_allow_html=True)
         
-        # Enhanced file uploader with better styling and clear instructions
+        # File requirements info
         st.markdown("""
         <div style="
             background: var(--bg-info);
@@ -2400,6 +2336,7 @@ def main():
         </div>
         """, unsafe_allow_html=True)
         
+        # File uploader
         uploaded_file = st.file_uploader(
             "Choose your CSV file",
             type=['csv'],
@@ -2410,30 +2347,23 @@ def main():
             try:
                 uploaded_data = pd.read_csv(uploaded_file)
                 
-                # Enhanced success message with dataset info
+                # Success message with dataset info
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.success(f"✅ **File uploaded successfully!**")
-                    st.markdown(f"📊 **Shape:** {uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns")
+                    st.success(f"✅ Successfully loaded: **{uploaded_file.name}**")
                 
                 with col2:
-                    # Show a quick preview
-                    st.markdown("**📋 Preview:**")
-                    st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
+                    st.info(f"📊 Shape: **{uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns**")
                 
-                # Analyze dataset
-                with st.spinner("🔍 Analyzing your dataset..."):
-                    uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
-                    
+                # Analyze uploaded data
+                uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
+                
             except Exception as e:
-                st.error(f"❌ **Error reading file:** {str(e)}")
-                st.markdown("""
-                **💡 Tips for successful upload:**
-                - Ensure your file is in CSV format
-                - Make sure the file has column headers
-                - Check that the file size is under 200MB
-                - Verify there are no special characters in column names
-                """)
+                st.error(f"❌ Error loading file: {str(e)}")
+                uploaded_data = None
+    
+    # Simplified sidebar - only Learning Centre
+    display_educational_sidebar()
     
     # Dataset information
     if uploaded_data is not None:
