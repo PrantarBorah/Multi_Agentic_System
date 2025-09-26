@@ -659,7 +659,7 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Binary classification patterns
         if unique_vals == 2:
-                    score += 8
+                score += 8
                 reasons.append(f"Binary values suggest classification target")
         elif unique_ratio < 0.1:
                 score += 5
@@ -684,14 +684,14 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Determine problem type
         target_data = data[best_candidate['column']]
-            if target_data.nunique() == 2:
+        if target_data.nunique() == 2:
                 analysis["problem_type"] = "Binary Classification"
         elif target_data.nunique() < 20 and target_data.dtype in ['object', 'category']:
                 analysis["problem_type"] = "Multi-class Classification"
         else:
             analysis["problem_type"] = "Regression"
             
-                    analysis["difficulty"] = "🟡 Intermediate"
+            analysis["difficulty"] = "🟡 Intermediate"
     
     return analysis
 
@@ -1278,9 +1278,9 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
     
     st.markdown("---")
         
-        col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
         
-        with col1:
+    with col1:
         st.markdown('<div class="config-section-title">🧹 Data Cleaning</div>', unsafe_allow_html=True)
         
         # Missing Value Strategy
@@ -1407,7 +1407,7 @@ def display_enhanced_problem_detection(problem_analysis):
             except Exception:
                 confidence = 0.7
         confidence_color = "#10b981" if confidence > 0.8 else "#f59e0b" if confidence > 0.6 else "#ef4444"
-                    st.markdown("""
+    st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="color: {};">{:.1%}</div>
             <div class="metric-label">Confidence</div>
@@ -1416,7 +1416,7 @@ def display_enhanced_problem_detection(problem_analysis):
     
     with col3:
         target_col = problem_analysis.get('target_variable', problem_analysis.get('target_column', 'Not detected'))
-                    st.markdown("""
+    st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="font-size: 1.2rem;">{}</div>
             <div class="metric-label">Target Column</div>
@@ -1653,7 +1653,7 @@ def display_enhanced_eda(eda_results):
                     # Transpose if typical describe format
                     if set(['mean','std','min','max']).intersection(set(num_df.index.astype(str))):
                         num_df = num_df
-            else:
+                else:
                         num_df = num_df.transpose()
                 with st.expander("See Numeric Columns", expanded=False):
                         st.dataframe(num_df.round(3), use_container_width=True)
@@ -1871,7 +1871,7 @@ def display_enhanced_model_training(model_results):
             )
             
             st.plotly_chart(fig, use_container_width=True)
-    
+            
             # Also show a summary table
             with st.expander("📋 Feature Importance Details", expanded=False):
                 importance_df = pd.DataFrame({
@@ -1949,7 +1949,7 @@ def display_enhanced_evaluation(evaluation_results):
                 </div>
                 """, unsafe_allow_html=True)
             
-    with col2:
+            with col2:
                 precision = detailed.get('precision_weighted', 0)
                 st.markdown(f"""
                 <div class="results-metric-card">
@@ -1978,7 +1978,7 @@ def display_enhanced_evaluation(evaluation_results):
         
         else:  # regression
             # Regression metrics
-    with col1:
+            with col1:
                 r2 = metrics.get('r2', detailed.get('r2', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
@@ -1987,7 +1987,7 @@ def display_enhanced_evaluation(evaluation_results):
                 </div>
                 """, unsafe_allow_html=True)
             
-    with col2:
+            with col2:
                 rmse = metrics.get('rmse', detailed.get('rmse', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
@@ -2019,7 +2019,7 @@ def display_enhanced_evaluation(evaluation_results):
     # Detailed Performance Analysis
     col1, col2 = st.columns([1, 1])
                 
-                with col1:
+    with col1:
         # Classification Report
         if 'classification_report' in evaluation_results.get('performance_metrics', {}):
             st.markdown('<div class="results-section-header">📋 Class-wise Performance</div>', unsafe_allow_html=True)
@@ -2135,7 +2135,7 @@ def display_enhanced_evaluation(evaluation_results):
         if isinstance(recommendations, list):
             for i, rec in enumerate(recommendations, 1):
                 st.markdown(f"<div class='recommendation-item'><strong>{i}.</strong> {rec}</div>", unsafe_allow_html=True)
-                        else:
+        else:
             st.write(recommendations)
     
     # Metric Explanations (Educational Component)
@@ -2158,7 +2158,7 @@ def display_results(results):
         return
     
     # Results header with summary
-                st.markdown("""
+    st.markdown("""
     <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, var(--bg-info), var(--bg-secondary)); border-radius: var(--radius-lg); margin: 2rem 0;">
         <h2 style="margin: 0; color: var(--text-primary);">📊 Pipeline Results Dashboard</h2>
         <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary); opacity: 0.9;">
@@ -2202,7 +2202,7 @@ def main():
     
     col1, col2 = st.columns(2)
                 
-                            with col1:
+    with col1:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #10b981; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🤖 5 AI Agents Orchestra</div>
@@ -2217,7 +2217,7 @@ def main():
         </div>
         ''', unsafe_allow_html=True)
                 
-                            with col2:
+    with col2:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🎓 Learn While You Build</div>
@@ -2233,7 +2233,7 @@ def main():
         ''', unsafe_allow_html=True)
     
     # ========== DATA SOURCE SECTION - MOVED TO MAIN PAGE ==========
-                            st.markdown("---")
+    st.markdown("---")
     st.markdown("""
     <div style="text-align: center; padding: 2rem 0; background: linear-gradient(135deg, var(--bg-info), var(--bg-secondary)); border-radius: var(--radius-lg); margin: 2rem 0;">
         <h1 style="margin: 0 0 0.5rem 0; font-size: 2rem; background: linear-gradient(135deg, var(--border-primary), var(--border-hover)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
@@ -2247,22 +2247,11 @@ def main():
     
 
     
-    # Centered radio button selection with down arrow encouragement
-    st.markdown("""
-    <div style="text-align: center; margin: 1.5rem 0;">
-        <h3 style="color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.5rem;">
-            📊 Select Your Data Source ⬇️
-        </h3>
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
-            Choose your option below to continue
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
+    # Centered radio button selection with enhanced styling
     col1, col2, col3 = st.columns([1, 2, 1])
-                    with col2:
+    with col2:
         data_source = st.radio(
-            "",
+            "📊 Select Your Data Source",
             ["Upload CSV File", "Use Sample Dataset"],
             horizontal=True,
             help="Choose how you'd like to provide data for the ML pipeline"
@@ -2279,19 +2268,44 @@ def main():
         # Sample dataset selection - only show when this option is selected
         st.markdown("""
         <h3 style="text-align: center; color: var(--text-primary); margin: 1.5rem 0 1rem 0;">
-            Choose from Curated Sample Datasets
+            📊 Select Your Data Source ⬇️
         </h3>
         """, unsafe_allow_html=True)
         
         # Load and display sample datasets
         available_datasets = load_sample_datasets()
         
-        # Full-width dataset selection (preview info shown in "About your Dataset" section below)
-        selected_dataset = st.selectbox(
-            "Select a dataset to explore:",
-            available_datasets,
-            label_visibility="collapsed"
-        )
+        # Space-efficient dataset selection with inline preview
+        col1, col2, col3 = st.columns([2, 1, 1])
+        
+        with col1:
+            selected_dataset = st.selectbox(
+                "Select a dataset to explore:",
+                available_datasets,
+                label_visibility="collapsed"
+            )
+        
+        with col2:
+            if selected_dataset:
+                dataset_preview_info = get_dataset_info(selected_dataset)
+                st.markdown(f"""
+                <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary); text-align: center;">
+                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.25rem;">
+                        🎯 {dataset_preview_info['problem_type']}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        with col3:
+            if selected_dataset:
+                dataset_preview_info = get_dataset_info(selected_dataset)
+                st.markdown(f"""
+                <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary); text-align: center;">
+                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.25rem;">
+                        📊 {dataset_preview_info.get('dataset_shape', 'Multiple features')}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
     
     elif data_source == "Upload CSV File":
         # File upload section - only show when this option is selected
@@ -2330,10 +2344,10 @@ def main():
                 
                 # Success message with dataset info
                 col1, col2 = st.columns(2)
-                            with col1:
+                with col1:
                     st.success(f"✅ Successfully loaded: **{uploaded_file.name}**")
-        
-        with col2:
+                
+                with col2:
                     st.info(f"📊 Shape: **{uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns**")
                 
                 # Analyze uploaded data
@@ -2409,12 +2423,12 @@ def main():
         # Run pipeline
         try:
             with st.spinner("🤖 AI Agents are working..."):
-            if uploaded_data is not None:
-                temp_path = "temp_uploaded_data.csv"
-                uploaded_data.to_csv(temp_path, index=False)
-                orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
-            else:
-                orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
+                if uploaded_data is not None:
+                    temp_path = "temp_uploaded_data.csv"
+                    uploaded_data.to_csv(temp_path, index=False)
+                    orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
+                else:
+                    orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
             
             orchestrator.run_pipeline(
                 cleaning_config=config["cleaning"],
