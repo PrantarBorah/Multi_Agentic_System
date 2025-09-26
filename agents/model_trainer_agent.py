@@ -140,10 +140,16 @@ class ModelTrainerAgent:
             predictions_scaled = model.predict(X_test_scaled)
             
             if problem_type == "regression":
-                # Inverse transform both y_test and predictions back to original scale
+                # Inverse transform predictions back to original scale for interpretability
                 predictions_original = self.target_scaler.inverse_transform(predictions_scaled.reshape(-1, 1)).flatten()
-                model_results["y_test"] = y_test.tolist()  # Original scale
-                model_results["predictions"] = predictions_original.tolist()  # Original scale
+                
+                # Store scaled values for evaluator metrics computation (better for display)
+                model_results["y_test"] = y_test_scaled.tolist()  # Scaled for metrics
+                model_results["predictions"] = predictions_scaled.tolist()  # Scaled for metrics
+                
+                # Also store original scale values for reference/interpretability
+                model_results["y_test_original"] = y_test.tolist()  # Original scale
+                model_results["predictions_original"] = predictions_original.tolist()  # Original scale
             else:
                 model_results["y_test"] = y_test.tolist()
                 model_results["predictions"] = predictions_scaled.tolist()
@@ -522,24 +528,24 @@ class ModelTrainerAgent:
                     # Inverse transform predictions to original scale
                     y_pred_original = self.target_scaler.inverse_transform(y_pred_scaled.reshape(-1, 1)).flatten()
                     
-                    # Compute metrics on original scale for interpretability
-                    metrics_original = {
-                        "r2": float(r2_score(y_test_original, y_pred_original)),
-                        "mse": float(mean_squared_error(y_test_original, y_pred_original)),
-                        "rmse": float(np.sqrt(mean_squared_error(y_test_original, y_pred_original))),
-                        "mae": float(np.mean(np.abs(y_test_original - y_pred_original)))
-                    }
-                    
-                    # Compute metrics on scaled values for normalized comparison
+                    # Compute metrics on scaled values for normalized display (primary metrics)
                     metrics_scaled = {
-                        "r2_scaled": float(r2_score(y_test_scaled, y_pred_scaled)),
-                        "mse_scaled": float(mean_squared_error(y_test_scaled, y_pred_scaled)),
-                        "rmse_scaled": float(np.sqrt(mean_squared_error(y_test_scaled, y_pred_scaled))),
-                        "mae_scaled": float(np.mean(np.abs(y_test_scaled - y_pred_scaled)))
+                        "r2": float(r2_score(y_test_scaled, y_pred_scaled)),
+                        "mse": float(mean_squared_error(y_test_scaled, y_pred_scaled)),
+                        "rmse": float(np.sqrt(mean_squared_error(y_test_scaled, y_pred_scaled))),
+                        "mae": float(np.mean(np.abs(y_test_scaled - y_pred_scaled)))
                     }
                     
-                    # Combine both sets of metrics
-                    metrics = {**metrics_original, **metrics_scaled}
+                    # Compute metrics on original scale for reference (with suffix)
+                    metrics_original = {
+                        "r2_original": float(r2_score(y_test_original, y_pred_original)),
+                        "mse_original": float(mean_squared_error(y_test_original, y_pred_original)),
+                        "rmse_original": float(np.sqrt(mean_squared_error(y_test_original, y_pred_original))),
+                        "mae_original": float(np.mean(np.abs(y_test_original - y_pred_original)))
+                    }
+                    
+                    # Combine both sets of metrics (scaled metrics are primary)
+                    metrics = {**metrics_scaled, **metrics_original}
                     y_test_for_prompt = y_test_original
                     y_pred_for_prompt = y_pred_original
                 else:
