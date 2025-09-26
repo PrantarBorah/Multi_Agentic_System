@@ -2135,7 +2135,7 @@ def display_enhanced_evaluation(evaluation_results):
         if isinstance(recommendations, list):
             for i, rec in enumerate(recommendations, 1):
                 st.markdown(f"<div class='recommendation-item'><strong>{i}.</strong> {rec}</div>", unsafe_allow_html=True)
-                        else:
+        else:
             st.write(recommendations)
     
     # Metric Explanations (Educational Component)
@@ -2202,7 +2202,7 @@ def main():
     
     col1, col2 = st.columns(2)
     
-                            with col1:
+    with col1:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #10b981; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🤖 5 AI Agents Orchestra</div>
@@ -2217,7 +2217,7 @@ def main():
         </div>
         ''', unsafe_allow_html=True)
     
-                            with col2:
+    with col2:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🎓 Learn While You Build</div>
@@ -2328,7 +2328,7 @@ def main():
             label_visibility="collapsed"
         )
         
-        if uploaded_file is not None:
+    if uploaded_file is not None:
             try:
                 uploaded_data = pd.read_csv(uploaded_file)
                 
@@ -2344,10 +2344,10 @@ def main():
                     st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
                 
                 # Analyze dataset
-                with st.spinner("🔍 Analyzing your dataset..."):
+    with st.spinner("🔍 Analyzing your dataset..."):
                     uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
                 
-            except Exception as e:
+    except Exception as e:
                 st.error(f"❌ **Error reading file:** {str(e)}")
                 st.markdown("""
                 **💡 Tips for successful upload:**
@@ -2382,7 +2382,7 @@ def main():
                 "🎯"
             ), unsafe_allow_html=True)
         
-        with col3:
+    with col3:
             st.markdown(create_metric_card(
                 dataset_info.get('target_variable', 'Unknown'),
                 "Target Variable",
