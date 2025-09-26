@@ -317,22 +317,6 @@ st.markdown("""
         color: white !important;
     }
     
-    /* Dataset section headers */
-    .dataset-section-header {
-        font-size: 1.1rem !important;
-        font-weight: 600 !important;
-        color: var(--text-primary) !important;
-        margin-bottom: 0.75rem !important;
-        padding-bottom: 0.5rem !important;
-        border-bottom: 2px solid var(--border-primary) !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 0.5rem !important;
-    }
-    
-    .dataset-section-header .icon {
-        font-size: 1.25rem !important;
-    }
     
     /* Responsive design */
     @media (max-width: 768px) {
@@ -357,9 +341,6 @@ st.markdown("""
             font-size: 0.7rem !important;
         }
         
-        .dataset-section-header {
-            font-size: 1rem !important;
-        }
         
         .stExpander > div:first-child {
             font-size: 1.1rem !important;
@@ -2282,33 +2263,6 @@ def main():
                 "🏹"
             ), unsafe_allow_html=True)
         
-    st.markdown("---")
-    
-    # Detailed information
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown('<div class="dataset-section-header"><span class="icon">📖</span>Description</div>', unsafe_allow_html=True)
-        st.markdown(create_info_box(dataset_info['description']), unsafe_allow_html=True)
-        
-        if dataset_info.get('recommended_config', {}).get('algorithms'):
-            st.markdown('<div class="dataset-section-header"><span class="icon">🔧</span>Recommended Algorithms</div>', unsafe_allow_html=True)
-            algorithms = dataset_info['recommended_config']['algorithms']
-            algorithm_text = ", ".join([f"**{alg}**" for alg in algorithms])
-            st.markdown(create_info_box(algorithm_text), unsafe_allow_html=True)
-    
-    with col2:
-        if dataset_info['challenges']:
-            st.markdown('<div class="dataset-section-header"><span class="icon">⚡</span>Key Challenges</div>', unsafe_allow_html=True)
-            challenges_html = "<br>".join([f"• {challenge}" for challenge in dataset_info['challenges']])
-            st.markdown(create_info_box(challenges_html, "info"), unsafe_allow_html=True)
-        
-        if dataset_info['learning_objectives']:
-            st.markdown('<div class="dataset-section-header"><span class="icon">🎓</span>Learning Objectives</div>', unsafe_allow_html=True)
-            objectives_html = "<br>".join([f"• {obj}" for obj in dataset_info['learning_objectives']])
-            st.markdown(create_info_box(objectives_html, "info"), unsafe_allow_html=True)
-    
-    # Configuration
     st.markdown("---")
     config = enhanced_configuration(dataset_info, uploaded_data)
     
