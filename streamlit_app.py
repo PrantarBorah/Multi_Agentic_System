@@ -1653,7 +1653,7 @@ def display_enhanced_eda(eda_results):
                     # Transpose if typical describe format
                     if set(['mean','std','min','max']).intersection(set(num_df.index.astype(str))):
                         num_df = num_df
-            else:
+                    else:
                         num_df = num_df.transpose()
                     with st.expander("See Numeric Columns", expanded=False):
                         st.dataframe(num_df.round(3), use_container_width=True)
@@ -1801,13 +1801,13 @@ def display_enhanced_model_training(model_results):
                     yaxis={'categoryorder': 'total ascending'}
                 )
             st.plotly_chart(fig, use_container_width=True)
-    
-                # Display ranking table
-                with st.expander("📋 Detailed Model Rankings", expanded=False):
-                    display_df = df[['rank', 'model', 'cv_score']].copy()
-                    display_df.columns = ['Rank', 'Model', 'CV Score']
-                    display_df['CV Score'] = display_df['CV Score'].round(4)
-                    st.dataframe(display_df, use_container_width=True, hide_index=True)
+            
+            # Display ranking table
+            with st.expander("📋 Detailed Model Rankings", expanded=False):
+                display_df = df[['rank', 'model', 'cv_score']].copy()
+                display_df.columns = ['Rank', 'Model', 'CV Score']
+                display_df['CV Score'] = display_df['CV Score'].round(4)
+                st.dataframe(display_df, use_container_width=True, hide_index=True)
         else:
             st.json(comparison)
     
@@ -2018,8 +2018,8 @@ def display_enhanced_evaluation(evaluation_results):
     
     # Detailed Performance Analysis
     col1, col2 = st.columns([1, 1])
-                
-                with col1:
+    
+    with col1:
         # Classification Report
         if 'classification_report' in evaluation_results.get('performance_metrics', {}):
             st.markdown('<div class="results-section-header">📋 Class-wise Performance</div>', unsafe_allow_html=True)
@@ -2052,7 +2052,7 @@ def display_enhanced_evaluation(evaluation_results):
                         - **Macro Avg F1-Score:** {macro_avg.get('f1-score', 0):.3f}
                         """)
                 
-                with col2:
+    with col2:
         # Confusion Matrix
         if 'plots' in evaluation_results and 'confusion_matrix' in evaluation_results['plots']:
             st.markdown('<div class="results-section-header">🎯 Confusion Matrix</div>', unsafe_allow_html=True)
