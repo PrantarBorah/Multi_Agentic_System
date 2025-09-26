@@ -1885,6 +1885,13 @@ def display_enhanced_model_training(model_results):
         else:
             st.write(insights_text)
 
+def safe_format_metric(value, decimal_places=3):
+    """Safely format metric values, handling both numeric and string values"""
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return f"{value:.{decimal_places}f}"
+    else:
+        return str(value)
+
 def display_enhanced_evaluation(evaluation_results):
     """Enhanced display for model evaluation results"""
     st.markdown("### 📈 Model Evaluation")
@@ -1913,7 +1920,7 @@ def display_enhanced_evaluation(evaluation_results):
                 accuracy = metrics.get('accuracy', detailed.get('accuracy', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{accuracy:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(accuracy)}</div>
                     <div class="metric-label">🎯 Accuracy</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1922,7 +1929,7 @@ def display_enhanced_evaluation(evaluation_results):
                 precision = detailed.get('precision_weighted', 0)
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{precision:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(precision)}</div>
                     <div class="metric-label">🔍 Precision</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1931,7 +1938,7 @@ def display_enhanced_evaluation(evaluation_results):
                 recall = detailed.get('recall_weighted', 0)
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{recall:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(recall)}</div>
                     <div class="metric-label">📈 Recall</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1940,7 +1947,7 @@ def display_enhanced_evaluation(evaluation_results):
                 f1_score = detailed.get('f1_weighted', 0)
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{f1_score:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(f1_score)}</div>
                     <div class="metric-label">⚖️ F1-Score</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1951,7 +1958,7 @@ def display_enhanced_evaluation(evaluation_results):
                 r2 = metrics.get('r2', detailed.get('r2', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{r2:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(r2)}</div>
                     <div class="metric-label">📊 R² Score</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1960,7 +1967,7 @@ def display_enhanced_evaluation(evaluation_results):
                 rmse = metrics.get('rmse', detailed.get('rmse', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{rmse:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(rmse)}</div>
                     <div class="metric-label">📏 RMSE</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1969,7 +1976,7 @@ def display_enhanced_evaluation(evaluation_results):
                 mae = metrics.get('mae', detailed.get('mae', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{mae:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(mae)}</div>
                     <div class="metric-label">📐 MAE</div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1978,7 +1985,7 @@ def display_enhanced_evaluation(evaluation_results):
                 mse = metrics.get('mse', detailed.get('mse', 0))
                 st.markdown(f"""
                 <div class="results-metric-card">
-                    <div class="metric-value">{mse:.3f}</div>
+                    <div class="metric-value">{safe_format_metric(mse)}</div>
                     <div class="metric-label">📈 MSE</div>
                 </div>
                 """, unsafe_allow_html=True)
