@@ -2256,14 +2256,20 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Perfectly centered radio button selection
-    col1, col2, col3 = st.columns([1, 3, 1])
-    with col2:
-        data_source = st.radio(
-            "",
-            ["Upload CSV File", "Use Sample Dataset"],
-            horizontal=True
-        )
+    # Perfectly centered radio button selection using CSS
+    st.markdown("""
+    <div style="display: flex; justify-content: center; margin: 1rem 0;">
+    """, unsafe_allow_html=True)
+    
+    data_source = st.radio(
+        "",
+        ["Upload CSV File", "Use Sample Dataset"],
+        horizontal=True
+    )
+    
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
     
     
     # Conditional content based on data source selection
