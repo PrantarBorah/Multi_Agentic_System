@@ -158,13 +158,22 @@ class ProblemTypeAgent:
             ],
             'regression': [
                 'price', 'cost', 'salary', 'income', 'revenue', 'sales',
-                'amount', 'value', 'score', 'rating', 'prediction', 'target'
+                'amount', 'value', 'score', 'rating', 'prediction', 'target',
+                'grade', 'performance', 'result', 'outcome', 'achievement'
             ],
             'multiclass': [
                 'category', 'class', 'type', 'group', 'level', 'grade',
                 'target', 'label', 'outcome'
             ]
         }
+        
+        # Feature exclusion patterns (columns that are clearly features, not targets)
+        feature_exclusion_patterns = [
+            'id', 'index', 'name', 'date', 'time', 'timestamp',
+            'school', 'education', 'parent', 'gender', 'age', 'location',
+            'address', 'phone', 'email', 'city', 'state', 'country',
+            'type', 'category', 'status', 'method', 'source'
+        ]
         
         target_candidates = []
         
@@ -173,13 +182,34 @@ class ProblemTypeAgent:
             score = 0
             reasons = []
             
-            # Check for target indicators
-            for problem_type, indicators in target_indicators.items():
-                for indicator in indicators:
-                    if indicator in col_lower:
-                        score += 10
-                        reasons.append(f"Column name contains '{indicator}' indicator")
-                        break
+            # Check for feature exclusion patterns first
+            is_likely_feature = False
+            for pattern in feature_exclusion_patterns:
+                if pattern in col_lower:
+                    score -= 20  # Heavy penalty for feature patterns
+                    reasons.append(f"Column name contains '{pattern}' - likely a feature, not target")
+                    is_likely_feature = True
+                    break
+            
+            # Check for target indicators (only if not excluded as feature)
+            if not is_likely_feature:
+                for problem_type, indicators in target_indicators.items():
+                    for indicator in indicators:
+                        if indicator in col_lower:
+                            score += 10
+                            reasons.append(f"Column name contains '{indicator}' indicator")
+                            break
+                
+                # Additional scoring for target preference patterns
+                if 'final' in col_lower and ('grade' in col_lower or 'score' in col_lower):
+                    score += 15  # Strong preference for final grades/scores
+                    reasons.append("Contains 'final' + grade/score - strong target indicator")
+                elif 'target' in col_lower:
+                    score += 15  # Strong preference for anything with 'target'
+                    reasons.append("Contains 'target' - strong target indicator")
+                elif 'previous' in col_lower or 'initial' in col_lower:
+                    score -= 5  # Slight penalty for previous/initial values (likely features)
+                    reasons.append("Contains 'previous/initial' - likely input feature")
             
             # Analyze data characteristics
             unique_vals = data[col].nunique()
@@ -198,12 +228,21 @@ class ProblemTypeAgent:
                         score += 15
                         reasons.append(f"Binary values {unique_values} strongly suggest classification target")
             
+            # Data type and cardinality analysis
+            if data[col].dtype in ['float64', 'int64'] and not is_likely_feature:
+                score += 5  # Boost for numeric columns
+                reasons.append(f"Numeric data type ({data[col].dtype}) suggests potential target")
+            
             # Cardinality analysis
             if unique_ratio < 0.1:  # Very low cardinality
-                score += 8
-                reasons.append(f"Low cardinality ({unique_vals} unique values) suggests categorical target")
-            elif unique_ratio > 0.8:  # High cardinality
-                score += 2
+                if data[col].dtype in ['object', 'category']:
+                    score += 3  # Reduced score for categorical low cardinality
+                    reasons.append(f"Low cardinality ({unique_vals} unique values) suggests categorical target")
+                else:
+                    score += 8  # Higher score for numeric low cardinality (could be ordinal)
+                    reasons.append(f"Low cardinality numeric ({unique_vals} unique values) suggests ordinal target")
+            elif unique_ratio > 0.5:  # High cardinality
+                score += 8  # Higher boost for high cardinality (likely continuous)
                 reasons.append(f"High cardinality ({unique_vals} unique values) suggests continuous target")
             
             if score > 0:
