@@ -10,8 +10,8 @@ import io
 
 # Set page config - MUST be first Streamlit command
 st.set_page_config(
-    page_title="ML Pipeline Orchestrator",
-    page_icon="🤖",
+    page_title="CrewML",
+    page_icon="⚙️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -659,11 +659,11 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Binary classification patterns
         if unique_vals == 2:
-                    score += 8
-            reasons.append(f"Binary values suggest classification target")
+                score += 8
+                reasons.append(f"Binary values suggest classification target")
         elif unique_ratio < 0.1:
                 score += 5
-            reasons.append(f"Low cardinality suggests categorical target")
+                reasons.append(f"Low cardinality suggests categorical target")
         
         if score > 0:
             target_candidates.append({
@@ -684,14 +684,14 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Determine problem type
         target_data = data[best_candidate['column']]
-            if target_data.nunique() == 2:
-                analysis["problem_type"] = "Binary Classification"
+        if target_data.nunique() == 2:
+            analysis["problem_type"] = "Binary Classification"
         elif target_data.nunique() < 20 and target_data.dtype in ['object', 'category']:
-                analysis["problem_type"] = "Multi-class Classification"
+            analysis["problem_type"] = "Multi-class Classification"
         else:
             analysis["problem_type"] = "Regression"
             
-                    analysis["difficulty"] = "🟡 Intermediate"
+        analysis["difficulty"] = "🟡 Intermediate"
     
     return analysis
 
@@ -1063,7 +1063,7 @@ def display_educational_sidebar():
                 """, unsafe_allow_html=True)
         
     category = st.sidebar.selectbox(
-        "💡 Select ML Topic to Learn",
+        "Select ML Topic to Learn",
         list(glossary.keys()),
         help="🎯 Master these concepts to build better ML pipelines!"
     )
@@ -1097,7 +1097,7 @@ def display_educational_sidebar():
         # Display subcategories within the visual container
         for term, info in glossary[category].items():
             expanded_key = f"{category}_{term}"
-            with st.sidebar.expander(f"📖 {term}", expanded=False):
+            with st.sidebar.expander(f"{term}", expanded=False):
                 # Mark as explored when opened
                 st.session_state.explored_topics.add(expanded_key)
                 
@@ -1278,9 +1278,9 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
     
     st.markdown("---")
         
-        col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
         
-        with col1:
+    with col1:
         st.markdown('<div class="config-section-title">🧹 Data Cleaning</div>', unsafe_allow_html=True)
         
         # Missing Value Strategy
@@ -1407,7 +1407,7 @@ def display_enhanced_problem_detection(problem_analysis):
             except Exception:
                 confidence = 0.7
         confidence_color = "#10b981" if confidence > 0.8 else "#f59e0b" if confidence > 0.6 else "#ef4444"
-                    st.markdown("""
+        st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="color: {};">{:.1%}</div>
             <div class="metric-label">Confidence</div>
@@ -1416,7 +1416,7 @@ def display_enhanced_problem_detection(problem_analysis):
     
     with col3:
         target_col = problem_analysis.get('target_variable', problem_analysis.get('target_column', 'Not detected'))
-                    st.markdown("""
+        st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="font-size: 1.2rem;">{}</div>
             <div class="metric-label">Target Column</div>
@@ -1653,9 +1653,9 @@ def display_enhanced_eda(eda_results):
                     # Transpose if typical describe format
                     if set(['mean','std','min','max']).intersection(set(num_df.index.astype(str))):
                         num_df = num_df
-            else:
+                else:
                         num_df = num_df.transpose()
-                    with st.expander("See Numeric Columns", expanded=False):
+                with st.expander("See Numeric Columns", expanded=False):
                         st.dataframe(num_df.round(3), use_container_width=True)
             except Exception:
                 st.json(summary_stats)
@@ -2019,7 +2019,7 @@ def display_enhanced_evaluation(evaluation_results):
     # Detailed Performance Analysis
     col1, col2 = st.columns([1, 1])
                 
-                with col1:
+    with col1:
         # Classification Report
         if 'classification_report' in evaluation_results.get('performance_metrics', {}):
             st.markdown('<div class="results-section-header">📋 Class-wise Performance</div>', unsafe_allow_html=True)
@@ -2054,8 +2054,8 @@ def display_enhanced_evaluation(evaluation_results):
                 
                 with col2:
         # Confusion Matrix
-        if 'plots' in evaluation_results and 'confusion_matrix' in evaluation_results['plots']:
-            st.markdown('<div class="results-section-header">🎯 Confusion Matrix</div>', unsafe_allow_html=True)
+                    if 'plots' in evaluation_results and 'confusion_matrix' in evaluation_results['plots']:
+                        st.markdown('<div class="results-section-header">🎯 Confusion Matrix</div>', unsafe_allow_html=True)
             
             try:
                 # Parse the JSON plot data
@@ -2135,7 +2135,7 @@ def display_enhanced_evaluation(evaluation_results):
         if isinstance(recommendations, list):
             for i, rec in enumerate(recommendations, 1):
                 st.markdown(f"<div class='recommendation-item'><strong>{i}.</strong> {rec}</div>", unsafe_allow_html=True)
-                        else:
+        else:
             st.write(recommendations)
     
     # Metric Explanations (Educational Component)
@@ -2189,7 +2189,7 @@ def main():
     st.markdown("""
     <div style="text-align: center; padding: 1.25rem 0; background: linear-gradient(135deg, var(--bg-info), var(--bg-secondary)); border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
         <h1 style="margin: 0; font-size: 2rem; background: linear-gradient(135deg, var(--border-primary), var(--border-hover)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-            🤖 ML Pipeline Orchestrator
+            ⚙️ CrewML
         </h1>
         <p style="font-size: 1rem; margin: 0.25rem 0 0 0; color: var(--text-secondary); opacity: 0.9;">
             AI-Powered Machine Learning Pipeline with Educational Transparency
@@ -2202,7 +2202,7 @@ def main():
     
     col1, col2 = st.columns(2)
                 
-                with col1:
+    with col1:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #10b981; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🤖 5 AI Agents Orchestra</div>
@@ -2217,7 +2217,7 @@ def main():
         </div>
         ''', unsafe_allow_html=True)
                 
-                with col2:
+    with col2:
         st.markdown('''
         <div style="padding: 1rem; background: #ffffff; border-radius: 0.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 1rem;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">🎓 Learn While You Build</div>
@@ -2260,7 +2260,7 @@ def main():
     # Create two distinct option cards
     col1, col2 = st.columns(2, gap="large")
     
-                            with col1:
+    with col1:
         st.markdown("""
         <div style="
             background: var(--bg-secondary);
@@ -2281,7 +2281,7 @@ def main():
         </div>
         """, unsafe_allow_html=True)
     
-                            with col2:
+    with col2:
         st.markdown("""
         <div style="
             background: var(--bg-secondary);
@@ -2334,15 +2334,15 @@ def main():
     available_datasets = load_sample_datasets()
         
         # Display datasets in a clean, organized manner with better spacing
-        col1, col2 = st.columns([3, 2])
-        with col1:
+    col1, col2 = st.columns([3, 2])
+    with col1:
             selected_dataset = st.selectbox(
                 "Select a dataset to explore:",
         available_datasets,
                 label_visibility="collapsed"
             )
         
-        with col2:
+    with col2:
             if selected_dataset:
                 # Show a preview of the selected dataset with better styling
                 dataset_preview_info = get_dataset_info(selected_dataset)
@@ -2488,12 +2488,12 @@ def main():
         # Run pipeline
         try:
             with st.spinner("🤖 AI Agents are working..."):
-            if uploaded_data is not None:
-                temp_path = "temp_uploaded_data.csv"
-                uploaded_data.to_csv(temp_path, index=False)
-                orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
-            else:
-                orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
+                if uploaded_data is not None:
+                    temp_path = "temp_uploaded_data.csv"
+                    uploaded_data.to_csv(temp_path, index=False)
+                    orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
+                else:
+                    orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
             
             orchestrator.run_pipeline(
                 cleaning_config=config["cleaning"],
