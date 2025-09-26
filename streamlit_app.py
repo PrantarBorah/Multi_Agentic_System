@@ -2309,6 +2309,7 @@ def main():
     
     uploaded_data = None
     uploaded_analysis = None
+    uploaded_file = None
     
     if data_source == "📤 Upload CSV File":
         st.markdown("### 📤 Upload Your Custom Dataset")
@@ -2328,34 +2329,34 @@ def main():
             label_visibility="collapsed"
         )
         
-    if uploaded_file is not None:
-        try:
-            uploaded_data = pd.read_csv(uploaded_file)
-            
-            # Enhanced success message with dataset info
-            col1, col2 = st.columns(2)
-            with col1:
-                st.success(f"✅ **File uploaded successfully!**")
-                st.markdown(f"📊 **Shape:** {uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns")
-            
-            with col2:
-                # Show a quick preview
-                st.markdown("**📋 Preview:**")
-                st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
-            
-            # Analyze dataset
-            with st.spinner("🔍 Analyzing your dataset..."):
-                uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
+        if uploaded_file is not None:
+            try:
+                uploaded_data = pd.read_csv(uploaded_file)
                 
-        except Exception as e:
-            st.error(f"❌ **Error reading file:** {str(e)}")
-            st.markdown("""
-            **💡 Tips for successful upload:**
-            - Ensure your file is in CSV format
-            - Make sure the file has column headers
-            - Check that the file size is under 200MB
-            - Verify there are no special characters in column names
-            """)
+                # Enhanced success message with dataset info
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.success(f"✅ **File uploaded successfully!**")
+                    st.markdown(f"📊 **Shape:** {uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns")
+                
+                with col2:
+                    # Show a quick preview
+                    st.markdown("**📋 Preview:**")
+                    st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
+                
+                # Analyze dataset
+                with st.spinner("🔍 Analyzing your dataset..."):
+                    uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
+                    
+            except Exception as e:
+                st.error(f"❌ **Error reading file:** {str(e)}")
+                st.markdown("""
+                **💡 Tips for successful upload:**
+                - Ensure your file is in CSV format
+                - Make sure the file has column headers
+                - Check that the file size is under 200MB
+                - Verify there are no special characters in column names
+                """)
     
     # Dataset information
     if uploaded_data is not None:
