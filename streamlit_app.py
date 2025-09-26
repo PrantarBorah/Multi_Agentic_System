@@ -2248,10 +2248,18 @@ def main():
 
     
     # Centered radio button selection with enhanced styling
+    st.markdown("""
+    <div style="text-align: center; margin: 1.5rem 0;">
+        <h3 style="color: var(--text-primary); font-size: 1.2rem; margin-bottom: 1rem;">
+            Select Your Data Source ⬇️
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         data_source = st.radio(
-            "📊 Select Your Data Source",
+            "",
             ["Upload CSV File", "Use Sample Dataset"],
             horizontal=True,
             help="Choose how you'd like to provide data for the ML pipeline"
@@ -2268,7 +2276,7 @@ def main():
         # Sample dataset selection - only show when this option is selected
         st.markdown("""
         <h3 style="text-align: center; color: var(--text-primary); margin: 1.5rem 0 1rem 0;">
-            📊 Select Your Data Source ⬇️
+            ⬇️ Select Sample Dataset ⬇️
         </h3>
         """, unsafe_allow_html=True)
         
