@@ -2233,7 +2233,7 @@ def main():
         ''', unsafe_allow_html=True)
     
     # ========== DATA SOURCE SECTION - MOVED TO MAIN PAGE ==========
-                            st.markdown("---")
+    st.markdown("---")
     st.markdown("""
     <div style="text-align: center; padding: 2rem 0; background: linear-gradient(135deg, var(--bg-info), var(--bg-secondary)); border-radius: var(--radius-lg); margin: 2rem 0;">
         <h1 style="margin: 0 0 0.5rem 0; font-size: 2rem; background: linear-gradient(135deg, var(--border-primary), var(--border-hover)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
@@ -2329,38 +2329,38 @@ def main():
         )
         
     if uploaded_file is not None:
-            try:
-                uploaded_data = pd.read_csv(uploaded_file)
+        try:
+            uploaded_data = pd.read_csv(uploaded_file)
+            
+            # Enhanced success message with dataset info
+            col1, col2 = st.columns(2)
+            with col1:
+                st.success(f"✅ **File uploaded successfully!**")
+                st.markdown(f"📊 **Shape:** {uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns")
+            
+            with col2:
+                # Show a quick preview
+                st.markdown("**📋 Preview:**")
+                st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
+            
+            # Analyze dataset
+            with st.spinner("🔍 Analyzing your dataset..."):
+                uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
                 
-                # Enhanced success message with dataset info
-                col1, col2 = st.columns(2)
-    with col1:
-                    st.success(f"✅ **File uploaded successfully!**")
-                    st.markdown(f"📊 **Shape:** {uploaded_data.shape[0]} rows × {uploaded_data.shape[1]} columns")
-    
-    with col2:
-                    # Show a quick preview
-                    st.markdown("**📋 Preview:**")
-                    st.caption(f"Columns: {', '.join(uploaded_data.columns[:3].tolist())}{' ...' if len(uploaded_data.columns) > 3 else ''}")
-                
-                # Analyze dataset
-    with st.spinner("🔍 Analyzing your dataset..."):
-                    uploaded_analysis = analyze_uploaded_dataset(uploaded_data)
-                
-    except Exception as e:
-                st.error(f"❌ **Error reading file:** {str(e)}")
-                st.markdown("""
-                **💡 Tips for successful upload:**
-                - Ensure your file is in CSV format
-                - Make sure the file has column headers
-                - Check that the file size is under 200MB
-                - Verify there are no special characters in column names
-                """)
+        except Exception as e:
+            st.error(f"❌ **Error reading file:** {str(e)}")
+            st.markdown("""
+            **💡 Tips for successful upload:**
+            - Ensure your file is in CSV format
+            - Make sure the file has column headers
+            - Check that the file size is under 200MB
+            - Verify there are no special characters in column names
+            """)
     
     # Dataset information
-            if uploaded_data is not None:
+    if uploaded_data is not None:
         dataset_info = get_dataset_info("uploaded", uploaded_data, uploaded_analysis)
-            else:
+    else:
         dataset_info = get_dataset_info(selected_dataset)
     
     # Display dataset info with enhanced formatting
@@ -2420,12 +2420,12 @@ def main():
         # Run pipeline
         try:
             with st.spinner("🤖 AI Agents are working..."):
-            if uploaded_data is not None:
-                temp_path = "temp_uploaded_data.csv"
-                uploaded_data.to_csv(temp_path, index=False)
-                orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
-            else:
-                orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
+                if uploaded_data is not None:
+                    temp_path = "temp_uploaded_data.csv"
+                    uploaded_data.to_csv(temp_path, index=False)
+                    orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
+                else:
+                    orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
             
             orchestrator.run_pipeline(
                 cleaning_config=config["cleaning"],
