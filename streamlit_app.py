@@ -2247,18 +2247,6 @@ def main():
     
 
     
-    # Engaging data source selection with visual appeal
-    st.markdown("""
-    <div style="text-align: center; margin: 2rem 0 1.5rem 0;">
-        <h2 style="color: var(--text-primary); font-size: 1.3rem; margin-bottom: 0.5rem;">
-            🎯 Ready to Start Your ML Journey?
-        </h2>
-        <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;">
-            Choose your data source below to begin building with your AI crew
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
     # Centered radio button selection with enhanced styling
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
@@ -2287,8 +2275,9 @@ def main():
         # Load and display sample datasets
         available_datasets = load_sample_datasets()
         
-        # Clean layout for dataset selection
-        col1, col2 = st.columns([3, 2])
+        # Space-efficient dataset selection with inline preview
+        col1, col2, col3 = st.columns([2, 1, 1])
+        
         with col1:
             selected_dataset = st.selectbox(
                 "Select a dataset to explore:",
@@ -2298,15 +2287,21 @@ def main():
         
         with col2:
             if selected_dataset:
-                # Show a preview of the selected dataset
                 dataset_preview_info = get_dataset_info(selected_dataset)
                 st.markdown(f"""
-                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary);">
-                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">
-                        📋 {selected_dataset}
+                <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary); text-align: center;">
+                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.25rem;">
+                        🎯 {dataset_preview_info['problem_type']}
                     </div>
-                    <div style="color: var(--text-secondary); font-size: 0.85rem;">
-                        🎯 {dataset_preview_info['problem_type']}<br>
+                </div>
+                """, unsafe_allow_html=True)
+        
+        with col3:
+            if selected_dataset:
+                dataset_preview_info = get_dataset_info(selected_dataset)
+                st.markdown(f"""
+                <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary); text-align: center;">
+                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.25rem;">
                         📊 {dataset_preview_info.get('dataset_shape', 'Multiple features')}
                     </div>
                 </div>
