@@ -684,14 +684,14 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Determine problem type
         target_data = data[best_candidate['column']]
-            if target_data.nunique() == 2:
-                analysis["problem_type"] = "Binary Classification"
+        if target_data.nunique() == 2:
+            analysis["problem_type"] = "Binary Classification"
         elif target_data.nunique() < 20 and target_data.dtype in ['object', 'category']:
-                analysis["problem_type"] = "Multi-class Classification"
+            analysis["problem_type"] = "Multi-class Classification"
         else:
             analysis["problem_type"] = "Regression"
             
-                    analysis["difficulty"] = "🟡 Intermediate"
+        analysis["difficulty"] = "🟡 Intermediate"
     
     return analysis
 
@@ -1277,10 +1277,10 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
             st.markdown(f"• **Cross Validation:** `{recommendations['cv_strategy']}` - {recommendations['reasoning']['cv_strategy']}")
     
     st.markdown("---")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
         st.markdown('<div class="config-section-title">🧹 Data Cleaning</div>', unsafe_allow_html=True)
         
         # Missing Value Strategy
@@ -1407,7 +1407,7 @@ def display_enhanced_problem_detection(problem_analysis):
             except Exception:
                 confidence = 0.7
         confidence_color = "#10b981" if confidence > 0.8 else "#f59e0b" if confidence > 0.6 else "#ef4444"
-                    st.markdown("""
+        st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="color: {};">{:.1%}</div>
             <div class="metric-label">Confidence</div>
@@ -1416,7 +1416,7 @@ def display_enhanced_problem_detection(problem_analysis):
     
     with col3:
         target_col = problem_analysis.get('target_variable', problem_analysis.get('target_column', 'Not detected'))
-                    st.markdown("""
+        st.markdown("""
         <div class="metric-card">
             <div class="metric-value" style="font-size: 1.2rem;">{}</div>
             <div class="metric-label">Target Column</div>
@@ -1569,23 +1569,23 @@ def display_enhanced_data_cleaning(cleaning_results):
         col1, col2, col3 = st.columns(3)
         
     with col1:
-            before_count = nan_before.get('total_nan_count', 0)
-            st.metric("NaN Values Before", f"{before_count:,}", 
-                     help="Total missing values in the original dataset")
+        before_count = nan_before.get('total_nan_count', 0)
+        st.metric("NaN Values Before", f"{before_count:,}", 
+                 help="Total missing values in the original dataset")
         
     with col2:
-            after_count = nan_final.get('total_nan_count', 0)
-            st.metric("NaN Values After", f"{after_count:,}", 
-                     help="Total missing values after cleaning")
-        
-        with col3:
-            cleaned_count = before_count - after_count
-            st.metric("NaN Values Cleaned", f"{cleaned_count:,}", 
-                     delta=f"-{cleaned_count}" if cleaned_count > 0 else "0",
-                     help="Number of missing values successfully handled")
-        
-        # Detailed per-column analysis
-        if nan_before.get('column_details') or nan_final.get('column_details'):
+        after_count = nan_final.get('total_nan_count', 0)
+        st.metric("NaN Values After", f"{after_count:,}", 
+                 help="Total missing values after cleaning")
+    
+    with col3:
+        cleaned_count = before_count - after_count
+        st.metric("NaN Values Cleaned", f"{cleaned_count:,}", 
+                 delta=f"-{cleaned_count}" if cleaned_count > 0 else "0",
+                 help="Number of missing values successfully handled")
+    
+    # Detailed per-column analysis
+    if nan_before.get('column_details') or nan_final.get('column_details'):
             with st.expander("📊 Detailed NaN Analysis by Column", expanded=False):
                 
                 # Create comparison table
@@ -1623,12 +1623,12 @@ def display_enhanced_data_cleaning(cleaning_results):
                         remaining_nan_columns = [row['Column'] for row in comparison_data if row['NaN After'] > 0]
                         if remaining_nan_columns:
                             st.warning(f"⚠️ Columns with remaining NaN values: {', '.join(remaining_nan_columns)}")
-                    else:
+                        else:
                             st.success("✅ All NaN values have been successfully handled!")
-        
-        # Emergency cleanup notification
-        if 'nan_analysis_final' in cleaning_results and cleaning_results['nan_analysis_final'] != nan_after:
-            st.info("🔧 Emergency NaN cleanup was applied to ensure model training compatibility.")
+    
+    # Emergency cleanup notification
+    if 'nan_analysis_final' in cleaning_results and cleaning_results['nan_analysis_final'] != nan_after:
+        st.info("🔧 Emergency NaN cleanup was applied to ensure model training compatibility.")
 
 def display_enhanced_eda(eda_results):
     """Enhanced display for EDA results with visualizations"""
