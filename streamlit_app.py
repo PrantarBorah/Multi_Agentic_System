@@ -659,10 +659,10 @@ def analyze_uploaded_dataset(data: pd.DataFrame) -> dict:
         
         # Binary classification patterns
         if unique_vals == 2:
-                    score += 8
+            score += 8
             reasons.append(f"Binary values suggest classification target")
         elif unique_ratio < 0.1:
-                score += 5
+            score += 5
             reasons.append(f"Low cardinality suggests categorical target")
         
         if score > 0:
