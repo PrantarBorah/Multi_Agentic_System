@@ -2256,7 +2256,8 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1, 2, 1])
+    # Perfectly centered radio button selection
+    col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
         data_source = st.radio(
             "",
