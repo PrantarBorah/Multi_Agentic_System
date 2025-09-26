@@ -2239,29 +2239,31 @@ def main():
         <h1 style="margin: 0 0 0.5rem 0; font-size: 2rem; background: linear-gradient(135deg, var(--border-primary), var(--border-hover)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
             🚀 Get Started - Upload Your Dataset
         </h1>
-        <p style="font-size: 1.1rem; margin: 0; color: var(--text-secondary); opacity: 0.9;">
-            Begin your AI-powered ML journey • Explore our educational features
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5;">
+            🎓 Explore our Learning Centre first, then choose your data source below
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Clean and focused data source selection
+
+    
+    # Engaging data source selection with visual appeal
     st.markdown("""
     <div style="text-align: center; margin: 2rem 0 1.5rem 0;">
-        <h2 style="color: var(--text-primary); font-size: 1.4rem; margin-bottom: 1rem;">
-            Choose Your Data Source
+        <h2 style="color: var(--text-primary); font-size: 1.3rem; margin-bottom: 0.5rem;">
+            🎯 Ready to Start Your ML Journey?
         </h2>
-        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5;">
-            🎓 Explore our <strong>Learning Centre</strong> first, then choose your data source below
+        <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;">
+            Choose your data source below to begin building with your AI crew
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Centered radio button selection with clear labels
+    # Centered radio button selection with enhanced styling
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         data_source = st.radio(
-            "How would you like to provide your data?",
+            "📊 Select Your Data Source",
             ["Upload CSV File", "Use Sample Dataset"],
             horizontal=True,
             help="Choose how you'd like to provide data for the ML pipeline"
@@ -2318,30 +2320,28 @@ def main():
         </h3>
         """, unsafe_allow_html=True)
         
-        # File requirements info
-        st.markdown("""
-        <div style="
-            background: var(--bg-info);
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--border-primary);
-            margin: 1rem 0;
-        ">
-            <div style="text-align: center;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">📁 File Requirements</h4>
-                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
-                    <strong>Format:</strong> CSV files only • <strong>Size:</strong> Max 200MB • <strong>Headers:</strong> Required
-                </p>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
         # File uploader
         uploaded_file = st.file_uploader(
             "Choose your CSV file",
             type=['csv'],
             label_visibility="collapsed"
         )
+        
+        # Subtle file requirements info positioned near upload area
+        st.markdown("""
+        <div style="
+            text-align: center;
+            margin: 0.5rem 0 1rem 0;
+            padding: 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-secondary);
+        ">
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.8;">
+                📁 CSV files only • Max 200MB • Headers required
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
         
         if uploaded_file is not None:
             try:
