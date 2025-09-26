@@ -2416,13 +2416,13 @@ def main():
                     orchestrator = DataPipelineOrchestrator(temp_path, openai_api_key=openai_api_key)
                 else:
                     orchestrator = DataPipelineOrchestrator(f"sample_data/{selected_dataset}", openai_api_key=openai_api_key)
-            
-            orchestrator.run_pipeline(
-                cleaning_config=config["cleaning"],
-                eda_config=config["eda"],
-                training_config=config["training"],
-                evaluation_config=config["evaluation"]
-            )
+                
+                orchestrator.run_pipeline(
+                    cleaning_config=config["cleaning"],
+                    eda_config=config["eda"],
+                    training_config=config["training"],
+                    evaluation_config=config["evaluation"]
+                )
             
             # Load results
             with open("pipeline_results.json", "r") as f:
