@@ -1225,6 +1225,10 @@ def get_dataset_recommendations(dataset_info, problem_type=None):
     elif "survey" in dataset_info.get("description", "").lower():
         recommendations["outlier_handling"] = "remove"
         recommendations["reasoning"]["outlier_handling"] = "Survey responses with extreme outliers may indicate data entry errors"
+    else:
+        # Default outlier handling
+        recommendations["outlier_handling"] = "auto"
+        recommendations["reasoning"]["outlier_handling"] = "Automatic outlier detection and handling based on data distribution"
     
     # Override with dataset-specific recommendations if available
     dataset_config = dataset_info.get("recommended_config", {})
@@ -1268,13 +1272,13 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
         
         with rec_col1:
             st.markdown("**🧹 Data Cleaning Recommendations**")
-            st.markdown(f"• **Missing Values:** `{recommendations['missing_value_strategy']}` - {recommendations['reasoning']['missing_value_strategy']}")
-            st.markdown(f"• **Outliers:** `{recommendations['outlier_handling']}` - {recommendations['reasoning']['outlier_handling']}")
+            st.markdown(f"• **Missing Values:** `{recommendations.get('missing_value_strategy', 'auto')}` - {recommendations.get('reasoning', {}).get('missing_value_strategy', 'Intelligent imputation')}")
+            st.markdown(f"• **Outliers:** `{recommendations.get('outlier_handling', 'auto')}` - {recommendations.get('reasoning', {}).get('outlier_handling', 'Automatic outlier handling')}")
         
         with rec_col2:
             st.markdown("**🤖 Model Training Recommendations**")
-            st.markdown(f"• **Algorithms:** `{', '.join(recommendations['algorithms'][:2])}{'...' if len(recommendations['algorithms']) > 2 else ''}` - {recommendations['reasoning']['algorithms']}")
-            st.markdown(f"• **Cross Validation:** `{recommendations['cv_strategy']}` - {recommendations['reasoning']['cv_strategy']}")
+            st.markdown(f"• **Algorithms:** `{', '.join(recommendations.get('algorithms', ['RandomForest'])[:2])}{'...' if len(recommendations.get('algorithms', [])) > 2 else ''}` - {recommendations.get('reasoning', {}).get('algorithms', 'Optimized for this dataset')}")
+            st.markdown(f"• **Cross Validation:** `{recommendations.get('cv_strategy', 'auto')}` - {recommendations.get('reasoning', {}).get('cv_strategy', 'Standard cross-validation')}")
     
     st.markdown("---")
         
@@ -2257,7 +2261,7 @@ def main():
     """, unsafe_allow_html=True)
     
     # Centered radio buttons with left margin
-    col1, col2 = st.columns([1, 4])
+    col1, col2 = st.columns([1.5, 3.5])
     with col2:
         data_source = st.radio(
             "",
@@ -2283,37 +2287,12 @@ def main():
         # Load and display sample datasets
         available_datasets = load_sample_datasets()
         
-        # Space-efficient dataset selection with inline preview
-        col1, col2, col3 = st.columns([2, 1, 1])
-        
-        with col1:
-            selected_dataset = st.selectbox(
-                "Select a dataset to explore:",
-                available_datasets,
-                label_visibility="collapsed"
-            )
-        
-        with col2:
-            if selected_dataset:
-                dataset_preview_info = get_dataset_info(selected_dataset)
-                st.markdown(f"""
-                <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary); text-align: center;">
-                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.25rem;">
-                        🎯 {dataset_preview_info['problem_type']}
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-        
-        with col3:
-            if selected_dataset:
-                dataset_preview_info = get_dataset_info(selected_dataset)
-                st.markdown(f"""
-                <div style="background: var(--bg-secondary); padding: 0.75rem; border-radius: var(--radius-md); border-left: 3px solid var(--border-primary); text-align: center;">
-                    <div style="font-weight: 600; color: var(--text-primary); font-size: 0.9rem; margin-bottom: 0.25rem;">
-                        📊 {dataset_preview_info.get('dataset_shape', 'Multiple features')}
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
+        # Clean dataset selection without redundant preview cards
+        selected_dataset = st.selectbox(
+            "Select a dataset to explore:",
+            available_datasets,
+            label_visibility="collapsed"
+        )
     
     elif data_source == "Upload CSV File":
         # File upload section - only show when this option is selected
