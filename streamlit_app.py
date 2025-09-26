@@ -2405,7 +2405,7 @@ def main():
                         raise ValueError("API key not found")
             except:
                 st.error("❌ OpenAI API key not found. Please add it to .env file or Streamlit secrets.")
-            return
+                return
         
         # Run pipeline
         try:
@@ -2421,14 +2421,14 @@ def main():
                 cleaning_config=config["cleaning"],
                 eda_config=config["eda"],
                 training_config=config["training"],
-                    evaluation_config=config["evaluation"]
+                evaluation_config=config["evaluation"]
             )
             
             # Load results
             with open("pipeline_results.json", "r") as f:
                 st.session_state.pipeline_results = json.load(f)
             
-                # Clean up
+            # Clean up
             if uploaded_data is not None and os.path.exists(temp_path):
                 os.remove(temp_path)
             
