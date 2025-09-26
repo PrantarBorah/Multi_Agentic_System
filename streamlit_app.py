@@ -1816,15 +1816,34 @@ def display_enhanced_model_training(model_results):
         st.markdown('<div class="results-section-header">🎯 Feature Importance Analysis</div>', unsafe_allow_html=True)
         importance = model_results['feature_importance']
         
+        # Handle different formats of feature importance data
+        features = []
+        importances = []
+        
         if isinstance(importance, dict):
-            # Create feature importance chart
+            # Simple dictionary format: {'feature': importance}
             features = list(importance.keys())
             importances = list(importance.values())
-            
-            # Sort by importance
+        elif isinstance(importance, list) and len(importance) > 0:
+            # List of dictionaries format: [{'feature': 'name', 'importance': value}]
+            if isinstance(importance[0], dict) and 'feature' in importance[0] and 'importance' in importance[0]:
+                features = [item['feature'] for item in importance]
+                importances = [item['importance'] for item in importance]
+            else:
+                # Fallback for unexpected list format
+                st.info("Feature importance data format not supported for visualization")
+                return
+        else:
+            st.info("No feature importance data available for this model")
+            return
+        
+        if features and importances:
+            # Sort by importance (data might already be sorted, but ensure it)
             sorted_data = sorted(zip(features, importances), key=lambda x: x[1], reverse=True)
             features, importances = zip(*sorted_data)
             
+            # Create feature importance chart
+            import plotly.express as px
             fig = px.bar(
                 x=importances,
                 y=features,
@@ -1832,14 +1851,37 @@ def display_enhanced_model_training(model_results):
                 title="Feature Importance Scores",
                 labels={'x': 'Importance Score', 'y': 'Features'},
                 color=importances,
-                color_continuous_scale="blues",
+                color_continuous_scale="viridis",
                 text=importances
             )
-            fig.update_traces(texttemplate='%{text:.3f}', textposition='outside')
-            fig.update_layout(height=max(300, len(features) * 40), showlegend=False)
+            
+            # Customize the chart
+            fig.update_traces(
+                texttemplate='%{text:.3f}', 
+                textposition='outside',
+                textfont_size=10
+            )
+            fig.update_layout(
+                height=max(400, len(features) * 35),
+                showlegend=False,
+                title_x=0.5,
+                xaxis_title="Importance Score",
+                yaxis_title="Features",
+                font=dict(size=12),
+                margin=dict(l=120, r=50, t=50, b=50)
+            )
+            
             st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.json(importance)
+            
+            # Also show a summary table
+            with st.expander("📋 Feature Importance Details", expanded=False):
+                import pandas as pd
+                importance_df = pd.DataFrame({
+                    'Feature': features,
+                    'Importance': importances,
+                    'Percentage': [f"{imp/sum(importances)*100:.1f}%" for imp in importances]
+                })
+                st.dataframe(importance_df, use_container_width=True, hide_index=True)
     
     # Training Process Insights
     if 'training_summary' in model_results and 'insights' in model_results['training_summary']:
