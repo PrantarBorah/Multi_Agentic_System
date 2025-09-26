@@ -1843,7 +1843,6 @@ def display_enhanced_model_training(model_results):
             features, importances = zip(*sorted_data)
             
             # Create feature importance chart
-            import plotly.express as px
             fig = px.bar(
                 x=importances,
                 y=features,
@@ -1875,7 +1874,6 @@ def display_enhanced_model_training(model_results):
             
             # Also show a summary table
             with st.expander("📋 Feature Importance Details", expanded=False):
-                import pandas as pd
                 importance_df = pd.DataFrame({
                     'Feature': features,
                     'Importance': importances,
