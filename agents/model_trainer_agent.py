@@ -30,7 +30,8 @@ class ModelTrainerAgent:
             raise ValueError("OpenAI API key not found. Please set it in Streamlit secrets or environment variables.")
         
         self.openai_client = openai.OpenAI(api_key=api_key)
-        self.scaler = StandardScaler()
+        self.feature_scaler = StandardScaler()
+        self.target_scaler = StandardScaler()
         self.label_encoder = LabelEncoder()
     
     def train_model(self, data: pd.DataFrame, eda_results: dict, model_training_options: dict = None) -> dict:
@@ -84,8 +85,14 @@ class ModelTrainerAgent:
                 X, y, test_size=0.2, random_state=42, stratify=y if use_stratification else None
             )
             
-            # Preprocess features
-            X_train_scaled, X_test_scaled = self._preprocess_features(X_train, X_test)
+            # Preprocess features and target
+            preprocessing_result = self._preprocess_features(X_train, X_test, y_train, y_test, problem_type)
+            
+            if problem_type == "regression":
+                X_train_scaled, X_test_scaled, y_train_scaled, y_test_scaled = preprocessing_result
+            else:
+                X_train_scaled, X_test_scaled = preprocessing_result
+                y_train_scaled, y_test_scaled = y_train, y_test
             
             # Get cross-validation strategy
             cv_strategy = self._get_cv_strategy(
@@ -97,7 +104,7 @@ class ModelTrainerAgent:
             
             # Select and train model
             model, cv_score, model_comparison, hyperparams = self._select_and_train_model(
-                X_train_scaled, y_train, problem_type, model_training_options, cv_strategy
+                X_train_scaled, y_train_scaled, problem_type, model_training_options, cv_strategy
             )
             
             model_results["selected_model"] = type(model).__name__
@@ -119,9 +126,9 @@ class ModelTrainerAgent:
                 }).sort_values('importance', ascending=False)
                 model_results["feature_importance"] = importance_df.to_dict('records')
             
-            # Generate training summary
+            # Generate training summary (with inverse transform for regression)
             model_results["training_summary"] = self._generate_training_summary(
-                model, X_test_scaled, y_test, problem_type
+                model, X_test_scaled, y_test_scaled, y_test, problem_type
             )
             
             # Generate educational insights
@@ -129,8 +136,17 @@ class ModelTrainerAgent:
                 model, cv_score, model_comparison, problem_type, len(X.columns)
             )
             
-            model_results["y_test"] = y_test.tolist()
-            model_results["predictions"] = model.predict(X_test_scaled).tolist()
+            # Store predictions (inverse transform for regression)
+            predictions_scaled = model.predict(X_test_scaled)
+            
+            if problem_type == "regression":
+                # Inverse transform both y_test and predictions back to original scale
+                predictions_original = self.target_scaler.inverse_transform(predictions_scaled.reshape(-1, 1)).flatten()
+                model_results["y_test"] = y_test.tolist()  # Original scale
+                model_results["predictions"] = predictions_original.tolist()  # Original scale
+            else:
+                model_results["y_test"] = y_test.tolist()
+                model_results["predictions"] = predictions_scaled.tolist()
             
             # Add prediction probabilities for classification models (needed for ROC AUC)
             if problem_type == "classification" and hasattr(model, 'predict_proba'):
@@ -299,12 +315,21 @@ class ModelTrainerAgent:
             print(f"⚠️ Error checking stratification compatibility: {str(e)}")
             return False
     
-    def _preprocess_features(self, X_train: pd.DataFrame, X_test: pd.DataFrame) -> tuple:
-        """Preprocess features using scaling"""
-        X_train_scaled = self.scaler.fit_transform(X_train)
-        X_test_scaled = self.scaler.transform(X_test)
+    def _preprocess_features(self, X_train: pd.DataFrame, X_test: pd.DataFrame, y_train: pd.Series = None, y_test: pd.Series = None, problem_type: str = None) -> tuple:
+        """Preprocess features and target using scaling"""
+        # Scale features
+        X_train_scaled = self.feature_scaler.fit_transform(X_train)
+        X_test_scaled = self.feature_scaler.transform(X_test)
         
-        return X_train_scaled, X_test_scaled
+        # Scale target for regression problems
+        if problem_type == "regression" and y_train is not None and y_test is not None:
+            print("🔧 Applying target scaling for regression...")
+            y_train_scaled = self.target_scaler.fit_transform(y_train.values.reshape(-1, 1)).flatten()
+            y_test_scaled = self.target_scaler.transform(y_test.values.reshape(-1, 1)).flatten()
+            print(f"📊 Target scaling applied - Original range: [{y_train.min():.2f}, {y_train.max():.2f}] -> Scaled range: [{y_train_scaled.min():.2f}, {y_train_scaled.max():.2f}]")
+            return X_train_scaled, X_test_scaled, y_train_scaled, y_test_scaled
+        else:
+            return X_train_scaled, X_test_scaled
     
     def _select_and_train_model(self, X_train: np.ndarray, y_train: np.ndarray, problem_type: str, options: dict, cv_strategy) -> tuple:
         """Select and train the best model based on options"""
@@ -478,22 +503,55 @@ class ModelTrainerAgent:
         best_model.fit(X_train, y_train)
         return best_model, best_score, model_comparison, hyperparameters
     
-    def _generate_training_summary(self, model, X_test: np.ndarray, y_test: np.ndarray, problem_type: str) -> dict:
+    def _generate_training_summary(self, model, X_test: np.ndarray, y_test_scaled: np.ndarray, y_test_original: np.ndarray = None, problem_type: str = None) -> dict:
         """Generate training summary with metrics and insights"""
         try:
-            y_pred = model.predict(X_test)
+            y_pred_scaled = model.predict(X_test)
             
             if problem_type == "classification":
+                # For classification, use scaled values (which are the same as original)
                 metrics = {
-                    "accuracy": float(accuracy_score(y_test, y_pred)),
-                    "classification_report": classification_report(y_test, y_pred, output_dict=True)
+                    "accuracy": float(accuracy_score(y_test_scaled, y_pred_scaled)),
+                    "classification_report": classification_report(y_test_scaled, y_pred_scaled, output_dict=True)
                 }
+                y_test_for_prompt = y_test_scaled
+                y_pred_for_prompt = y_pred_scaled
             else:
-                metrics = {
-                    "r2": float(r2_score(y_test, y_pred)),
-                    "mse": float(mean_squared_error(y_test, y_pred)),
-                    "rmse": float(np.sqrt(mean_squared_error(y_test, y_pred)))
-                }
+                # For regression, compute metrics on both scales
+                if y_test_original is not None:
+                    # Inverse transform predictions to original scale
+                    y_pred_original = self.target_scaler.inverse_transform(y_pred_scaled.reshape(-1, 1)).flatten()
+                    
+                    # Compute metrics on original scale for interpretability
+                    metrics_original = {
+                        "r2": float(r2_score(y_test_original, y_pred_original)),
+                        "mse": float(mean_squared_error(y_test_original, y_pred_original)),
+                        "rmse": float(np.sqrt(mean_squared_error(y_test_original, y_pred_original))),
+                        "mae": float(np.mean(np.abs(y_test_original - y_pred_original)))
+                    }
+                    
+                    # Compute metrics on scaled values for normalized comparison
+                    metrics_scaled = {
+                        "r2_scaled": float(r2_score(y_test_scaled, y_pred_scaled)),
+                        "mse_scaled": float(mean_squared_error(y_test_scaled, y_pred_scaled)),
+                        "rmse_scaled": float(np.sqrt(mean_squared_error(y_test_scaled, y_pred_scaled))),
+                        "mae_scaled": float(np.mean(np.abs(y_test_scaled - y_pred_scaled)))
+                    }
+                    
+                    # Combine both sets of metrics
+                    metrics = {**metrics_original, **metrics_scaled}
+                    y_test_for_prompt = y_test_original
+                    y_pred_for_prompt = y_pred_original
+                else:
+                    # Fallback to scaled metrics only
+                    metrics = {
+                        "r2": float(r2_score(y_test_scaled, y_pred_scaled)),
+                        "mse": float(mean_squared_error(y_test_scaled, y_pred_scaled)),
+                        "rmse": float(np.sqrt(mean_squared_error(y_test_scaled, y_pred_scaled))),
+                        "mae": float(np.mean(np.abs(y_test_scaled - y_pred_scaled)))
+                    }
+                    y_test_for_prompt = y_test_scaled
+                    y_pred_for_prompt = y_pred_scaled
             
             prompt = f"""
             Analyze this {problem_type} model performance:
