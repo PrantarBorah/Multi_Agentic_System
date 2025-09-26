@@ -560,25 +560,24 @@ st.markdown("""
     }
     
     .config-section {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-secondary);
-        border-radius: var(--radius-md);
-        padding: 1.5rem;
-        margin: 0.5rem 0;
-        box-shadow: var(--shadow-sm);
-        height: fit-content;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
     }
     
     .config-section-title {
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: 1.1rem;
+        font-weight: 700;
         color: var(--text-primary);
-        margin-bottom: 1.5rem;
+        margin: 1rem 0 0.75rem 0;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--border-secondary);
+        padding: 0.5rem 0;
+        border-bottom: 2px solid var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
     .override-notice {
@@ -1301,14 +1300,10 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""
-        <div class="config-section">
-            <div class="config-section-title">🧹 Data Cleaning</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="config-section-title">🧹 Data Cleaning</div>', unsafe_allow_html=True)
         
         # Missing Value Strategy
-        st.markdown("##### Missing Value Strategy")
+        st.markdown("**Missing Value Strategy**")
         imputation = st.selectbox(
             "Select strategy:",
             ["auto", "mean", "median", "mode", "drop"],
@@ -1320,10 +1315,8 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
         if imputation != recommendations["missing_value_strategy"]:
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended setting</div>', unsafe_allow_html=True)
         
-        st.markdown("")  # Add spacing
-        
         # Outlier Handling
-        st.markdown("##### Outlier Handling")
+        st.markdown("**Outlier Handling**")
         outliers = st.selectbox(
             "Select method:",
             ["auto", "remove", "cap", "none"],
@@ -1336,14 +1329,10 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended setting</div>', unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
-        <div class="config-section">
-            <div class="config-section-title">🤖 Model Training</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="config-section-title">🤖 Model Training</div>', unsafe_allow_html=True)
         
         # Algorithms
-        st.markdown("##### Algorithms")
+        st.markdown("**Algorithms**")
         
         # Filter algorithms based on problem type
         problem_type = dataset_info.get('problem_type', 'classification')
@@ -1366,10 +1355,8 @@ def enhanced_configuration(dataset_info, uploaded_data=None):
         if set(algorithms) != set(filtered_recommendations):
             st.markdown('<div class="override-notice">ℹ️ You\'ve overridden the recommended algorithms</div>', unsafe_allow_html=True)
         
-        st.markdown("")  # Add spacing
-        
         # Cross Validation
-        st.markdown("##### Cross Validation")
+        st.markdown("**Cross Validation**")
         cv_strategy = st.selectbox(
             "Select strategy:",
             ["auto", "stratified", "kfold", "timeseries"],
